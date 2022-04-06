@@ -38,12 +38,6 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Hidden
-    uniqueID: 282863587
-    locked: 0
-  - name: Background
-    uniqueID: 1445066121
-    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
