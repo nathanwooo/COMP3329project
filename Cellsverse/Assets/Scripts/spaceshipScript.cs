@@ -18,8 +18,8 @@ public class spaceshipScript : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         v= rb.velocity;
-        v.x = Input.GetAxis("Horizontal") * 30;
-        v.y = Input.GetAxis("Vertical") * 30;
+        v.x = Input.GetAxis("Horizontal") * 10;
+        v.y = Input.GetAxis("Vertical") * 10;
         rb.velocity = v;
     }
 
