@@ -18,6 +18,7 @@ public class CharControl : MonoBehaviour{
     }
 
     void Update(){
+        
         //movement
         movementSpeed = 3.0f;
         movement.x = Input.GetAxisRaw("Horizontal");

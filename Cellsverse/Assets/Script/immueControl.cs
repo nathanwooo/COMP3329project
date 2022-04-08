@@ -6,6 +6,7 @@ using UnityEditor.Animations;
 
 public class immueControl : MonoBehaviour
 {
+    private Rigidbody2D rb; //set rigidbody
     private Dictionary<string, GameObject> actionMap;
     private GameObject actionActive;
     private GameObject actionInactive;
@@ -58,6 +59,7 @@ public class immueControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        rb = GetComponent<Rigidbody2D>();
         if (!Input.anyKey){
             Activate("idle");
         }
@@ -354,5 +356,12 @@ public class immueControl : MonoBehaviour
         //         }
         //     }
         // }
+    }
+    void OnTriggerEnter2D(Collider2D obj)
+    {
+        string name = obj.gameObject.name;
+
+        // if collided with bullet
+        Debug.Log("+++++++++++++++++++");
     }
 }

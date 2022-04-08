@@ -14,7 +14,7 @@ public class dmgcircle : MonoBehaviour
     private Vector3 targetCircleSize;
     private Transform charac;
     private float circleShrinkSpeed;
-    private float shrinkTimer = 120;
+    private float shrinkTimer = 0;
     private Vector3 targetCirclePosition;
     [SerializeField] private Transform targetCircleTransform;
     private void Awake()
