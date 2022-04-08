@@ -16,7 +16,7 @@ public class BulletControl : MonoBehaviour{
         AudioSource.PlayClipAtPoint(explosionSound, transform.position);
         Destroy(effect, 1f);
         Destroy(gameObject);
-        if (collision.gameObject.name == "Immue"){
+        if (collision.gameObject.name == "Immue(Clone)"){//when more characters need change
             healthBarControl.currentHP = healthBarControl.currentHP - damage;
         }
     }

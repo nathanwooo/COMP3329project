@@ -27,7 +27,7 @@ public class regionDetector : MonoBehaviour
         /* Vector2 v = attacker.velocity;
         v.y -= 2;
         attacker.velocity = v; */
-        Debug.Log(attacker.velocity);
+        //Debug.Log(attacker.velocity);
     }
 
     void Update()
@@ -35,8 +35,8 @@ public class regionDetector : MonoBehaviour
         if (enemy != null)
         {
             destination = enemy.transform.position;
-            Debug.Log(destination);
-            Debug.Log(attacker.transform.position);
+            //Debug.Log(destination);
+            //Debug.Log(attacker.transform.position);
             float distance = Vector3.Distance(attacker.transform.position, destination);
             if (distance > 0)
             {
@@ -44,7 +44,7 @@ public class regionDetector : MonoBehaviour
             }
         } else
         {
-            Debug.Log(initialPosition);
+            //Debug.Log(initialPosition);
             float distance = Vector3.Distance(attacker.transform.position, initialPosition);
             if (distance > 0)
             {

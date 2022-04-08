@@ -21,13 +21,13 @@ public class healthBarControl : MonoBehaviour
     {
         maxHP = maxMP = currentHP = currentMP = 100;
         lv = 1;
-        cv = GameObject.Find("Canvas");
-        et = GameObject.Find("Canvas/Elite");
-        nm = GameObject.Find("Canvas/Elite/Name");
-        lvCount = GameObject.Find("Canvas/Elite/Level/Text");
-        hpBar = GameObject.Find("Canvas/Elite/Bars/Healthbar");
-        mpBar = GameObject.Find("Canvas/Elite/Bars/Manabar");
-        nm.GetComponent<Text>().text = "Immue";
+        cv = GameObject.Find("Immue(Clone)/Canvas");
+        et = GameObject.Find("Immue(Clone)/Canvas/Elite");
+        nm = GameObject.Find("Immue(Clone)/Canvas/Elite/Name");
+        lvCount = GameObject.Find("Immue(Clone)/Canvas/Elite/Level/Text");
+        hpBar = GameObject.Find("Immue(Clone)/Canvas/Elite/Bars/Healthbar");
+        mpBar = GameObject.Find("Immue(Clone)/Canvas/Elite/Bars/Manabar");
+        nm.GetComponent<Text>().text = "Immue(Clone)";
         updateBar();
     }
 

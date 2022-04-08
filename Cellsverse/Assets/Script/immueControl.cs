@@ -59,6 +59,10 @@ public class immueControl : MonoBehaviour
         WakeFast("idle");
         AddCollider("idle");
         EnableCollider("idle");
+        if (photonView.IsMine)
+        {
+            //Destroy(cam);
+        }
 
     }
     void FixedUpdate()

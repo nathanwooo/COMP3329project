@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class gunControl : MonoBehaviour{
-    private GameObject firePoint;
+    public GameObject firePoint;
     private float bulletForce = 10f;
     private float fireRate = 0.3f;
     private float nextFire = 0f;
@@ -18,16 +18,17 @@ public class gunControl : MonoBehaviour{
     private Transform tf;
     public AudioClip shootSound;
     void Start(){
-        /* firePoint = GameObject.Find("Immue/firepoint");
+        firePoint = GameObject.Find("Immue(Clone)/firepoint");
+
         Debug.Log("firepoint", firePoint);
         Rigidbody2D rb = firePoint.AddComponent<Rigidbody2D>();
-        rb.gravityScale = 0f; */
+        rb.gravityScale = 0f; 
         cam = Camera.main;
-        /* gunUp = GameObject.Find("Immue/gun_up/gun_up").GetComponent<SpriteRenderer>();
-        gunDown = GameObject.Find("Immue/gun_down/gun_down").GetComponent<SpriteRenderer>();
-        gunLeft = GameObject.Find("Immue/gun_left/gun_side").GetComponent<SpriteRenderer>();
-        gunRight = GameObject.Find("Immue/gun_right/gun_side").GetComponent<SpriteRenderer>();
-        tf = GameObject.Find("Immue/firepoint").transform; */
+        gunUp = GameObject.Find("Immue(Clone)/gun_up/gun_up").GetComponent<SpriteRenderer>();
+        gunDown = GameObject.Find("Immue(Clone)/gun_down/gun_down").GetComponent<SpriteRenderer>();
+        gunLeft = GameObject.Find("Immue(Clone)/gun_left/gun_side").GetComponent<SpriteRenderer>();
+        gunRight = GameObject.Find("Immue(Clone)/gun_right/gun_side").GetComponent<SpriteRenderer>();
+        tf = GameObject.Find("Immue(Clone)/firepoint").transform; 
     }
 
     void Update(){
