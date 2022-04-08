@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEditor.Animations;
+using Photon.Pun;
+
 
 public class immueControl : MonoBehaviour
 {
@@ -14,7 +16,9 @@ public class immueControl : MonoBehaviour
     private string parent;
     private bool keyInput;
     private Camera cam;
-    
+    PhotonView photonView;
+
+
     //private int actionLength = GameObject.transform.childCount;
     //private string[] actionInactiveList = new string[actionLength];
 
@@ -23,6 +27,7 @@ public class immueControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        photonView = GetComponent<PhotonView>();
         actionMap = new Dictionary<string, GameObject>();
         actionLength = this.gameObject.transform.childCount - 3;
         actionInactiveList = new string[actionLength];
@@ -54,10 +59,18 @@ public class immueControl : MonoBehaviour
         WakeFast("idle");
         AddCollider("idle");
         EnableCollider("idle");
-    }
 
+    }
+    void FixedUpdate()
+    {
+        // Only move the player object if it's the local user's player
+        if (photonView.IsMine)
+        {
+            Move();
+        }
+    }
     // Update is called once per frame
-    void Update()
+    void Move()
     {
         
         if (!Input.anyKey)

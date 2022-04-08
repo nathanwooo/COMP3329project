@@ -18,16 +18,16 @@ public class gunControl : MonoBehaviour{
     private Transform tf;
     public AudioClip shootSound;
     void Start(){
-        firePoint = GameObject.Find("Immue/firepoint");
+        /* firePoint = GameObject.Find("Immue/firepoint");
         Debug.Log("firepoint", firePoint);
         Rigidbody2D rb = firePoint.AddComponent<Rigidbody2D>();
-        rb.gravityScale = 0f;
+        rb.gravityScale = 0f; */
         cam = Camera.main;
-        gunUp = GameObject.Find("Immue/gun_up/gun_up").GetComponent<SpriteRenderer>();
+        /* gunUp = GameObject.Find("Immue/gun_up/gun_up").GetComponent<SpriteRenderer>();
         gunDown = GameObject.Find("Immue/gun_down/gun_down").GetComponent<SpriteRenderer>();
         gunLeft = GameObject.Find("Immue/gun_left/gun_side").GetComponent<SpriteRenderer>();
         gunRight = GameObject.Find("Immue/gun_right/gun_side").GetComponent<SpriteRenderer>();
-        tf = GameObject.Find("Immue/firepoint").transform;
+        tf = GameObject.Find("Immue/firepoint").transform; */
     }
 
     void Update(){
