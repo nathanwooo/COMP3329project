@@ -667,8 +667,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 098e71962036d0f4d9c1c20bc3916c8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firePoint: {fileID: 0}
+  firePoint: {fileID: 6501389775653289315}
   bulletPrefab: {fileID: 2982506535618864606, guid: 3c54244333824a8449c8210c214e6be5, type: 3}
+  gunUp: {fileID: 6501389776531512483}
+  gunDown: {fileID: 6501389775256641742}
+  gunLeft: {fileID: 6501389775452141301}
+  gunRight: {fileID: 6501389775491378968}
   shootSound: {fileID: 8300000, guid: ecfa542546238eb4da7085b5618056f3, type: 3}
 --- !u!114 &6501389775418205743
 MonoBehaviour:
