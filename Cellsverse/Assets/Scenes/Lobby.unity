@@ -314,6 +314,7 @@ MonoBehaviour:
   roomName: {fileID: 1130850723}
   roomItemPrefab: {fileID: 2391213880525450700, guid: daaa9241923381d4d9e44c028cb3b04a, type: 3}
   contentObject: {fileID: 1802919777}
+  timeBetweenUpdates: 1.5
 --- !u!4 &247796053
 Transform:
   m_ObjectHideFlags: 0
@@ -969,7 +970,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1028056232}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 247796052}
+        m_TargetAssemblyTypeName: LobbyManager, Assembly-CSharp
+        m_MethodName: OnClickLeaveRoom
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1028056232
 MonoBehaviour:
   m_ObjectHideFlags: 0
