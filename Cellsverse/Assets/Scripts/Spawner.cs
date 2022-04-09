@@ -1,15 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class Spawner : MonoBehaviour
+public class Spawner : MonoBehaviourPunCallbacks
 {
     public GameObject nutrients;
     public int NUMBER = 20;
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < NUMBER; i++)
+        
+    }
+    public override void OnJoinedRoom()
+    {
+        for(int i = 0; i < NUMBER; i++)
         {
             SpawnNut();
         }
@@ -26,6 +31,6 @@ public class Spawner : MonoBehaviour
         float y1 = transform.position.y - s2;
         float y2 = transform.position.y + s2;
         Vector2 spawnPoint = new Vector2(Random.Range(x1, x2), Random.Range(y1, y2));
-        Instantiate(nutrients, spawnPoint, Quaternion.identity);
-    }
+        PhotonNetwork.Instantiate(nutrients.name, spawnPoint, Quaternion.identity);
+    }   
 }
