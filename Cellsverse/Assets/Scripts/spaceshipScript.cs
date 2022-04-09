@@ -29,5 +29,21 @@ public class spaceshipScript : MonoBehaviour
 
         // if collided with bullet
         Debug.Log(name);
+        if (name == "Attacker(Clone)")
+        {
+            Debug.Log("Collided");
+            Destroy(obj.gameObject);
+        }
+
+    }
+
+    void OnCollisionEnter2D(Collision2D obj)
+    {
+        string name = obj.gameObject.name;
+        if (name == "Attacker(Clone)")
+        {
+            Debug.Log("Collided");
+            Destroy(obj.gameObject);
+        }
     }
 }

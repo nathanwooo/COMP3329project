@@ -327,17 +327,24 @@ public class immueControl : MonoBehaviour
 
     void Center(string action)
     {
-        var tf = actionMap[action].transform;
-        tf.localPosition = new Vector3(0f, 0f, 0f);
+        if (actionMap[action].gameObject.name != "PlayerBoundary")
+        {
+            var tf = actionMap[action].transform;
+            tf.localPosition = new Vector3(0f, 0f, 0f);
+        }
     }
 
     void AddCollider(string action)
     {
-        BoxCollider2D bc = actionMap[action].AddComponent<BoxCollider2D>();
-        bc.enabled = false;
-        bc.offset = new Vector2(0, 0.5f);
-        bc.size = new Vector2(1, 1.5f);
-        var tf = actionMap[action].transform;
+        if (actionMap[action].gameObject.name != "PlayerBoundary")
+        {
+            BoxCollider2D bc = actionMap[action].AddComponent<BoxCollider2D>();
+            bc.enabled = false;
+            bc.offset = new Vector2(0, 0.5f);
+            bc.size = new Vector2(1, 1.5f);
+            var tf = actionMap[action].transform;
+        }
+        
         // for(int i = 0; i < tf.childCount; i++)
         // {
         //     if (tf.GetChild(i).name != "shadow")
