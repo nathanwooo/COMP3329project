@@ -6,7 +6,7 @@ using Photon.Pun;
 
 
 public class gunControl : MonoBehaviourPunCallbacks {
-    [SerializeField] public GameObject firePoint;
+    public GameObject firePoint;
     private float bulletForce = 10f;
     private float fireRate = 0.3f;
     private float nextFire = 0f;
@@ -20,7 +20,7 @@ public class gunControl : MonoBehaviourPunCallbacks {
     private Transform tf;
     public AudioClip shootSound;
     void Start(){
-        //firePoint = GameObject.Find("Immue(Clone)/firepoint");
+        firePoint = GameObject.Find("Immue(Clone)/firepoint");
 
         Debug.Log("firepoint", firePoint);
         Rigidbody2D rb = firePoint.AddComponent<Rigidbody2D>();
