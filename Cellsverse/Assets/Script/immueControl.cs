@@ -15,7 +15,7 @@ public class immueControl : MonoBehaviour
     private string[] actionInactiveList;
     private string parent;
     private bool keyInput;
-    private Camera cam;
+    [SerializeField] private Camera cam;
     PhotonView photonView;
 
 
@@ -32,7 +32,7 @@ public class immueControl : MonoBehaviour
         actionLength = this.gameObject.transform.childCount - 3;
         actionInactiveList = new string[actionLength];
         keyInput = true;
-        cam = Camera.main;
+        //cam = Camera.main;
         for (int i = 0; i < actionLength; i++)
         {
             GameObject child = this.gameObject.transform.GetChild(i + 3).gameObject;
@@ -59,9 +59,11 @@ public class immueControl : MonoBehaviour
         WakeFast("idle");
         AddCollider("idle");
         EnableCollider("idle");
-        if (photonView.IsMine)
+        if (!photonView.IsMine)
         {
-            //Destroy(cam);
+            Debug.Log("XDDD");
+            cam.enabled = false;
+            Debug.Log("========================================");
         }
 
     }
