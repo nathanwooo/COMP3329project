@@ -87,6 +87,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public void OnClickLeaveRoom()
     {
+        Debug.Log("Leave");
         PhotonNetwork.LeaveRoom();
     }
 

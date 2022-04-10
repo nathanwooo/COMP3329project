@@ -523,7 +523,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: {fileID: 7986074215144833317}
-  highlightColor: {r: 0.2661089, g: 0.282482, b: 0.3679245, a: 1}
   leftArrowButton: {fileID: 2016914682682469366}
   rightArrowButton: {fileID: 8878343029844856417}
 --- !u!1 &8878343029844856417
