@@ -9,7 +9,7 @@ public class PlayerItem : MonoBehaviour
 {
     public Text playerName;
     Image backgroundImage;
-    public Color highlightColor;
+    //public Color highlightColor;
     public GameObject leftArrowButton;
     public GameObject rightArrowButton;
 
