@@ -10,7 +10,7 @@ public class regionDetector : MonoBehaviour
     public GameObject[] powerUp;
     public float startTime;
     public float interval;
-    public Transform powerUpPos;
+    public Transform powerUpTransform;
 
     private float remainingTime;
     private GameObject attacker;
@@ -18,6 +18,8 @@ public class regionDetector : MonoBehaviour
     private HashSet<Collider2D> enemies;
     private Collider2D target_enemy;
     private Vector3 initialPosition;
+    private Vector3 powerUpPos;
+    private GameObject booster;
 
 
     void Start()
@@ -29,6 +31,7 @@ public class regionDetector : MonoBehaviour
         initialPosition = transform.position;
         enemies = new HashSet<Collider2D>();
         spawnAttacker();
+        powerUpPos = powerUpTransform.position;
     }
 
     void spawnAttacker()
@@ -78,7 +81,12 @@ public class regionDetector : MonoBehaviour
         else
         {
             var nextIndex = Random.Range(0, powerUp.Length);
-
+            if (booster != null)
+            {
+                Destroy(booster);
+            }
+            booster = Instantiate(powerUp[nextIndex], powerUpPos, Quaternion.identity);
+            remainingTime = interval;
         }
         if (attacker != null)
         {
