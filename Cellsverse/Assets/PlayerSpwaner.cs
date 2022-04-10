@@ -11,23 +11,21 @@ public class PlayerSpwaner : MonoBehaviour
 
     private void Start()
     {
+        var index = 0;
         if (PhotonNetwork.IsMasterClient)
         {
-
-            Transform spawnPoint = spwanPoints[0];   //random spwan place
+            index = 0;
                                                                 //GameObject PlayerToSpwan = playerPrefabs[PhotonNetwork.LocalPlayer.CustomProperties["PlayerAvatar"]];
                                                                 //GameObject playerToSpwan = playerPrefabs[0];
                                                                 //PhotonNetwork.Instantiate(playerToSpwan.name)
-            PhotonNetwork.Instantiate(playerToSpwan.name, spawnPoint.position, Quaternion.identity);
+            // PhotonNetwork.Instantiate(playerToSpwan.name, spawnPoint.position, Quaternion.identity);
         } else
         {
-            Transform spawnPoint = spwanPoints[1];   //random spwan place
-                                                     //GameObject PlayerToSpwan = playerPrefabs[PhotonNetwork.LocalPlayer.CustomProperties["PlayerAvatar"]];
-                                                     //GameObject playerToSpwan = playerPrefabs[0];
-                                                     //PhotonNetwork.Instantiate(playerToSpwan.name)
-            PhotonNetwork.Instantiate(playerToSpwan.name, spawnPoint.position, Quaternion.identity);
+            index = 1;
         }
-        
+        Transform spawnPoint = spwanPoints[index];   //random spwan place
+        PhotonNetwork.Instantiate(playerToSpwan.name, spawnPoint.position, Quaternion.identity);
+
     }
 
 }
