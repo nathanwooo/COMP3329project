@@ -16,7 +16,8 @@ public class MinimapCamera : MonoBehaviour
     {
 
         Vector3 newPosition = player.position;
-        newPosition.z = transform.position.z;
+        newPosition.z = -2;
+        
         transform.position = newPosition;
     }
 }
