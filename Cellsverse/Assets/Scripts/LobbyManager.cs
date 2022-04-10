@@ -22,6 +22,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public PlayerItem playerItemPrefab;
     public Transform playerItemParent;
 
+    public GameObject playButton;
+
     private void Start()
     {
         PhotonNetwork.JoinLobby();
@@ -126,5 +128,21 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
             playerItemsList.Add(newPlayeritem);
         }
+    }
+    private void Update()
+    {
+        if (PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom.PlayerCount >= 2)
+        {
+            playButton.SetActive(true);
+        }
+        else
+        {
+            playButton.SetActive(false);
+        }
+    }
+
+    public void OnClickPlayButton()
+    {
+        PhotonNetwork.LoadLevel("cellverse");
     }
 }
