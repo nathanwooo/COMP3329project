@@ -27,12 +27,14 @@ public class DesroyBlock : MonoBehaviour
         
         if (name == "bullets_side(Clone)")//change to bullet later
         {
-            Debug.Log("block get shoot");
+            
             Vector3 hitPosition = Vector3.zero;
             foreach(ContactPoint2D hit in collision.contacts)
             {
+                
                 hitPosition.x = hit.point.x - 0.01f * hit.normal.x;
                 hitPosition.y = hit.point.y - 0.01f * hit.normal.y;
+                
                 DestructableTilemap.SetTile(DestructableTilemap.WorldToCell(hitPosition), null);
             }
 
