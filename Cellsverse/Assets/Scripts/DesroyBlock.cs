@@ -27,6 +27,7 @@ public class DesroyBlock : MonoBehaviour
         
         if (name == "bullets_side(Clone)")//change to bullet later
         {
+            Debug.Log("block get shoot");
             Vector3 hitPosition = Vector3.zero;
             foreach(ContactPoint2D hit in collision.contacts)
             {
