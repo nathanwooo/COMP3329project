@@ -10,7 +10,7 @@ public class regionDetector : MonoBehaviour
     public GameObject[] powerUp;
     public float startTime;
     public float interval;
-    public Transform[] powerUpPos;
+    public Transform powerUpPos;
 
     private float remainingTime;
     private GameObject attacker;
