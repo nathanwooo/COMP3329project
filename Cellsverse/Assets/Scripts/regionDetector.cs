@@ -7,7 +7,12 @@ public class regionDetector : MonoBehaviour
     public GameObject attacker_object;
     public float speed = 1.0f;
     public string playerBoundingName = "PlayerBoundary";
+    public GameObject[] powerUp;
+    public float startTime;
+    public float interval;
+    public Transform[] powerUpPos;
 
+    private float remainingTime;
     private GameObject attacker;
     private Vector3 destination;
     private HashSet<Collider2D> enemies;
@@ -19,7 +24,8 @@ public class regionDetector : MonoBehaviour
     {
         // initialPosition = attacker.transform.position;
 
-        // Randomly pick a point within the spawn object    
+        // Randomly pick a point within the spawn object
+        remainingTime = startTime;
         initialPosition = transform.position;
         enemies = new HashSet<Collider2D>();
         spawnAttacker();
@@ -65,6 +71,15 @@ public class regionDetector : MonoBehaviour
 
     void Update()
     {
+        if (remainingTime > 0)
+        {
+            remainingTime -= Time.deltaTime;
+        }
+        else
+        {
+            var nextIndex = Random.Range(0, powerUp.Length);
+
+        }
         if (attacker != null)
         {
             if (target_enemy != null)
