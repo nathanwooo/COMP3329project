@@ -9,6 +9,7 @@ public class PlayerSpwaner : MonoBehaviour
     public Transform[] spwanPoints;
     public GameObject playerToSpwan; //comment this later when change sprite
 
+
     private void Start()
     {
         var index = 0;
