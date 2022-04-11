@@ -992,6 +992,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 6501389777051009390}
+  cam2: {fileID: 723980022}
 --- !u!114 &6501389775418205736
 MonoBehaviour:
   m_ObjectHideFlags: 0

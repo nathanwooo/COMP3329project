@@ -16,6 +16,7 @@ public class immueControl : MonoBehaviour
     private string parent;
     private bool keyInput;
     [SerializeField] private Camera cam;
+    [SerializeField] private Camera cam2;
     PhotonView photonView;
 
 
@@ -62,7 +63,9 @@ public class immueControl : MonoBehaviour
         if (!photonView.IsMine)
         {
             Debug.Log("XDDD");
+            cam.GetComponent<AudioListener>().enabled = false;
             cam.enabled = false;
+            cam2.enabled = false;
             Debug.Log("========================================");
         }
 
