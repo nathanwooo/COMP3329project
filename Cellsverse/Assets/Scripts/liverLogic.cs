@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class liverLogic : MonoBehaviour
 {
     private float time = 5;
-    private bool tped = true;
+    private bool willTp = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,11 +18,11 @@ public class liverLogic : MonoBehaviour
     void Update()
     {
         time -= Time.deltaTime;
-        if (time < 0 && tped)
+        if (time < 0 && willTp)
         {
 
-            PhotonNetwork.LoadLevel("heart");
-            tped = false;
+            SceneManager.LoadScene("heart");
+            willTp = false;
         }
     }
 }
