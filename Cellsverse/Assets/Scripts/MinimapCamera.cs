@@ -15,12 +15,9 @@ public class MinimapCamera : MonoBehaviour
     }
 
     // Update is called once per frame
-    /*void LateUpdate()
+    void LateUpdate()
     {
 
-        Vector3 newPosition = player.position; 
-        newPosition.z = this.transform.position.z; 
-       
-        transform.position = newPosition;
-    }*/
+        Debug.Log("Z:    " + this.transform.position.z);
+    }
 }

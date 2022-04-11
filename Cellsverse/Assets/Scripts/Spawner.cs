@@ -10,14 +10,14 @@ public class Spawner : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
-    public override void OnJoinedRoom()
-    {
-        for(int i = 0; i < NUMBER; i++)
+        for (int i = 0; i < NUMBER; i++)
         {
             SpawnNut();
         }
+    }
+    public override void OnJoinedRoom()
+    {
+        
     }
 
     // Update is called once per frame
