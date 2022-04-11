@@ -8,16 +8,16 @@ public class MinimapCamera : MonoBehaviour
     
     void Start()
     {
-        Debug.Log("Z1:    " + transform.localPosition.z);
+        
         Vector3 newP = transform.localPosition;
         transform.localPosition = new Vector3(newP.x, newP.y, -2);
-        Debug.Log("Z:    "+transform.localPosition.z);
+        
     }
 
     
     void LateUpdate()
     {
 
-        Debug.Log("Z:    " + transform.localPosition.z);
+        
     }
 }
