@@ -9,13 +9,15 @@ public class HeartLogic : MonoBehaviour
     private int count = 0;
     private PhotonView PV;
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         PV = GetComponent<PhotonView>();
         Debug.Log(PV.IsMine);
         if (PhotonNetwork.IsMasterClient && PV.IsMine)
         {
-            PV.RPC("createTileMap", RpcTarget.AllBuffered);
+        Debug.Log("Creatttttttttttttttttttttttttttttttttttttttttttttttttttttttt");
+            var map = PhotonNetwork.Instantiate(destryableMap.name, new Vector3(0, 0, 0), Quaternion.identity);
+            PV.RPC("createTileMap", RpcTarget.AllBufferedViaServer, map);
         Debug.Log("213122222222223");
         Debug.Log(count++);
         } 
@@ -28,9 +30,9 @@ public class HeartLogic : MonoBehaviour
     }
 
     [PunRPC]
-    void createTileMap()
+    void createTileMap(GameObject map)
     {
-        var map = PhotonNetwork.Instantiate(destryableMap.name, new Vector3(0, 0, 0), Quaternion.identity);
+        
         map.transform.SetParent(grid.transform);
     }
 }
