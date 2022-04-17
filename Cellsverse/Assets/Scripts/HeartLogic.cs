@@ -9,11 +9,11 @@ public class HeartLogic : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        if (PhotonNetwork.IsMasterClient)
-        {
+        //if (PhotonNetwork.IsMasterClient)
+        //{
             var map = PhotonNetwork.Instantiate(destryableMap.name, new Vector3(0, 0, 0), Quaternion.identity);
             map.transform.SetParent(grid.transform);
-        }
+        //}
     }
 
     // Update is called once per frame
