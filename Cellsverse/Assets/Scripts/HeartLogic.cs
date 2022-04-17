@@ -10,7 +10,7 @@ public class HeartLogic : MonoBehaviour
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            PhotonNetwork.Instantiate(destryableMap.name, new Vector2(0, 0), Quaternion.identity);
+            PhotonNetwork.Instantiate(destryableMap.name, new Vector3(0, 0, 0), Quaternion.identity);
         }
     }
 
