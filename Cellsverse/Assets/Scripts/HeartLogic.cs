@@ -19,7 +19,7 @@ public class HeartLogic : MonoBehaviour
             Debug.Log("Creatttttttttttttttttttttttttttttttttttttttttttttttttttttttt");
             Debug.Log("Creatttttttttttttttttttttttttttttttttttttttttttttttttttttttt");
             var map = PhotonNetwork.Instantiate(destryableMap.name, new Vector3(0, 0, 0), Quaternion.identity);
-            PV.RPC("createTileMap", RpcTarget.All, map.GetComponent<PhotonView>().ViewID));
+            PV.RPC("createTileMap", RpcTarget.All, map.GetComponent<PhotonView>().ViewID);
             Debug.Log("213122222222223");
             Debug.Log(count++);
         } 
@@ -36,7 +36,8 @@ public class HeartLogic : MonoBehaviour
         Debug.Log(viewID);
         Debug.Log("22222222222222222222222222------------------22");
         // Debug.Log(map);
-        GameObject.Find("Immue(Clone)/firepoint");
-        // map.transform.SetParent(grid.transform);
+        // GameObject.Find("Immue(Clone)/firepoint");
+        PhotonView.Find(viewID).transform.SetParent(grid.transform);
+        
     }
 }

@@ -8,9 +8,11 @@ public class DesroyBlock : MonoBehaviour
     private float offsetX;
     private float offsetY;
     private Tilemap DestructableTilemap;
+    private PhotonView PV;
     // Start is called before the first frame update
     void Awake()
     {
+        PV = GetComponent<PhotonView>();
         DestructableTilemap = GetComponent < Tilemap >();
 
     }
@@ -22,22 +24,30 @@ public class DesroyBlock : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
-        string name = collision.gameObject.name;
-
-        if (name == "bullets_side(Clone)")//change to bullet later
+        if (PhotonNetwork.IsMasterClient)
         {
+            string name = collision.gameObject.name;
+
+            if (name == "bullets_side(Clone)")//change to bullet later
+            {
+                PV.RPC("DestroyMap", RpcTarget.All, collision);
+            }
+        }
+    }
+    [PunRPC]
+    void DestroyMap(Collision2D collision)
+    {
+        
 
             Vector3 hitPosition = Vector3.zero;
-            foreach(ContactPoint2D hit in collision.contacts)
+            foreach (ContactPoint2D hit in collision.contacts)
             {
-                
+
                 hitPosition.x = hit.point.x - 0.01f * hit.normal.x;
                 hitPosition.y = hit.point.y - 0.01f * hit.normal.y;
-                
+
                 DestructableTilemap.SetTile(DestructableTilemap.WorldToCell(hitPosition), null);
             }
 
         }
-    }
 }
