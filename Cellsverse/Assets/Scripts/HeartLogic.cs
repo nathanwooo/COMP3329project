@@ -7,12 +7,14 @@ public class HeartLogic : MonoBehaviour
     public GameObject destryableMap;
     public GameObject grid;
     private int count = 0;
+    private PhotonView PV;
     // Start is called before the first frame update
     void Awake()
     {
-        if (PhotonNetwork.IsMasterClient)
+        PV = GetComponent<PhotonView>();
+        if (PhotonNetwork.IsMasterClient && PV.IsMine)
         {
-            GetComponent<PhotonView>().RPC("createTileMap", RpcTarget.AllBuffered);
+            PV.RPC("createTileMap", RpcTarget.AllBuffered);
         Debug.Log("213122222222223");
         Debug.Log(count++);
         } 
