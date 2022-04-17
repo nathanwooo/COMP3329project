@@ -50,8 +50,6 @@ public class DesroyBlock : MonoBehaviour
     {
         foreach (Vector3 point in desPoints) {
             DestructableTilemap.SetTile(DestructableTilemap.WorldToCell(point), null);
-
         }
-
     }
 }
