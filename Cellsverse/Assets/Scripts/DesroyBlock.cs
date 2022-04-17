@@ -9,7 +9,7 @@ public class DesroyBlock : MonoBehaviour
     private float offsetY;
     private Tilemap DestructableTilemap;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         DestructableTilemap = GetComponent < Tilemap >();
 
