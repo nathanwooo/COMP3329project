@@ -31,26 +31,27 @@ public class DesroyBlock : MonoBehaviour
             if (name == "bullets_side(Clone)")//change to bullet later
             {
                 var contacts = collision.contacts;
-                Vector3[] desPoints = new Vector3()[contacts.Length];
+                Vector3[] desPoints = new Vector3[contacts.Length];
                 Vector3 hitPosition = Vector3.zero;
+                var i = 0;
                 foreach (ContactPoint2D hit in contacts)
                 {
 
                     hitPosition.x = hit.point.x - 0.01f * hit.normal.x;
                     hitPosition.y = hit.point.y - 0.01f * hit.normal.y;
-
-                    DestructableTilemap.SetTile(DestructableTilemap.WorldToCell(hitPosition), null);
+                    desPoints[i++] = hitPosition;
                 }
-                PV.RPC("DestroyMap", RpcTarget.All, collision.contacts);
+                PV.RPC("DestroyMap", RpcTarget.All, desPoints);
             }
         }
     }
     [PunRPC]
-    void DestroyMap(ContactPoint2D[] contacts)
+    void DestroyMap(Vector3[] desPoints)
     {
-        
+        foreach (Vector3 point in desPoints) {
+            DestructableTilemap.SetTile(DestructableTilemap.WorldToCell(point), null);
 
-            
+        }
 
-     }
+    }
 }
