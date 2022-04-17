@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using UnityEditor.Animations;
+//using UnityEditor.Animations;
 
 public class CharControl : MonoBehaviour{
     public float movementSpeed = 3.0f; //set movement speed
