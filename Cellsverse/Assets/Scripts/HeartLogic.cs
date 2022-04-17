@@ -12,6 +12,7 @@ public class HeartLogic : MonoBehaviour
     void Awake()
     {
         PV = GetComponent<PhotonView>();
+        Debug.Log(PV.IsMine);
         if (PhotonNetwork.IsMasterClient && PV.IsMine)
         {
             PV.RPC("createTileMap", RpcTarget.AllBuffered);
