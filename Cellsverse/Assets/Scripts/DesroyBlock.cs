@@ -24,7 +24,7 @@ public class DesroyBlock : MonoBehaviour
     {
         
         
-        if (PhotonNetwork.IsMasterClient && name == "bullets_side(Clone)")//change to bullet later
+        if (name == "bullets_side(Clone)")//change to bullet later
         {
             string name = collision.gameObject.name;
 

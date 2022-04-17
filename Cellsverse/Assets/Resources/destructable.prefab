@@ -22919,6 +22919,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: -8855412185558049213}
   - {fileID: 4007073511127160483}
+  - {fileID: 5732032396937763992}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -22945,7 +22946,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8890869786051472981}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
   m_Name: 
@@ -22961,7 +22962,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8890869786051472981}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e7cb724808c322458aa4d15f5035fa9, type: 3}
   m_Name: 
