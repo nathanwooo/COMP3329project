@@ -23,10 +23,10 @@ public class DesroyBlock : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         
-        
+        string name = collision.gameObject.name;
+
         if (name == "bullets_side(Clone)")//change to bullet later
         {
-            string name = collision.gameObject.name;
 
             Vector3 hitPosition = Vector3.zero;
             foreach(ContactPoint2D hit in collision.contacts)

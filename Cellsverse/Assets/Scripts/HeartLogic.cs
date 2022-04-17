@@ -12,14 +12,16 @@ public class HeartLogic : MonoBehaviour
     void Start()
     {
         PV = GetComponent<PhotonView>();
+        Debug.Log("[[[[[[[[[[[[[[[[[[[[");
         Debug.Log(PV.IsMine);
         if (PhotonNetwork.IsMasterClient && PV.IsMine)
         {
-        Debug.Log("Creatttttttttttttttttttttttttttttttttttttttttttttttttttttttt");
+            Debug.Log("Creatttttttttttttttttttttttttttttttttttttttttttttttttttttttt");
+            Debug.Log("Creatttttttttttttttttttttttttttttttttttttttttttttttttttttttt");
             var map = PhotonNetwork.Instantiate(destryableMap.name, new Vector3(0, 0, 0), Quaternion.identity);
-            PV.RPC("createTileMap", RpcTarget.AllBufferedViaServer, map);
-        Debug.Log("213122222222223");
-        Debug.Log(count++);
+            PV.RPC("createTileMap", RpcTarget.All, map.GetComponent<PhotonView>().ViewID));
+            Debug.Log("213122222222223");
+            Debug.Log(count++);
         } 
     }
 
@@ -28,11 +30,13 @@ public class HeartLogic : MonoBehaviour
     {
         
     }
-
     [PunRPC]
-    void createTileMap(GameObject map)
+    void createTileMap(int viewID)
     {
-        
-        map.transform.SetParent(grid.transform);
+        Debug.Log(viewID);
+        Debug.Log("22222222222222222222222222------------------22");
+        // Debug.Log(map);
+        GameObject.Find("Immue(Clone)/firepoint");
+        // map.transform.SetParent(grid.transform);
     }
 }
