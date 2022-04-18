@@ -10,21 +10,38 @@ public class Occupy : MonoBehaviour
     public string playerBoundingName = "PlayerBoundary";
     private List<string> occupyingPlayers = new List<string>();
     private float passedTime;
-    private bool countTime = true;
+    private bool countTime = false;
+    private int ownScore = 0;
+    private int enemyScore = 0;
+    private PhotonView PV;
+
     void Start()
     {
-        
+        PV = GetComponent<PhotonView>();
+
     }
 
     void Update()
     {
         if (countTime)
         {
-            Debug.Log("Check length ..............................");
-            Debug.Log(occupyingPlayers.Count);
             passedTime += Time.deltaTime;
-            Debug.Log(passedTime);
+            if (passedTime >= 1)
+            {
+                passedTime -= 1;
+                ownScore += 1;
+                PV.RPC("addScore", RpcTarget.Others);
+                Debug.Log(ownScore);
+
+            }
         }
+    }
+
+    [PunRPC]
+    void addScore()
+    {
+        enemyScore += 1;
+        Debug.Log(enemyScore);
     }
 
     void OnTriggerEnter2D(Collider2D obj)
