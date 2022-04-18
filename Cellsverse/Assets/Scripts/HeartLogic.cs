@@ -36,6 +36,8 @@ public class HeartLogic : MonoBehaviour
         {
 
             SceneManager.LoadScene("liver");
+            Debug.Log(++lungLogic.ownGameScore);
+            Debug.Log(lungLogic.enemyGameScore);
             willTp = false;
         }
     }

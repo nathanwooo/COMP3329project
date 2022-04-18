@@ -8,6 +8,9 @@ public class lungLogic : MonoBehaviour
 {
     public float time = 5;
     private bool willTp = true;
+    public static int ownGameScore = 0;
+    public static int enemyGameScore = 0;
+
     // Start is called before the first frame update
     void Start()
     {
