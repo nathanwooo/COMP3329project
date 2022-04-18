@@ -84,12 +84,13 @@ public class regionDetector : MonoBehaviour
         else
         {
             var nextIndex = Random.Range(0, powerUp.Length);
-            if (booster != null)
-            {
-                Destroy(booster);
-            }
+            
             if (PhotonNetwork.IsMasterClient)
             {
+                if (booster != null)
+                {
+                    PhotonNetwork.Destroy(booster);
+                }
                 booster = PhotonNetwork.Instantiate(powerUp[nextIndex].name, powerUpPos, Quaternion.identity);
             }
             remainingTime = interval;
