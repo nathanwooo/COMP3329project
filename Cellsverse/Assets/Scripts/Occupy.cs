@@ -23,7 +23,7 @@ public class Occupy : MonoBehaviour
         string name = obj.gameObject.name;
 
         // if collided with bullet
-        Debug.Log("Enter " + name);
+        // Debug.Log("Enter " + name);
         /*
         Debug.Log("Player Enters");
         Debug.Log(obj);
@@ -36,7 +36,7 @@ public class Occupy : MonoBehaviour
             Debug.Log(photonView.Owner.NickName);
 
             occupyingPlayers.Add(photonView.Owner.NickName);
-            Debug.Log(occupyingPlayers);
+            printList();
 
             /* Debug.Log(PhotonNetwork.CurrentRoom.Players);
             Debug.Log(photonId);
@@ -51,6 +51,13 @@ public class Occupy : MonoBehaviour
 
         }
     }
+    void printList()
+    {
+        foreach (string name in occupyingPlayers)
+        {
+            Debug.Log(name);
+        }
+    }
     private void OnTriggerExit2D(Collider2D collision)
     {
         string name = collision.gameObject.name;
@@ -59,7 +66,7 @@ public class Occupy : MonoBehaviour
             var photonView = collision.gameObject.transform.parent.gameObject.GetComponent<PhotonView>();
             Debug.Log(photonView.Owner.NickName);
             occupyingPlayers.Remove(photonView.Owner.NickName);
-            Debug.Log(occupyingPlayers);
+            printList();
         }
 
     }
