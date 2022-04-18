@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Photon.Pun;
 public class regionDetector : MonoBehaviour
 {
     public GameObject attacker_object;
@@ -21,7 +21,6 @@ public class regionDetector : MonoBehaviour
     private Vector3 powerUpPos;
     private GameObject booster;
 
-
     void Start()
     {
         // initialPosition = attacker.transform.position;
@@ -36,7 +35,11 @@ public class regionDetector : MonoBehaviour
 
     void spawnAttacker()
     {
-        attacker = Instantiate(attacker_object, initialPosition, Quaternion.identity);
+        if (PhotonNetwork.IsMasterClient)
+        {
+            attacker = PhotonNetwork.Instantiate(attacker_object.name, initialPosition, Quaternion.identity);
+        }
+        
     }
 
     void addEnemy(Collider2D obj)
@@ -85,7 +88,10 @@ public class regionDetector : MonoBehaviour
             {
                 Destroy(booster);
             }
-            booster = Instantiate(powerUp[nextIndex], powerUpPos, Quaternion.identity);
+            if (PhotonNetwork.IsMasterClient)
+            {
+                booster = PhotonNetwork.Instantiate(powerUp[nextIndex].name, powerUpPos, Quaternion.identity);
+            }
             remainingTime = interval;
         }
         if (attacker != null)
