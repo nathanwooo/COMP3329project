@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.SceneManagement;
 public class HeartLogic : MonoBehaviour
 {
     public GameObject destryableMap;
     public GameObject grid;
     private int count = 0;
     private PhotonView PV;
+    public float remainingTime = 5;
+    private bool willTp = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +31,13 @@ public class HeartLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        remainingTime -= Time.deltaTime;
+        if (remainingTime < 0 && willTp)
+        {
+
+            SceneManager.LoadScene("heart");
+            willTp = false;
+        }
     }
     [PunRPC]
     void createTileMap(int viewID)
