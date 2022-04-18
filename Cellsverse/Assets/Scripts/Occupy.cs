@@ -9,6 +9,8 @@ public class Occupy : MonoBehaviour
 {
     public string playerBoundingName = "PlayerBoundary";
     private List<string> occupyingPlayers = new List<string>();
+    private float passedTime;
+    private bool countTime = true;
     void Start()
     {
         
@@ -16,8 +18,15 @@ public class Occupy : MonoBehaviour
 
     void Update()
     {
-        
+        if (countTime)
+        {
+            Debug.Log("Check length ..............................");
+            Debug.Log(occupyingPlayers.Count);
+            passedTime += Time.deltaTime;
+            Debug.Log(passedTime);
+        }
     }
+
     void OnTriggerEnter2D(Collider2D obj)
     {
         string name = obj.gameObject.name;
@@ -36,6 +45,14 @@ public class Occupy : MonoBehaviour
             Debug.Log(photonView.Owner.NickName);
 
             occupyingPlayers.Add(photonView.Owner.NickName);
+            if (occupyingPlayers.Count == 1)
+            {
+                passedTime = 0f;
+                countTime = true;
+            } else
+            {
+                countTime = false;
+            }
             printList();
 
             /* Debug.Log(PhotonNetwork.CurrentRoom.Players);
@@ -69,6 +86,15 @@ public class Occupy : MonoBehaviour
             Debug.Log("EXIT "+ photonView.Owner.NickName);
             occupyingPlayers.Remove(photonView.Owner.NickName);
             printList();
+            if (occupyingPlayers.Count == 1)
+            {
+                passedTime = 0f;
+                countTime = true;
+            }
+            else
+            {
+                countTime = false;
+            }
         }
 
     }
