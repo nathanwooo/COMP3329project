@@ -56,10 +56,10 @@ public class Occupy : MonoBehaviour
         */
         if (name == playerBoundingName)
         {
-            Debug.Log("Player Enters");
-            Debug.Log(obj);
+            // Debug.Log("Player Enters");
+            // Debug.Log(obj);
             var photonView = obj.gameObject.transform.parent.gameObject.GetComponent<PhotonView>();
-            Debug.Log(photonView.Owner.NickName);
+            // Debug.Log(photonView.Owner.NickName);
 
             occupyingPlayers.Add(photonView.Owner.NickName);
             if (occupyingPlayers.Count == 1)
@@ -70,7 +70,7 @@ public class Occupy : MonoBehaviour
             {
                 countTime = false;
             }
-            printList();
+            // printList();
 
             /* Debug.Log(PhotonNetwork.CurrentRoom.Players);
             Debug.Log(photonId);
@@ -100,7 +100,7 @@ public class Occupy : MonoBehaviour
         if (name == playerBoundingName)
         {
             var photonView = collision.gameObject.transform.parent.gameObject.GetComponent<PhotonView>();
-            Debug.Log("EXIT "+ photonView.Owner.NickName);
+            // Debug.Log("EXIT "+ photonView.Owner.NickName);
             occupyingPlayers.Remove(photonView.Owner.NickName);
             printList();
             if (occupyingPlayers.Count == 1)
