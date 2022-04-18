@@ -14,10 +14,12 @@ public class Occupy : MonoBehaviour
     private int ownScore = 0;
     private int enemyScore = 0;
     private PhotonView PV;
+    private string ownName;
 
     void Start()
     {
         PV = GetComponent<PhotonView>();
+        ownName = PhotonNetwork.NickName;
 
     }
 
@@ -66,7 +68,7 @@ public class Occupy : MonoBehaviour
             // Debug.Log(photonView.Owner.NickName);
 
             occupyingPlayers.Add(photonView.Owner.NickName);
-            if (occupyingPlayers.Count == 1)
+            if (ownName == photonView.Owner.NickName && occupyingPlayers.Count == 1)
             {
                 passedTime = 0f;
                 countTime = true;
@@ -101,13 +103,14 @@ public class Occupy : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         string name = collision.gameObject.name;
+        
         if (name == playerBoundingName)
         {
             var photonView = collision.gameObject.transform.parent.gameObject.GetComponent<PhotonView>();
             // Debug.Log("EXIT "+ photonView.Owner.NickName);
             occupyingPlayers.Remove(photonView.Owner.NickName);
             printList();
-            if (occupyingPlayers.Count == 1)
+            if (ownName == photonView.Owner.NickName && occupyingPlayers.Count == 1)
             {
                 passedTime = 0f;
                 countTime = true;
