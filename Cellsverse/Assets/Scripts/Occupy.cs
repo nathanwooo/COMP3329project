@@ -64,7 +64,7 @@ public class Occupy : MonoBehaviour
         if (name == playerBoundingName)
         {
             var photonView = collision.gameObject.transform.parent.gameObject.GetComponent<PhotonView>();
-            Debug.Log(photonView.Owner.NickName);
+            Debug.Log("EXIT "+ photonView.Owner.NickName);
             occupyingPlayers.Remove(photonView.Owner.NickName);
             printList();
         }
