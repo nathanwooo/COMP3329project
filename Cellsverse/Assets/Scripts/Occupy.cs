@@ -32,6 +32,7 @@ public class Occupy : MonoBehaviour
                 ownScore += 1;
                 PV.RPC("addScore", RpcTarget.Others);
                 Debug.Log(ownScore);
+                Debug.Log(enemyScore);
 
             }
         }
@@ -40,7 +41,9 @@ public class Occupy : MonoBehaviour
     [PunRPC]
     void addScore()
     {
+        Debug.Log("deeddedeede");
         enemyScore += 1;
+        Debug.Log(ownScore);
         Debug.Log(enemyScore);
     }
 
