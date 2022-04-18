@@ -31,6 +31,7 @@ public class Occupy : MonoBehaviour
                 passedTime -= 1;
                 ownScore += 1;
                 PV.RPC("addScore", RpcTarget.Others);
+                Debug.Log(PhotonNetwork.IsMasterClient);
                 Debug.Log(ownScore);
                 Debug.Log(enemyScore);
 
