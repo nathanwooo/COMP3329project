@@ -110,7 +110,7 @@ public class Occupy : MonoBehaviour
             // Debug.Log("EXIT "+ photonView.Owner.NickName);
             occupyingPlayers.Remove(photonView.Owner.NickName);
             printList();
-            if (ownName == photonView.Owner.NickName && occupyingPlayers.Count == 1)
+            if (ownName != photonView.Owner.NickName && occupyingPlayers.Count == 1)
             {
                 passedTime = 0f;
                 countTime = true;
