@@ -53,10 +53,12 @@ public class Occupy : MonoBehaviour
     }
     void printList()
     {
+        string playerinside = "";
         foreach (string name in occupyingPlayers)
         {
-            Debug.Log(name);
+            playerinside += name+" ";
         }
+        Debug.Log(playerinside);
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
