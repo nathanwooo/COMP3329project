@@ -249,7 +249,7 @@ public class immueControl : MonoBehaviour
         }
     }
 
-        void ActivateAttack(string action)
+    void ActivateAttack(string action)
     {
         if (actionActive != actionMap[action])
         {
@@ -258,8 +258,21 @@ public class immueControl : MonoBehaviour
             StartCoroutine(WakeSlow(action));
             actionActive = actionMap[action];
             EnableCollider(action);
+            photonView.RPC("enemyActivateAttack", RpcTarget.Others, action);
         }
+    }
 
+    [PunRPC]
+    void enemyActivateAttack(string action)
+    {
+        if (!photonView.IsMine && actionActive != actionMap[action])
+        {
+            Sleep(actionActive.name);
+            DisableCollider(actionActive.name);
+            StartCoroutine(WakeSlow(action));
+            actionActive = actionMap[action];
+            EnableCollider(action);
+        }
     }
 
     void Sleep(string action)

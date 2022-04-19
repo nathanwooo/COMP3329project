@@ -35,7 +35,7 @@ public class HeartLogic : MonoBehaviour
         if (remainingTime < 0 && willTp)
         {
 
-            SceneManager.LoadScene("liver");
+            //SceneManager.LoadScene("liver");
             Debug.Log(++lungLogic.ownGameScore);
             Debug.Log(lungLogic.enemyGameScore);
             willTp = false;
