@@ -233,10 +233,23 @@ public class immueControl : MonoBehaviour
             WakeFast(action);
             actionActive = actionMap[action];
             EnableCollider(action);
+            photonView.RPC("enemyActivate", RpcTarget.Others, action);
+        }
+    }
+    [PunRPC]
+    void enemyActivate(string action)
+    {
+        if (!photonView.IsMine && actionActive != actionMap[action])
+        {
+            Sleep(actionActive.name);
+            DisableCollider(actionActive.name);
+            WakeFast(action);
+            actionActive = actionMap[action];
+            EnableCollider(action);
         }
     }
 
-    void ActivateAttack(string action)
+        void ActivateAttack(string action)
     {
         if (actionActive != actionMap[action])
         {
