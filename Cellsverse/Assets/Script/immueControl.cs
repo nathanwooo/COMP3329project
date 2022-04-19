@@ -233,7 +233,7 @@ public class immueControl : MonoBehaviour
             WakeFast(action);
             actionActive = actionMap[action];
             EnableCollider(action);
-            photonView.RPC("enemyActivate", RpcTarget.Others, action);
+            photonView.RPC("enemyActivate", RpcTarget.OthersBuffered, action);
         }
     }
     [PunRPC]
@@ -258,7 +258,7 @@ public class immueControl : MonoBehaviour
             StartCoroutine(WakeSlow(action));
             actionActive = actionMap[action];
             EnableCollider(action);
-            photonView.RPC("enemyActivateAttack", RpcTarget.Others, action);
+            photonView.RPC("enemyActivateAttack", RpcTarget.OthersBuffered, action);
         }
     }
 
