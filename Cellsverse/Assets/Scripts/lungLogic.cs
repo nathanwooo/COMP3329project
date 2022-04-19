@@ -10,11 +10,15 @@ public class lungLogic : MonoBehaviour
     private bool willTp = true;
     public static int ownGameScore = 0;
     public static int enemyGameScore = 0;
-
+    public GameObject dmgCircle;
+    public GameObject targetCircle;
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(PhotonNetwork.IsMasterClient){
+            PhotonNetwork.Instantiate(targetCircle.name, new Vector2(2.2f, -3.4f), Quaternion.identity);
+            PhotonNetwork.Instantiate(dmgCircle.name, new Vector2(2.3f, 0.5f), Quaternion.identity);
+        }
     }
 
     // Update is called once per frame
