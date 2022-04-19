@@ -36,7 +36,7 @@ public class HeartLogic : MonoBehaviour
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                SceneManager.LoadScene("liver");
+                PhotonNetwork.LoadLevel("liver");
                 Debug.Log(++lungLogic.ownGameScore);
                 Debug.Log(lungLogic.enemyGameScore);
                 willTp = false;
