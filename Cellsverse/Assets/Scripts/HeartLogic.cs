@@ -34,11 +34,13 @@ public class HeartLogic : MonoBehaviour
         remainingTime -= Time.deltaTime;
         if (remainingTime < 0 && willTp)
         {
-
-            //SceneManager.LoadScene("liver");
-            Debug.Log(++lungLogic.ownGameScore);
-            Debug.Log(lungLogic.enemyGameScore);
-            willTp = false;
+            if (PhotonNetwork.IsMasterClient)
+            {
+                SceneManager.LoadScene("liver");
+                Debug.Log(++lungLogic.ownGameScore);
+                Debug.Log(lungLogic.enemyGameScore);
+                willTp = false;
+            }
         }
     }
     [PunRPC]

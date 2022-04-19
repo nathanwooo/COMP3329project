@@ -23,9 +23,11 @@ public class lungLogic : MonoBehaviour
         time -= Time.deltaTime;
         if (time < 0 && willTp)
         {
-
-            SceneManager.LoadScene("heart");
-            willTp = false;
+            if (PhotonNetwork.IsMasterClient)
+            {
+                PhotonNetwork.LoadLevel("heart");
+                willTp = false;
+            }
         }
     }
 }

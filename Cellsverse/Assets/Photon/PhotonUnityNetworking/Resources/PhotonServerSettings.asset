@@ -42,6 +42,8 @@ MonoBehaviour:
   - createTileMap
   - DestroyMap
   - addScore
+  - enemyActivate
+  - enemyActivateAttack
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
