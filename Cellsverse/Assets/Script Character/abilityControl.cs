@@ -84,16 +84,16 @@ public class abilityControl : MonoBehaviour
         //reduce the damage taken by a percentage for 10s, reduce 10% per level
         healthBarControl.defense = 1f - healthBarControl.lv*0.1f;
         AudioSource.PlayClipAtPoint(defenseSound, this.transform.position);
-        GameObject armor = Instantiate(defenseEffect, this.transform.position + new Vector3(0,0.5f,0), this.transform.rotation);
-        Destroy(armor, 0.2f);
+        GameObject armor = PhotonView.Instantiate(defenseEffect, this.transform.position + new Vector3(0,0.5f,0), this.transform.rotation);
+        PhotonView.Destroy(armor, 0.2f);
         yield return new WaitForSeconds(3f);
         healthBarControl.defense = 1f;
     }
     IEnumerator Attack()
     {
         AudioSource.PlayClipAtPoint(attackSound, this.transform.position);
-        GameObject attack = Instantiate(attackEffect, this.transform.position + new Vector3(0,2f,0), this.transform.rotation);
-        Destroy(attack, 0.2f);
+        GameObject attack = PhotonView.Instantiate(attackEffect, this.transform.position + new Vector3(0,2f,0), this.transform.rotation);
+        PhotonView.Destroy(attack, 0.2f);
         healthBarControl.extraDamage = 1f + healthBarControl.lv*0.1f;
         yield return new WaitForSeconds(5f);
         healthBarControl.extraDamage = 1f;
@@ -104,8 +104,8 @@ public class abilityControl : MonoBehaviour
         //calculate the mouse position from the character position and normalized it to 1 max
         Vector2 result = (this.transform.position - mousePosition).normalized;
         //the flash effect
-        GameObject flash = Instantiate(flashEffect, this.transform.position, Quaternion.identity);
-        Destroy(flash,0.1f);
+        GameObject flash = PhotonView.Instantiate(flashEffect, this.transform.position, Quaternion.identity);
+        PhotonView.Destroy(flash,0.1f);
         //times 10 to increase the flash range
         this.transform.Translate(-result*10f);
         AudioSource.PlayClipAtPoint(flashSound, this.transform.position);
@@ -115,8 +115,8 @@ public class abilityControl : MonoBehaviour
         //healing bases on level, 30(base) + 10 per level
         healthBarControl.currentHP += 30 + healthBarControl.lv*10;
         AudioSource.PlayClipAtPoint(healSound, this.transform.position);
-        GameObject healing = Instantiate(healEffect, this.transform.position, this.transform.rotation);
-        Destroy(healing, 0.5f);
+        GameObject healing = PhotonView.Instantiate(healEffect, this.transform.position, this.transform.rotation);
+        PhotonView.Destroy(healing, 0.5f);
 
         if (healthBarControl.currentHP > healthBarControl.maxHP){
             healthBarControl.currentHP = healthBarControl.maxHP;
