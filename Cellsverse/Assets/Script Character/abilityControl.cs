@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using Photon.Pun;
 public class abilityControl : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -14,9 +14,10 @@ public class abilityControl : MonoBehaviour
     public GameObject flashEffect, healEffect, defenseEffect, attackEffect;
     private Vector3 mousePosition;
     public Camera cam;
-    
+    PhotonView photonView;
     void Start()
     {
+        photonView = GetComponent<PhotonView>();
         // hp = GameObject.Find("Canvas/Elite/Bars/Healthbar");
         // mp = GameObject.Find("Canvas/Elite/Bars/Manabar");
         // Debug.Log(mp.GetComponent<Image>().fillAmount);
@@ -29,8 +30,12 @@ public class abilityControl : MonoBehaviour
         // cdAttack = GameObject.Find("Canvas/attack/cd");
     }
 
-    // Update is called once per frame
-    void Update()
+    void Update(){
+        if (photonView.IsMine){
+            ability();
+        }
+    }
+    void ability()
     {
         if (!speedUp)
         {
