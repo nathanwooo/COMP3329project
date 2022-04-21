@@ -1691,7 +1691,7 @@ GameObject:
   - component: {fileID: 4144375913303756094}
   - component: {fileID: 2463331655594259305}
   m_Layer: 0
-  m_Name: immue
+  m_Name: Immue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1795,6 +1795,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e325506dd1584b7409e314e5ffb6a365, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cv: {fileID: 8844762599001844951}
+  et: {fileID: 8844762599138915104}
+  nm: {fileID: 8844762597903958470}
+  hpBar: {fileID: 8844762598678335016}
+  mpBar: {fileID: 8844762599053843845}
+  exp: {fileID: 8844762599192192125}
+  immueScore: {fileID: 7253660624437795694}
+  bacteriaScore: {fileID: 4136585941794259941}
+  lvCount: {fileID: 8844762598958716984}
 --- !u!114 &8844762597717880435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7047,5 +7056,15 @@ PrefabInstance:
 --- !u!224 &7646455194542327766 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9201938819290266848, guid: e4d3daba51852fe45a311a8f3a1ba028, type: 3}
+  m_PrefabInstance: {fileID: 1562310256926571318}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4136585941794259941 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3226382842666367187, guid: e4d3daba51852fe45a311a8f3a1ba028, type: 3}
+  m_PrefabInstance: {fileID: 1562310256926571318}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7253660624437795694 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8143736344088469592, guid: e4d3daba51852fe45a311a8f3a1ba028, type: 3}
   m_PrefabInstance: {fileID: 1562310256926571318}
   m_PrefabAsset: {fileID: 0}
