@@ -15,9 +15,11 @@ public class abilityControl : MonoBehaviour
     private Vector3 mousePosition;
     public Camera cam;
     PhotonView photonView;
+    healthBarControl HBControl;
     void Start()
     {
         photonView = GetComponent<PhotonView>();
+        HBControl = GetComponent<healthBarControl>();
         // hp = GameObject.Find("Canvas/Elite/Bars/Healthbar");
         // mp = GameObject.Find("Canvas/Elite/Bars/Manabar");
         // Debug.Log(mp.GetComponent<Image>().fillAmount);
@@ -39,9 +41,9 @@ public class abilityControl : MonoBehaviour
     {
         if (!speedUp)
         {
-            if(Input.GetKey(KeyCode.Q) && healthBarControl.currentMP > 0.1f && cdSpeedUp.GetComponent<Text>().text == "")
+            if(Input.GetKey(KeyCode.Q) && HBControl.currentMP > 0.1f && cdSpeedUp.GetComponent<Text>().text == "")
             {
-                healthBarControl.currentMP -= 0.1f;
+                HBControl.currentMP -= 0.1f;
                 speedUp = true;
                 StartCoroutine(Accelerate());
                 StartCoroutine(coolDownSpeed());
@@ -50,23 +52,23 @@ public class abilityControl : MonoBehaviour
             mp.GetComponent<Image>().fillAmount = currentMp;
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && healthBarControl.currentMP > 0.01f && cdFlash.GetComponent<Text>().text == ""){
+        if (Input.GetKeyDown(KeyCode.E) && HBControl.currentMP > 0.01f && cdFlash.GetComponent<Text>().text == ""){
             flash();
-            healthBarControl.currentMP -= 5f;
+            HBControl.currentMP -= 5f;
             StartCoroutine(coolDownFlash());
         }
 
-        if (Input.GetKeyDown(KeyCode.H) && healthBarControl.currentMP > 0.01f && cdHeal.GetComponent<Text>().text == ""){
+        if (Input.GetKeyDown(KeyCode.H) && HBControl.currentMP > 0.01f && cdHeal.GetComponent<Text>().text == ""){
             heal();
             StartCoroutine(coolDownHeal());
         }
 
-        if (Input.GetKeyDown(KeyCode.R) && healthBarControl.currentMP > 0.01f && cdDefense.GetComponent<Text>().text == ""){
+        if (Input.GetKeyDown(KeyCode.R) && HBControl.currentMP > 0.01f && cdDefense.GetComponent<Text>().text == ""){
             StartCoroutine(Defense());
             StartCoroutine(coolDownDefense());
         }
 
-        if (Input.GetKeyDown(KeyCode.T) && healthBarControl.currentMP > 0.01f && cdAttack.GetComponent<Text>().text == ""){
+        if (Input.GetKeyDown(KeyCode.T) && HBControl.currentMP > 0.01f && cdAttack.GetComponent<Text>().text == ""){
             StartCoroutine(Attack());
             StartCoroutine(coolDownAttack());
         }
@@ -82,21 +84,21 @@ public class abilityControl : MonoBehaviour
     }
     IEnumerator Defense(){
         //reduce the damage taken by a percentage for 10s, reduce 10% per level
-        healthBarControl.defense = 1f - healthBarControl.lv*0.1f;
+        HBControl.defense = 1f - HBControl.lv*0.1f;
         AudioSource.PlayClipAtPoint(defenseSound, this.transform.position);
         GameObject armor = PhotonView.Instantiate(defenseEffect, this.transform.position + new Vector3(0,0.5f,0), this.transform.rotation);
         PhotonView.Destroy(armor, 0.2f);
         yield return new WaitForSeconds(3f);
-        healthBarControl.defense = 1f;
+        HBControl.defense = 1f;
     }
     IEnumerator Attack()
     {
         AudioSource.PlayClipAtPoint(attackSound, this.transform.position);
         GameObject attack = PhotonView.Instantiate(attackEffect, this.transform.position + new Vector3(0,2f,0), this.transform.rotation);
         PhotonView.Destroy(attack, 0.2f);
-        healthBarControl.extraDamage = 1f + healthBarControl.lv*0.1f;
+        HBControl.extraDamage = 1f + HBControl.lv*0.1f;
         yield return new WaitForSeconds(5f);
-        healthBarControl.extraDamage = 1f;
+        HBControl.extraDamage = 1f;
     }
     void flash(){
         mousePosition = Input.mousePosition;
@@ -113,13 +115,13 @@ public class abilityControl : MonoBehaviour
 
     void heal(){
         //healing bases on level, 30(base) + 10 per level
-        healthBarControl.currentHP += 30 + healthBarControl.lv*10;
+        HBControl.currentHP += 30 + HBControl.lv*10;
         AudioSource.PlayClipAtPoint(healSound, this.transform.position);
         GameObject healing = PhotonView.Instantiate(healEffect, this.transform.position, this.transform.rotation);
         PhotonView.Destroy(healing, 0.5f);
 
-        if (healthBarControl.currentHP > healthBarControl.maxHP){
-            healthBarControl.currentHP = healthBarControl.maxHP;
+        if (HBControl.currentHP > HBControl.maxHP){
+            HBControl.currentHP = HBControl.maxHP;
         }
     }
 

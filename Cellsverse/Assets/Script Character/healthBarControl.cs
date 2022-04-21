@@ -7,10 +7,8 @@ public class healthBarControl : MonoBehaviour
 {
     [SerializeField] private GameObject cv, et, nm, hpBar, mpBar, exp, immueScore, bacteriaScore;//canvas, elite, name
     [SerializeField] private GameObject lvCount;
-    public static float maxHP;
-    static float maxMP;
-    public static float currentHP, currentMP, damage, extraDamage = 1, defense = 1f;
-    public static int lv;
+    public float maxHP, maxMP, currentHP, currentMP, damage, extraDamage = 1, defense = 1f;
+    public int lv;
     private float mpRegenRate = 1f, nextMpRegen = 0f;
     // Start is called before the first frame update
     void Start()
