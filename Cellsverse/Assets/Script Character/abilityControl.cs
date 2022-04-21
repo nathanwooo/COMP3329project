@@ -100,8 +100,8 @@ public class abilityControl : MonoBehaviour
         //the flash effect
         GameObject flash = Instantiate(flashEffect, this.transform.position, Quaternion.identity);
         Destroy(flash,0.1f);
-        //times 3 to increase the flash range
-        this.transform.Translate(-result*3f);
+        //times 10 to increase the flash range
+        this.transform.Translate(-result*10f);
         AudioSource.PlayClipAtPoint(flashSound, this.transform.position);
     }
 
