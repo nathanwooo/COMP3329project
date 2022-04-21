@@ -15,7 +15,7 @@ public class gunControl : MonoBehaviourPunCallbacks {
     private Transform tf;
     public AudioClip shootSound;
     void Start(){
-        firePoint = GameObject.Find("Immue(Clone)/firepoint");
+        // firePoint = GameObject.Find("Immue(Clone)/firepoint");
         Debug.Log("firepoint", firePoint);
         Rigidbody2D rb = firePoint.AddComponent<Rigidbody2D>();
         rb.gravityScale = 0f; 
