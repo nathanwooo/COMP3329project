@@ -16,7 +16,7 @@ public class BulletControl : MonoBehaviour{
         GameObject effect = PhotonNetwork.Instantiate(hitEffect.name, transform.position, Quaternion.identity);
         AudioSource.PlayClipAtPoint(explosionSound, transform.position);
         Destroy(effect, 0.3f);
-        Destroy(gameObject);
+        PhotonNetwork.Destroy(gameObject);
         if (collision.gameObject.name == "Immue(Clone)"){//when more characters need change
             healthBarControl.currentHP = healthBarControl.currentHP - damage;
         }

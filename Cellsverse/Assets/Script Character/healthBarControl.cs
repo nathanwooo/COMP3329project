@@ -11,8 +11,7 @@ public class healthBarControl : MonoBehaviour
     static float maxMP;
     public static float currentHP, currentMP, damage, extraDamage = 1, defense = 1f;
     public static int lv;
-    private float mpRegenRate = 100f, nextMpRegen = 0f;
-
+    private float mpRegenRate = 1f, nextMpRegen = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +36,7 @@ public class healthBarControl : MonoBehaviour
 
     // Update is called once per frame
     void Update(){
+        Debug.Log("currentMP: " + currentMP);
         // Debug.Log(damage);
         updateStats();
         updateBar();
@@ -55,9 +55,11 @@ public class healthBarControl : MonoBehaviour
             currentMP = Mathf.Max(currentMP,maxMP/2);
             updateBar();
         }
-        if (Time.time > nextMpRegen){// regen mp
-
+        if (Time.time > nextMpRegen && currentMP <= maxMP){
+            currentMP++;
+            nextMpRegen = Time.time + mpRegenRate;
         }
+        
     }
 
     void updateBar(){
