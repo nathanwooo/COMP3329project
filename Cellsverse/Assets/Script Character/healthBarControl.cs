@@ -25,13 +25,14 @@ public class healthBarControl : MonoBehaviour
         maxHP = maxMP = currentHP = currentMP = 100;
         lv = 1;
         damage = maxHP/100 * 8f * extraDamage;
-        cv = GameObject.Find("Immue(Clone)/Canvas");
-        et = GameObject.Find("Immue(Clone)/Canvas/Elite");
-        nm = GameObject.Find("Immue(Clone)/Canvas/Elite/Name");
-        lvCount = GameObject.Find("Immue(Clone)/Canvas/Elite/Level/Text");
-        hpBar = GameObject.Find("Immue(Clone)/Canvas/Elite/Bars/Healthbar");
-        mpBar = GameObject.Find("Immue(Clone)/Canvas/Elite/Bars/Manabar");
-        nm.GetComponent<Text>().text = "Immue(Clone)";
+        cv = GameObject.Find("immue(Clone)/Canvas");
+        et = GameObject.Find("immue(Clone)/Canvas/Elite");
+        nm = GameObject.Find("immue(Clone)/Canvas/Elite/Name");
+        lvCount = GameObject.Find("immue(Clone)/Canvas/Elite/Level/Text");
+        hpBar = GameObject.Find("immue(Clone)/Canvas/Elite/Bars/Healthbar");
+        mpBar = GameObject.Find("immue(Clone)/Canvas/Elite/Bars/Manabar");
+        exp =  GameObject.Find("immue(Clone)/Canvas/Expbar/exp");
+        nm.GetComponent<Text>().text = "Immune";
         exp.GetComponent<Image>().fillAmount = 0f;
         nm.GetComponent<Text>().text = this.gameObject.name;
         updateBar();
@@ -40,7 +41,7 @@ public class healthBarControl : MonoBehaviour
 
     // Update is called once per frame
     void Update(){
-        Debug.Log(damage);
+        // Debug.Log(damage);
         updateStats();
         updateBar();
         if (Input.GetKey(KeyCode.I) && lvCount.GetComponent<Text>().text != "6")

@@ -19,7 +19,7 @@ public class abilityControl : MonoBehaviour
     {
         // hp = GameObject.Find("Canvas/Elite/Bars/Healthbar");
         // mp = GameObject.Find("Canvas/Elite/Bars/Manabar");
-        Debug.Log(mp.GetComponent<Image>().fillAmount);
+        // Debug.Log(mp.GetComponent<Image>().fillAmount);
         currentHp = mp.GetComponent<Image>().fillAmount;
         currentMp = mp.GetComponent<Image>().fillAmount;
         // cdSpeedUp = GameObject.Find("Canvas/speed/cd");
