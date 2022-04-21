@@ -219,6 +219,7 @@ public class immueControl : MonoBehaviour
             photonView.RPC("enemyActivate", RpcTarget.OthersBuffered, action);
         }
     }
+    
     [PunRPC]
     void enemyActivate(string action)
     {
