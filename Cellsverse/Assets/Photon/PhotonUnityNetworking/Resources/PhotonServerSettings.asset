@@ -44,6 +44,7 @@ MonoBehaviour:
   - addScore
   - enemyActivate
   - enemyActivateAttack
+  - enemyBulletCollision
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
