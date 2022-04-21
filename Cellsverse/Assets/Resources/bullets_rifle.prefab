@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 2364792675918445687}
   - component: {fileID: 8981503737522625352}
   - component: {fileID: 353694142331565532}
+  - component: {fileID: -4722745810100111621}
+  - component: {fileID: 8924245744277690571}
   m_Layer: 0
   m_Name: bullets_rifle
   m_TagString: Untagged
@@ -119,3 +121,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitEffect: {fileID: 569607849086347935, guid: 4f18bd7514ddacd4d902a16980f6a13a, type: 3}
   explosionSound: {fileID: 8300000, guid: df94af4992f2a5c4ba16a2a370c69a33, type: 3}
+--- !u!114 &-4722745810100111621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5958616072393558181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
+--- !u!114 &8924245744277690571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5958616072393558181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0

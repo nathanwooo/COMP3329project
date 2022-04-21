@@ -5,20 +5,14 @@ using UnityEngine.UI;
 using System;
 public class healthBarControl : MonoBehaviour
 {
-    private GameObject cv;//canvas
-    private GameObject et;//elite
-    private GameObject nm;//name
-    private GameObject hpBar;
-    private GameObject mpBar;
-    private GameObject exp;
+    private GameObject cv, et, nm, hpBar, mpBar, exp, immueScore, bacteriaScore;//canvas, elite, name
     private static GameObject lvCount;
     public static float maxHP;
     static float maxMP;
-    public static float currentHP;
-    public static float currentMP;
+    public static float currentHP, currentMP, damage, extraDamage = 1, defense = 1f;
     public static int lv;
-    public static float damage, extraDamage = 1;
-    public static float defense = 1f;
+    private float mpRegenRate = 100f, nextMpRegen = 0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +26,8 @@ public class healthBarControl : MonoBehaviour
         hpBar = GameObject.Find("immue(Clone)/Canvas/Elite/Bars/Healthbar");
         mpBar = GameObject.Find("immue(Clone)/Canvas/Elite/Bars/Manabar");
         exp =  GameObject.Find("immue(Clone)/Canvas/Expbar/exp");
+        immueScore = GameObject.Find("immue(Clone)/Canvas/scoreboard/immueTotalScore");
+        bacteriaScore = GameObject.Find("immue(Clone)/Canvas/scoreboard/bacteriaTotalScore");
         nm.GetComponent<Text>().text = "Immune";
         exp.GetComponent<Image>().fillAmount = 0f;
         nm.GetComponent<Text>().text = this.gameObject.name;
@@ -59,6 +55,9 @@ public class healthBarControl : MonoBehaviour
             currentMP = Mathf.Max(currentMP,maxMP/2);
             updateBar();
         }
+        if (Time.time > nextMpRegen){// regen mp
+
+        }
     }
 
     void updateBar(){
@@ -70,7 +69,6 @@ public class healthBarControl : MonoBehaviour
         lv = int.Parse(lvCount.GetComponent<Text>().text);
         damage = maxHP/100 * 8f * extraDamage;
         maxHP = lv*100;
-        maxMP = lv*100;
     }
 
 }
