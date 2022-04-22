@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 
 public class BulletControl : MonoBehaviour{
-    public float damage;
+    public float bulletDamage;
     public GameObject hitEffect;
     public AudioClip explosionSound;
     healthBarControl HBControl;
@@ -13,7 +13,6 @@ public class BulletControl : MonoBehaviour{
     void Start(){
         PV = GetComponent<PhotonView>();
         HBControl = GetComponent<healthBarControl>();
-        UpdateDamage();
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -40,12 +39,4 @@ public class BulletControl : MonoBehaviour{
         Destroy(effect, 0.3f);
     }
 
-    void Update(){
-        UpdateDamage();
-    }
-
-    void UpdateDamage(){
-        //update damage base on level and maxHP
-        damage = HBControl.maxHP/100 * HBControl.lv * 1.5f;
-    }
 }

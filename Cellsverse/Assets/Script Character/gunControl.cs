@@ -14,6 +14,7 @@ public class gunControl : MonoBehaviourPunCallbacks {
     [SerializeField] private SpriteRenderer gunUp, gunDown, gunLeft, gunRight;
     private Transform tf;
     public AudioClip shootSound;
+    healthBarControl HBControl;
     void Start(){
         firePoint = GameObject.Find("Immue(Clone)/firepoint");
         Debug.Log("firepoint", firePoint);
@@ -61,6 +62,9 @@ public class gunControl : MonoBehaviourPunCallbacks {
         // Debug.Log(aimAngle);
         yield return new WaitForSeconds(0.3f);
         GameObject bullet = PhotonNetwork.Instantiate(bulletPrefab.name, tf.position, tf.rotation);
+        //set the bullet damage according to our level
+        bullet.GetComponent<BulletControl>().bulletDamage = HBControl.damage;
+
         Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
         bulletRb.AddForce(tf.right * bulletForce, ForceMode2D.Impulse);
     }

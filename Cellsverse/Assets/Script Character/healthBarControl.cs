@@ -20,7 +20,7 @@ public class healthBarControl : MonoBehaviour
         PV = GetComponent<PhotonView>();
         maxHP = maxMP = currentHP = currentMP = 100;
         lv = 1;
-        damage = maxHP/100 * 8f * extraDamage;
+        damage = lv * 8f * extraDamage;
         // cv = GameObject.Find("immue(Clone)/Canvas");
         // et = GameObject.Find("immue(Clone)/Canvas/Elite");
         // nm = GameObject.Find("immue(Clone)/Canvas/Elite/Name");
@@ -90,7 +90,7 @@ public class healthBarControl : MonoBehaviour
         // Debug.Log(collision.gameObject.GetComponent<PhotonView>().IsMine);
         if (collision.gameObject.name == "bullet_side(Clone)" || collision.gameObject.name == "bullet_rifle(Clone)"){
             if (!collision.gameObject.GetComponent<PhotonView>().IsMine){
-                currentHP -= collision.gameObject.GetComponent<BulletControl>().damage;
+                currentHP -= collision.gameObject.GetComponent<BulletControl>().bulletDamage;
             }
         }
     }
