@@ -65,11 +65,15 @@ public class gunControl : MonoBehaviourPunCallbacks {
         rb.rotation = aimAngle;
         // Debug.Log(aimAngle);
         yield return new WaitForSeconds(0.3f);
-        GameObject bullet = PhotonNetwork.Instantiate(bulletPrefab.name, tf.position, tf.rotation);
+        object[] arr = new object[1];
+        arr[0] = HBControl.damage;
+        GameObject bullet = PhotonNetwork.Instantiate(bulletPrefab.name, tf.position, tf.rotation,0, arr);
         //set the bullet damage according to our level
-        bullet.GetComponent<BulletControl>().bulletDamage = HBControl.damage;
 
         Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
         bulletRb.AddForce(tf.right * bulletForce, ForceMode2D.Impulse);
     }
+
+
+
 }

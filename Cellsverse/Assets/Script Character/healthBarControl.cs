@@ -94,11 +94,16 @@ public class healthBarControl : MonoBehaviour
                 Debug.Log("Out");
                 if (!collision.gameObject.GetComponent<PhotonView>().IsMine){
                     Debug.Log("In");
+                    Debug.Log(collision.gameObject);
+                    Debug.Log(collision.gameObject.GetComponent<BulletControl>().bulletDamage);
+                    
                     currentHP -= collision.gameObject.GetComponent<BulletControl>().bulletDamage;
                 }
             }
             
         }
+        
+
     }
 
 }

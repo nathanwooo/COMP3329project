@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class BulletControl : MonoBehaviour{
+public class BulletControl : MonoBehaviour, IPunInstantiateMagicCallback{
     public float bulletDamage;
     public GameObject hitEffect;
     public AudioClip explosionSound;
@@ -26,8 +26,9 @@ public class BulletControl : MonoBehaviour{
             GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
             AudioSource.PlayClipAtPoint(explosionSound, transform.position);
             Destroy(effect, 0.3f);
-            // if (collision.gameObject.name != "Immue(Clone)" && collision.gameObject.name != "Bacteria(Clone)"){
-            PhotonNetwork.Destroy(gameObject);
+            if (collision.gameObject.name != "Immue(Clone)" && collision.gameObject.name != "Bacteria(Clone)"){
+                PhotonNetwork.Destroy(gameObject);
+            }
         }
 
     }
@@ -38,6 +39,13 @@ public class BulletControl : MonoBehaviour{
         GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
         AudioSource.PlayClipAtPoint(explosionSound, transform.position);
         Destroy(effect, 0.3f);
+    }
+
+    public void OnPhotonInstantiate(PhotonMessageInfo info)
+    {
+        Debug.Log("Yes");
+        object[] instantiationData = info.photonView.InstantiationData;
+        bulletDamage = (float)instantiationData[0];
     }
 
 }
