@@ -44,12 +44,12 @@ public class immueControl : MonoBehaviour
             if (action != "idle")
             {
                 Sleep(action);
-                AddCollider(action);
+                // AddCollider(action);
             }
         }
-        WakeFast("idle");
-        AddCollider("idle");
-        EnableCollider("idle");
+        // WakeFast("idle");
+        // AddCollider("idle");
+        // EnableCollider("idle");
         if (!photonView.IsMine)
         {
             Debug.Log("XDDD");
@@ -161,17 +161,17 @@ public class immueControl : MonoBehaviour
                 {//RHS
                     if (Math.Abs(mousePosition.x - this.gameObject.transform.position.x) > Math.Abs(mousePosition.y - this.gameObject.transform.position.y))
                     {
-                        ActivateAttack("sword_right");
+                        ActivateSwordAttack("sword_right");
                     }
                     else
                     {
                         if (mousePosition.y - this.gameObject.transform.position.y > 0)
                         {
-                            ActivateAttack("sword_up");
+                            ActivateSwordAttack("sword_up");
                         }
                         if (mousePosition.y - this.gameObject.transform.position.y < 0)
                         {
-                            ActivateAttack("sword_down");
+                            ActivateSwordAttack("sword_down");
                         }
                     }
                 }
@@ -180,17 +180,17 @@ public class immueControl : MonoBehaviour
                 {//LHS
                     if (Math.Abs(mousePosition.x - this.gameObject.transform.position.x) > Math.Abs(mousePosition.y - this.gameObject.transform.position.y))
                     {
-                        ActivateAttack("sword_left");
+                        ActivateSwordAttack("sword_left");
                     }
                     else
                     {
                         if (mousePosition.y - this.gameObject.transform.position.y > 0)
                         {
-                            ActivateAttack("sword_up");
+                            ActivateSwordAttack("sword_up");
                         }
                         if (mousePosition.y - this.gameObject.transform.position.y < 0)
                         {
-                            ActivateAttack("sword_down");
+                            ActivateSwordAttack("sword_down");
                         }
                     }
                 }
@@ -215,7 +215,7 @@ public class immueControl : MonoBehaviour
             DisableCollider(actionActive.name);
             WakeFast(action);
             actionActive = actionMap[action];
-            EnableCollider(action);
+            // EnableCollider(action);
             photonView.RPC("enemyActivate", RpcTarget.OthersBuffered, action);
         }
     }
@@ -229,7 +229,7 @@ public class immueControl : MonoBehaviour
             DisableCollider(actionActive.name);
             WakeFast(action);
             actionActive = actionMap[action];
-            EnableCollider(action);
+            // EnableCollider(action);
         }
     }
 
@@ -238,16 +238,42 @@ public class immueControl : MonoBehaviour
         if (actionActive != actionMap[action])
         {
             Sleep(actionActive.name);
-            DisableCollider(actionActive.name);
+            // DisableCollider(actionActive.name);
             StartCoroutine(WakeSlow(action));
             actionActive = actionMap[action];
-            EnableCollider(action);
+            // EnableCollider(action);
             photonView.RPC("enemyActivateAttack", RpcTarget.OthersBuffered, action);
         }
     }
 
     [PunRPC]
     void enemyActivateAttack(string action)
+    {
+        if (!photonView.IsMine && actionActive != actionMap[action])
+        {
+            Sleep(actionActive.name);
+            // DisableCollider(actionActive.name);
+            StartCoroutine(WakeSlow(action));
+            actionActive = actionMap[action];
+            // EnableCollider(action);
+        }
+    }
+
+        void ActivateSwordAttack(string action)
+    {
+        if (actionActive != actionMap[action])
+        {
+            Sleep(actionActive.name);
+            DisableCollider(actionActive.name);
+            StartCoroutine(WakeSlow(action));
+            actionActive = actionMap[action];
+            EnableCollider(action);
+            photonView.RPC("enemyActivateSwordAttack", RpcTarget.OthersBuffered, action);
+        }
+    }
+
+    [PunRPC]
+    void enemyActivateSwordAttack(string action)
     {
         if (!photonView.IsMine && actionActive != actionMap[action])
         {
@@ -362,8 +388,8 @@ public class immueControl : MonoBehaviour
     void EnableCollider(string action)
     {
         var tf = actionMap[action].transform;
-        BoxCollider2D bc = tf.GetComponent<BoxCollider2D>();
-        bc.enabled = true;
+        // BoxCollider2D bc = tf.GetComponent<BoxCollider2D>();
+        // bc.enabled = true;
         if (action == "sword_up"){
             tf.Find("weapon_sword_up").GetComponent<Collider2D>().enabled = true;
         }
@@ -382,8 +408,8 @@ public class immueControl : MonoBehaviour
     void DisableCollider(string action)
     {
         var tf = actionMap[action].transform;
-        BoxCollider2D bc = tf.GetComponent<BoxCollider2D>();
-        bc.enabled = false;
+        // BoxCollider2D bc = tf.GetComponent<BoxCollider2D>();
+        // bc.enabled = false;
         if (action == "sword_up"){
             tf.Find("weapon_sword_up").GetComponent<Collider2D>().enabled = false;
         }
