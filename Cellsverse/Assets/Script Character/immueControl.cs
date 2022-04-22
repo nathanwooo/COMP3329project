@@ -16,10 +16,12 @@ public class immueControl : MonoBehaviour
     private bool keyInput;
     [SerializeField] private Camera cam, cam2;
     PhotonView photonView;
-    public float speed;
+    healthBarControl HBControl;
+    public float Immunespeed;
     void Start()
     {
-        speed = 2;
+        HBControl = GetComponent<healthBarControl>();
+        Immunespeed = HBControl.speed;
         photonView = GetComponent<PhotonView>();
         actionMap = new Dictionary<string, GameObject>();
         actionLength = this.gameObject.transform.childCount - 3;
@@ -71,7 +73,7 @@ public class immueControl : MonoBehaviour
     // Update is called once per frame
     void Move()
     {
-        
+        Immunespeed = HBControl.speed;
         if (!Input.anyKey)
         {
             Activate("idle");
@@ -202,8 +204,8 @@ public class immueControl : MonoBehaviour
         Vector3 vertical = new Vector3(0f, Input.GetAxis("Vertical"), 0f);
         if (keyInput)
         {
-            transform.position = transform.position + horizontal * Time.deltaTime * speed;
-            transform.position = transform.position + vertical * Time.deltaTime * speed;
+            transform.position = transform.position + horizontal * Time.deltaTime * Immunespeed;
+            transform.position = transform.position + vertical * Time.deltaTime * Immunespeed;
         }
     }
 

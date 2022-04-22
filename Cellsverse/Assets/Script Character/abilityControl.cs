@@ -16,12 +16,10 @@ public class abilityControl : MonoBehaviour
     public Camera cam;
     PhotonView PV;
     healthBarControl HBControl;
-    immueControl IMControl;
     void Start()
     {
         PV = GetComponent<PhotonView>();
         HBControl = GetComponent<healthBarControl>();
-        IMControl = GetComponent<immueControl>();
         // hp = GameObject.Find("Canvas/Elite/Bars/Healthbar");
         // mp = GameObject.Find("Canvas/Elite/Bars/Manabar");
         // Debug.Log(mp.GetComponent<Image>().fillAmount);
@@ -84,9 +82,9 @@ public class abilityControl : MonoBehaviour
         {
             PV.RPC("enemyAccelerate", RpcTarget.OthersBuffered);
             AudioSource.PlayClipAtPoint(speedSound, this.transform.position);
-            IMControl.speed = 20f;
+            HBControl.speed += 20f;
             yield return new WaitForSeconds(3f);
-            IMControl.speed = 2f;
+            HBControl.speed = 2f;
             speedUp = false;
         }
     }
@@ -95,35 +93,35 @@ public class abilityControl : MonoBehaviour
     IEnumerator enemyAccelerate()
     {
         AudioSource.PlayClipAtPoint(speedSound, this.transform.position);
-        IMControl.speed = 20f;
+        // HBControl.speed = 20f;
         yield return new WaitForSeconds(3f);
-        IMControl.speed = 2f;
-        speedUp = false;
+        // HBControl.speed = 2f;
+        // speedUp = false;
     }
 
     IEnumerator Defense(){
-        if(PV.IsMine)
+        if(PV.IsMine && HBControl.defense - HBControl.lv * 0.1f > 0.2f)
         {
             PV.RPC("enemyDefense", RpcTarget.OthersBuffered);
             //reduce the damage taken by a percentage for 10s, reduce 10% per level
-            HBControl.defense = 1f - HBControl.lv*0.1f;
+            HBControl.defense -= HBControl.lv*0.1f;
             AudioSource.PlayClipAtPoint(defenseSound, this.transform.position);
             GameObject armor = Instantiate(defenseEffect, this.transform.position + new Vector3(0,0.5f,0), this.transform.rotation);
             Destroy(armor, 0.2f);
             yield return new WaitForSeconds(5f);
-            HBControl.defense = 1f;
+            HBControl.defense += HBControl.lv*0.1f;
         }
     }
 
     [PunRPC]
     IEnumerator enemyDefense(){
         //reduce the damage taken by a percentage for 10s, reduce 10% per level
-        HBControl.defense = 1f - HBControl.lv*0.1f;
+        // HBControl.defense = HBControl.defense - HBControl.lv*0.1f;
         AudioSource.PlayClipAtPoint(defenseSound, this.transform.position);
         GameObject armor = Instantiate(defenseEffect, this.transform.position + new Vector3(0,0.5f,0), this.transform.rotation);
         Destroy(armor, 0.2f);
         yield return new WaitForSeconds(5f);
-        HBControl.defense = 1f;
+        // HBControl.defense = 1f;
     }
     IEnumerator Attack()
     {

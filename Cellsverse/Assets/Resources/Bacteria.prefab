@@ -4133,7 +4133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 1770129703777534415}
   cam2: {fileID: 1770129703498115704}
-  speed: 0
+  BacteriaSpeed: 0
 --- !u!114 &1770129703927383406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4182,6 +4182,8 @@ MonoBehaviour:
   damage: 0
   extraDamage: 1
   defense: 1
+  speed: 2
+  permaDamage: 0
   lv: 0
 --- !u!114 &8526066156312330956
 MonoBehaviour:

@@ -8,7 +8,7 @@ public class healthBarControl : MonoBehaviour
 {
     [SerializeField] private GameObject cv, et, nm, hpBar, mpBar, exp, ownGameScore, enemyGameScore;//canvas, elite, name
     [SerializeField] private GameObject lvCount;
-    public float maxHP, maxMP, currentHP, currentMP, damage, extraDamage = 1, defense = 1f;
+    public float maxHP, maxMP, currentHP, currentMP, damage, extraDamage = 1, defense = 1f, speed = 2f, permaDamage = 0;
     public int lv;
     private float mpRegenRate = 1f, nextMpRegen = 0f;
     PhotonView PV;
@@ -23,7 +23,7 @@ public class healthBarControl : MonoBehaviour
         PV = GetComponent<PhotonView>();
         maxHP = maxMP = currentHP = currentMP = 100;
         lv = 1;
-        damage = lv * 8f * extraDamage;
+        damage = lv * 8f * extraDamage + permaDamage;
         // cv = GameObject.Find("immue(Clone)/Canvas");
         // et = GameObject.Find("immue(Clone)/Canvas/Elite");
         // nm = GameObject.Find("immue(Clone)/Canvas/Elite/Name");
@@ -56,12 +56,13 @@ public class healthBarControl : MonoBehaviour
             exp.GetComponent<Image>().fillAmount += 0.01f;
         }
 
-        if (exp.GetComponent<Image>().fillAmount == 1f)
+        if (exp.GetComponent<Image>().fillAmount == 1f)//level up
         {
             int newLv = int.Parse(lvCount.GetComponent<Text>().text) + 1;
             lvCount.GetComponent<Text>().text = newLv.ToString();
             exp.GetComponent<Image>().fillAmount = 0f;
             lv = int.Parse(lvCount.GetComponent<Text>().text);
+            maxHP += 100;
             updateStats();
             currentHP = Mathf.Max(currentHP,maxHP/2);
             currentMP = Mathf.Max(currentMP,maxMP/2);
@@ -91,7 +92,6 @@ public class healthBarControl : MonoBehaviour
     void updateStats(){
         lv = int.Parse(lvCount.GetComponent<Text>().text);
         damage = maxHP/100 * 8f * extraDamage;
-        maxHP = lv*100;
     }
 
     void OnCollisionStay2D(Collision2D collision)
@@ -117,11 +117,37 @@ public class healthBarControl : MonoBehaviour
             //         PV.RPC("DestoryStuff", RpcTarget.AllBuffered, viewID);
             //     }
             // }
-            if (collision.gameObject.name == "Attacker(Clone)")
+            else if (collision.gameObject.name == "Attacker(Clone)")
             {
                 int viewID = collision.gameObject.GetComponent<PhotonView>().ViewID;
                 PV.RPC("DestoryStuff", RpcTarget.AllBuffered, viewID);
                 currentHP -= 5f;
+            }
+            else if (collision.gameObject.name == "icons_0(Clone)")
+            {
+                int viewID = collision.gameObject.GetComponent<PhotonView>().ViewID;
+                PV.RPC("DestoryStuff", RpcTarget.AllBuffered, viewID);
+                permaDamage += 2;
+            }
+            else if (collision.gameObject.name == "icons_1(Clone)")
+            {
+                int viewID = collision.gameObject.GetComponent<PhotonView>().ViewID;
+                PV.RPC("DestoryStuff", RpcTarget.AllBuffered, viewID);
+                speed += 2f;
+            }
+            else if (collision.gameObject.name == "icons_3(Clone)")
+            {
+                int viewID = collision.gameObject.GetComponent<PhotonView>().ViewID;
+                PV.RPC("DestoryStuff", RpcTarget.AllBuffered, viewID);
+                if (defense > 0.2f){
+                    defense -= 0.05f;
+                }
+            }
+            else if (collision.gameObject.name == "icons_8(Clone)")
+            {
+                int viewID = collision.gameObject.GetComponent<PhotonView>().ViewID;
+                PV.RPC("DestoryStuff", RpcTarget.AllBuffered, viewID);
+                maxHP += 25f * lv;
             }
         }
     }

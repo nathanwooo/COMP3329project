@@ -16,10 +16,12 @@ public class bacteriaControl : MonoBehaviour
     private bool keyInput;
     [SerializeField] private Camera cam, cam2;
     PhotonView photonView;
-    public float speed;
+    healthBarControl HBControl;
+    public float BacteriaSpeed;
     void Start()
     {
-        speed = 2;
+        HBControl = GetComponent<healthBarControl>();
+        BacteriaSpeed = HBControl.speed;
         photonView = GetComponent<PhotonView>();
         actionMap = new Dictionary<string, GameObject>();
         actionLength = this.gameObject.transform.childCount - 3;
@@ -71,7 +73,7 @@ public class bacteriaControl : MonoBehaviour
     // Update is called once per frame
     void Move()
     {
-        
+        BacteriaSpeed = HBControl.speed;
         if (!Input.anyKey)
         {
             Activate("idle");
@@ -202,8 +204,8 @@ public class bacteriaControl : MonoBehaviour
         Vector3 vertical = new Vector3(0f, Input.GetAxis("Vertical"), 0f);
         if (keyInput)
         {
-            transform.position = transform.position + horizontal * Time.deltaTime * speed;
-            transform.position = transform.position + vertical * Time.deltaTime * speed;
+            transform.position = transform.position + horizontal * Time.deltaTime * BacteriaSpeed;
+            transform.position = transform.position + vertical * Time.deltaTime * BacteriaSpeed;
         }
     }
 

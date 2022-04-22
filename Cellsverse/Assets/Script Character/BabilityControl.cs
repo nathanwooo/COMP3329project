@@ -84,9 +84,9 @@ public class BabilityControl : MonoBehaviour
         {
             PV.RPC("enemyAccelerate", RpcTarget.OthersBuffered);
             AudioSource.PlayClipAtPoint(speedSound, this.transform.position);
-            BAControl.speed = 5f;
+            HBControl.speed += 5f;
             yield return new WaitForSeconds(3f);
-            BAControl.speed = 2f;
+            HBControl.speed -= 5f;
             speedUp = false;
         }
     }
@@ -95,35 +95,35 @@ public class BabilityControl : MonoBehaviour
     IEnumerator enemyAccelerate()
     {
         AudioSource.PlayClipAtPoint(speedSound, this.transform.position);
-        BAControl.speed = 5f;
+        HBControl.speed += 5f;
         yield return new WaitForSeconds(3f);
-        BAControl.speed = 2f;
+        HBControl.speed -= 5f;
         speedUp = false;
     }
 
     IEnumerator Defense(){
-        if(PV.IsMine)
+        if(PV.IsMine && HBControl.defense -HBControl.lv * 0.1f > 0.2f)
         {
             PV.RPC("enemyDefense", RpcTarget.OthersBuffered);
             //reduce the damage taken by a percentage for 10s, reduce 10% per level
-            HBControl.defense = 1f - HBControl.lv*0.1f;
+            HBControl.defense -= HBControl.lv*0.1f;
             AudioSource.PlayClipAtPoint(defenseSound, this.transform.position);
             GameObject armor = Instantiate(defenseEffect, this.transform.position + new Vector3(0,0.5f,0), this.transform.rotation);
             Destroy(armor, 0.2f);
             yield return new WaitForSeconds(5f);
-            HBControl.defense = 1f;
+            HBControl.defense += HBControl.lv*0.1f;
         }
     }
 
     [PunRPC]
     IEnumerator enemyDefense(){
         //reduce the damage taken by a percentage for 10s, reduce 10% per level
-        HBControl.defense = 1f - HBControl.lv*0.1f;
+        // HBControl.defense -= HBControl.lv*0.1f;
         AudioSource.PlayClipAtPoint(defenseSound, this.transform.position);
         GameObject armor = Instantiate(defenseEffect, this.transform.position + new Vector3(0,0.5f,0), this.transform.rotation);
         Destroy(armor, 0.2f);
         yield return new WaitForSeconds(5f);
-        HBControl.defense = 1f;
+        // HBControl.defense = 1f;
     }
     IEnumerator Attack()
     {
