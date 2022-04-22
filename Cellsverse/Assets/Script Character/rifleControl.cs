@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+
 
 public class rifleControl : MonoBehaviour{
     public GameObject firePoint;
@@ -13,7 +15,7 @@ public class rifleControl : MonoBehaviour{
     private Transform tf;
     public AudioClip shootSound;
     void Start(){
-        firePoint = GameObject.Find("Immue(Clone)/firepoint");
+        firePoint = GameObject.Find("Bacteria(Clone)/firepoint");
         Debug.Log("firepoint", firePoint);
         Rigidbody2D rb = firePoint.AddComponent<Rigidbody2D>();
         rb.gravityScale = 0f; 
@@ -35,7 +37,6 @@ public class rifleControl : MonoBehaviour{
     }
     
     IEnumerator shoot(){
-        //SpriteRenderer sr = GetComponent<SpriteRenderer>();
         Rigidbody2D rb = firePoint.GetComponent<Rigidbody2D>();
         if (rifleUp.enabled)
         {
@@ -59,7 +60,7 @@ public class rifleControl : MonoBehaviour{
         rb.rotation = aimAngle;
         // Debug.Log(aimAngle);
         yield return new WaitForSeconds(0.3f);
-        GameObject bullet = Instantiate(bulletPrefab, tf.position, tf.rotation);
+        GameObject bullet = PhotonNetwork.Instantiate(bulletPrefab.name, tf.position, tf.rotation);
         Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
         bulletRb.AddForce(tf.right * bulletForce, ForceMode2D.Impulse);
     }

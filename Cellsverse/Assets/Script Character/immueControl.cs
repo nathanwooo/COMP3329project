@@ -397,4 +397,8 @@ public class immueControl : MonoBehaviour
             tf.Find("weapon_sword_right").GetComponent<Collider2D>().enabled = false;
         }
     }
+
+    void CollisionDetection(){
+        
+    }
 }
