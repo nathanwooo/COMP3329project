@@ -45,6 +45,11 @@ MonoBehaviour:
   - enemyActivate
   - enemyActivateAttack
   - enemyBulletCollision
+  - enemyFlash
+  - enemyAttack
+  - enemyheal
+  - enemyAccelerate
+  - enemyDefense
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

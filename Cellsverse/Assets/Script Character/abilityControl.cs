@@ -14,11 +14,11 @@ public class abilityControl : MonoBehaviour
     public GameObject flashEffect, healEffect, defenseEffect, attackEffect;
     private Vector3 mousePosition;
     public Camera cam;
-    PhotonView photonView;
+    PhotonView PV;
     healthBarControl HBControl;
     void Start()
     {
-        photonView = GetComponent<PhotonView>();
+        PV = GetComponent<PhotonView>();
         HBControl = GetComponent<healthBarControl>();
         // hp = GameObject.Find("Canvas/Elite/Bars/Healthbar");
         // mp = GameObject.Find("Canvas/Elite/Bars/Manabar");
@@ -33,7 +33,7 @@ public class abilityControl : MonoBehaviour
     }
 
     void Update(){
-        if (photonView.IsMine){
+        if (PV.IsMine){
             ability();
         }
     }
@@ -76,6 +76,20 @@ public class abilityControl : MonoBehaviour
 
     IEnumerator Accelerate()
     {
+        if(PV.IsMine)
+        {
+            PV.RPC("enemyAccelerate", RpcTarget.OthersBuffered);
+            AudioSource.PlayClipAtPoint(speedSound, this.transform.position);
+            immueControl.speed = 5f;
+            yield return new WaitForSeconds(3f);
+            immueControl.speed = 2f;
+            speedUp = false;
+        }
+    }
+
+    [PunRPC]
+    IEnumerator enemyAccelerate()
+    {
         AudioSource.PlayClipAtPoint(speedSound, this.transform.position);
         immueControl.speed = 5f;
         yield return new WaitForSeconds(3f);
@@ -83,42 +97,104 @@ public class abilityControl : MonoBehaviour
         speedUp = false;
     }
     IEnumerator Defense(){
+        if(PV.IsMine)
+        {
+            PV.RPC("enemyDefense", RpcTarget.OthersBuffered);
+            //reduce the damage taken by a percentage for 10s, reduce 10% per level
+            HBControl.defense = 1f - HBControl.lv*0.1f;
+            AudioSource.PlayClipAtPoint(defenseSound, this.transform.position);
+            GameObject armor = Instantiate(defenseEffect, this.transform.position + new Vector3(0,0.5f,0), this.transform.rotation);
+            Destroy(armor, 0.2f);
+            yield return new WaitForSeconds(3f);
+            HBControl.defense = 1f;
+        }
+    }
+
+    [PunRPC]
+    IEnumerator enemyDefense(){
         //reduce the damage taken by a percentage for 10s, reduce 10% per level
         HBControl.defense = 1f - HBControl.lv*0.1f;
         AudioSource.PlayClipAtPoint(defenseSound, this.transform.position);
-        GameObject armor = PhotonView.Instantiate(defenseEffect, this.transform.position + new Vector3(0,0.5f,0), this.transform.rotation);
-        PhotonView.Destroy(armor, 0.2f);
+        GameObject armor = Instantiate(defenseEffect, this.transform.position + new Vector3(0,0.5f,0), this.transform.rotation);
+        Destroy(armor, 0.2f);
         yield return new WaitForSeconds(3f);
         HBControl.defense = 1f;
     }
     IEnumerator Attack()
     {
+        if(PV.IsMine)
+        {
+            PV.RPC("enemyAttack", RpcTarget.OthersBuffered);
+            AudioSource.PlayClipAtPoint(attackSound, this.transform.position);
+            GameObject attack = Instantiate(attackEffect, this.transform.position + new Vector3(0,2f,0), this.transform.rotation);
+            Destroy(attack, 0.2f);
+            HBControl.extraDamage = 1f + HBControl.lv*0.1f;
+            yield return new WaitForSeconds(5f);
+            HBControl.extraDamage = 1f;
+        }
+    }
+
+    [PunRPC]
+    IEnumerator enemyAttack()
+    {
         AudioSource.PlayClipAtPoint(attackSound, this.transform.position);
-        GameObject attack = PhotonView.Instantiate(attackEffect, this.transform.position + new Vector3(0,2f,0), this.transform.rotation);
-        PhotonView.Destroy(attack, 0.2f);
+        GameObject attack = Instantiate(attackEffect, this.transform.position + new Vector3(0,2f,0), this.transform.rotation);
+        Destroy(attack, 0.2f);
         HBControl.extraDamage = 1f + HBControl.lv*0.1f;
         yield return new WaitForSeconds(5f);
         HBControl.extraDamage = 1f;
     }
     void flash(){
-        mousePosition = Input.mousePosition;
-        mousePosition = cam.ScreenToWorldPoint(mousePosition);
-        //calculate the mouse position from the character position and normalized it to 1 max
-        Vector2 result = (this.transform.position - mousePosition).normalized;
-        //the flash effect
-        GameObject flash = PhotonView.Instantiate(flashEffect, this.transform.position, Quaternion.identity);
-        PhotonView.Destroy(flash,0.1f);
+        if (PV.IsMine)
+        {
+            mousePosition = Input.mousePosition;
+            mousePosition = cam.ScreenToWorldPoint(mousePosition);
+            PV.RPC("enemyFlash", RpcTarget.OthersBuffered);
+            //calculate the mouse position from the character position and normalized it to 1 max
+            Vector2 result = (transform.position - mousePosition).normalized;
+            //the flash effect
+            GameObject flash = Instantiate(flashEffect, transform.position, Quaternion.identity);
+            Destroy(flash,0.2f);
+            //times 10 to increase the flash range
+            this.transform.Translate(-result*10f);
+            AudioSource.PlayClipAtPoint(flashSound, transform.position);
+        }
+    }
+
+    [PunRPC]
+    void enemyFlash()
+    {
+        Vector2 result = (transform.position - mousePosition).normalized;
+        GameObject flash = Instantiate(flashEffect, transform.position, Quaternion.identity);
+        Destroy(flash,0.2f);
         //times 10 to increase the flash range
         this.transform.Translate(-result*10f);
-        AudioSource.PlayClipAtPoint(flashSound, this.transform.position);
+        AudioSource.PlayClipAtPoint(flashSound, transform.position);
     }
 
     void heal(){
+        if(PV.IsMine)
+        {
+            PV.RPC("enemyheal", RpcTarget.OthersBuffered);
+            //healing bases on level, 30(base) + 10 per level
+            HBControl.currentHP += 30 + HBControl.lv*10;
+            AudioSource.PlayClipAtPoint(healSound, this.transform.position);
+            GameObject healing = Instantiate(healEffect, this.transform.position, this.transform.rotation);
+            Destroy(healing, 0.5f);
+
+            if (HBControl.currentHP > HBControl.maxHP){
+                HBControl.currentHP = HBControl.maxHP;
+            }
+        }
+    }
+
+    [PunRPC]
+    void enemyheal(){
         //healing bases on level, 30(base) + 10 per level
         HBControl.currentHP += 30 + HBControl.lv*10;
         AudioSource.PlayClipAtPoint(healSound, this.transform.position);
-        GameObject healing = PhotonView.Instantiate(healEffect, this.transform.position, this.transform.rotation);
-        PhotonView.Destroy(healing, 0.5f);
+        GameObject healing = Instantiate(healEffect, this.transform.position, this.transform.rotation);
+        Destroy(healing, 0.5f);
 
         if (HBControl.currentHP > HBControl.maxHP){
             HBControl.currentHP = HBControl.maxHP;
