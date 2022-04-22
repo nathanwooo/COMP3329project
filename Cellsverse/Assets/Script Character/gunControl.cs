@@ -6,7 +6,7 @@ using Photon.Pun;
 
 
 public class gunControl : MonoBehaviourPunCallbacks {
-    private GameObject firePoint;
+    [SerializeField] private GameObject firePoint;
     private float bulletForce = 0.001f, fireRate = 0.3f, nextFire = 0f;
     private Vector2 mousePosition;
     [SerializeField] private Camera cam;
@@ -19,7 +19,7 @@ public class gunControl : MonoBehaviourPunCallbacks {
     void Start(){
         PV = GetComponent<PhotonView>();
         HBControl = GetComponent<healthBarControl>();
-        firePoint = this.transform.GetChild(4).gameObject;
+        // firePoint = this.transform.GetChild(4).gameObject;
         Debug.Log("firepoint", firePoint);
         cam = Camera.main;
         //gunUp = gameObject.GetComponent<SpriteRenderer>();
