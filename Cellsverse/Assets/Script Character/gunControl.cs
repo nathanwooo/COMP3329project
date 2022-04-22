@@ -7,7 +7,7 @@ using Photon.Pun;
 
 public class gunControl : MonoBehaviourPunCallbacks {
     public GameObject firePoint;
-    private float bulletForce = 10f, fireRate = 0.3f, nextFire = 0f;
+    private float bulletForce = 0.001f, fireRate = 0.3f, nextFire = 0f;
     private Vector2 mousePosition;
     private Camera cam;
     [SerializeField] public GameObject bulletPrefab;
@@ -28,7 +28,7 @@ public class gunControl : MonoBehaviourPunCallbacks {
     }
 
     void Update(){
-        if (Input.GetMouseButton(0) && Time.time > nextFire)
+        if (Input.GetMouseButton(0) && Time.time > nextFire && !Input.GetMouseButton(1))
         {
             AudioSource.PlayClipAtPoint(shootSound, transform.position);
             nextFire = Time.time + fireRate;
