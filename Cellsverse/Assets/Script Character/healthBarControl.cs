@@ -12,6 +12,7 @@ public class healthBarControl : MonoBehaviour
     public int lv;
     private float mpRegenRate = 1f, nextMpRegen = 0f;
     PhotonView PV;
+    private bool willTP = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -60,9 +61,10 @@ public class healthBarControl : MonoBehaviour
             currentMP++;
             nextMpRegen = Time.time + mpRegenRate;
         }
-        if (currentHP <= 0)
+        if (currentHP <= 0 && willTP)
         {
             lungLogic.hpToZero();
+            willTP = false;
         }
     }
     
@@ -75,6 +77,15 @@ public class healthBarControl : MonoBehaviour
         lv = int.Parse(lvCount.GetComponent<Text>().text);
         damage = maxHP/100 * 8f * extraDamage;
         maxHP = lv*100;
+    }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log(collision.gameObject.name);
+        if (collision.gameObject.name == "nutrient(Clone)")
+        {
+            PhotonNetwork.Destroy(collision.gameObject);
+            exp.GetComponent<Image>().fillAmount += 0.1f;
+        }
     }
 
 }

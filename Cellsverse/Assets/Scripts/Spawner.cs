@@ -10,9 +10,12 @@ public class Spawner : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < NUMBER; i++)
+        if (PhotonNetwork.IsMasterClient)
         {
-            SpawnNut();
+            for (int i = 0; i < NUMBER; i++)
+            {
+                SpawnNut();
+            }
         }
     }
     public override void OnJoinedRoom()
@@ -31,6 +34,7 @@ public class Spawner : MonoBehaviourPunCallbacks
         float y1 = transform.position.y - s2;
         float y2 = transform.position.y + s2;
         Vector2 spawnPoint = new Vector2(Random.Range(x1, x2), Random.Range(y1, y2));
+        
         PhotonNetwork.Instantiate(nutrients.name, spawnPoint, Quaternion.identity);
     }   
 }
