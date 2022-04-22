@@ -16,6 +16,7 @@ public class gunControl : MonoBehaviourPunCallbacks {
     public AudioClip shootSound;
     healthBarControl HBControl;
     void Start(){
+        HBControl = GetComponent<healthBarControl>();
         firePoint = GameObject.Find("Immue(Clone)/firepoint");
         Debug.Log("firepoint", firePoint);
         Rigidbody2D rb = firePoint.AddComponent<Rigidbody2D>();

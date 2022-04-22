@@ -39,7 +39,7 @@ public class healthBarControl : MonoBehaviour
 
     // Update is called once per frame
     void Update(){
-        Debug.Log("currentMP: " + currentMP);
+        // Debug.Log("currentMP: " + currentMP);
         // Debug.Log(damage);
         updateStats();
         updateBar();
