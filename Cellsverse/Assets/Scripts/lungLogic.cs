@@ -12,9 +12,11 @@ public class lungLogic : MonoBehaviour
     public static int enemyGameScore = 0;
     public GameObject dmgCircle;
     public GameObject targetCircle;
+    static PhotonView PV1;
     // Start is called before the first frame update
     void Start()
     {
+        PV1 = GetComponent<PhotonView>();
         if(PhotonNetwork.IsMasterClient){
             PhotonNetwork.Instantiate(targetCircle.name, new Vector2(2.2f, -3.4f), Quaternion.identity);
             PhotonNetwork.Instantiate(dmgCircle.name, new Vector2(2.3f, 0.5f), Quaternion.identity);
@@ -33,5 +35,29 @@ public class lungLogic : MonoBehaviour
                 willTp = false;
             }
         }
+    }
+    public static void hpToZero()
+    {
+        ownGameScore = 0;
+        enemyGameScore = 1;
+        PV1.RPC("enemyWin", RpcTarget.Others);
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.LoadLevel("heart");
+            
+        }
+        
+    }
+    [PunRPC]
+    static void enemyWin()
+    {
+        ownGameScore = 1;
+        enemyGameScore = 0;
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.LoadLevel("heart");
+
+        }
+
     }
 }

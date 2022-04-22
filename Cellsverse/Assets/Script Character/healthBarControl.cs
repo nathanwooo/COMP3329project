@@ -62,16 +62,10 @@ public class healthBarControl : MonoBehaviour
         }
         if (currentHP <= 0)
         {
-            lungLogic.enemyGameScore += 1;
-            PV.RPC("enemyWin", RpcTarget.Others);
+            lungLogic.hpToZero();
         }
     }
-    [PunRPC]
-    void enemyWin()
-    {
-        lungLogic.ownGameScore += 1;
-        
-    }
+    
     void updateBar(){
         hpBar.GetComponent<Image>().fillAmount = currentHP/maxHP;
         mpBar.GetComponent<Image>().fillAmount = currentMP/maxMP;
