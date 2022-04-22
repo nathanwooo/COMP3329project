@@ -12,6 +12,7 @@ public class healthBarControl : MonoBehaviour
     public int lv;
     private float mpRegenRate = 1f, nextMpRegen = 0f;
     PhotonView PV;
+
     private bool willTP = true;
     // Start is called before the first frame update
     void Start()
@@ -85,6 +86,12 @@ public class healthBarControl : MonoBehaviour
         {
             PhotonNetwork.Destroy(collision.gameObject);
             exp.GetComponent<Image>().fillAmount += 0.1f;
+        }
+        // Debug.Log(collision.gameObject.GetComponent<PhotonView>().IsMine);
+        if (collision.gameObject.name == "bullet_side(Clone)" || collision.gameObject.name == "bullet_rifle(Clone)"){
+            if (!collision.gameObject.GetComponent<PhotonView>().IsMine){
+                currentHP -= collision.gameObject.GetComponent<BulletControl>().damage;
+            }
         }
     }
 

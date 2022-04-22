@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 
 public class BulletControl : MonoBehaviour{
-    public static float damage;
+    public float damage;
     public GameObject hitEffect;
     public AudioClip explosionSound;
     healthBarControl HBControl;
