@@ -51,7 +51,7 @@ public class healthBarControl : MonoBehaviour
         updateStats();
         updateBar();
 
-        if (Input.GetKey(KeyCode.I) && lvCount.GetComponent<Text>().text != "6")
+        if (Input.GetKey(KeyCode.I) && int.Parse(lvCount.GetComponent<Text>().text) < 6)
         {
             exp.GetComponent<Image>().fillAmount += 0.01f;
         }
@@ -94,18 +94,25 @@ public class healthBarControl : MonoBehaviour
         damage = maxHP/100 * 8f * extraDamage;
     }
 
-    void OnCollisionStay2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         if (PV.IsMine){
 
             // Debug.Log(collision.gameObject.name);
             if (collision.gameObject.name == "nutrient(Clone)")
             {
-                int viewID = collision.gameObject.GetComponent<PhotonView>().ViewID;
-                PV.RPC("DestoryStuff", RpcTarget.AllBuffered, viewID);
-                exp.GetComponent<Image>().fillAmount += 0.1f;
+                if (int.Parse(lvCount.GetComponent<Text>().text) < 6)
+                {
+                    int viewID = collision.gameObject.GetComponent<PhotonView>().ViewID;
+                    PV.RPC("DestoryStuff", RpcTarget.AllBuffered, viewID);
+                    exp.GetComponent<Image>().fillAmount += 0.1f;
+                }
+                else
+                {
+                    int viewID = collision.gameObject.GetComponent<PhotonView>().ViewID;
+                    PV.RPC("DestoryStuff", RpcTarget.AllBuffered, viewID);
+                }
             }
-
             // // Debug.Log(collision.gameObject.GetComponent<PhotonView>().IsMine);
             // if (collision.gameObject.name == "bullets_side(Clone)" || collision.gameObject.name == "bullets_rifle(Clone)"){
             //     Debug.Log("Out");

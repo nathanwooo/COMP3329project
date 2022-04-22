@@ -82,9 +82,9 @@ public class abilityControl : MonoBehaviour
         {
             PV.RPC("enemyAccelerate", RpcTarget.OthersBuffered);
             AudioSource.PlayClipAtPoint(speedSound, this.transform.position);
-            HBControl.speed += 20f;
+            HBControl.speed += 5f;
             yield return new WaitForSeconds(3f);
-            HBControl.speed = 2f;
+            HBControl.speed -= 5f;
             speedUp = false;
         }
     }
