@@ -15,7 +15,9 @@ public class gunControl : MonoBehaviourPunCallbacks {
     private Transform tf;
     public AudioClip shootSound;
     healthBarControl HBControl;
+    PhotonView PV;
     void Start(){
+        PV = GetComponent<PhotonView>();
         HBControl = GetComponent<healthBarControl>();
         firePoint = this.transform.GetChild(4).gameObject;
         Debug.Log("firepoint", firePoint);
@@ -28,11 +30,14 @@ public class gunControl : MonoBehaviourPunCallbacks {
     }
 
     void Update(){
-        if (Input.GetMouseButton(0) && Time.time > nextFire && !Input.GetMouseButton(1))
+        if (PV.IsMine)
         {
-            AudioSource.PlayClipAtPoint(shootSound, transform.position);
-            nextFire = Time.time + fireRate;
-            StartCoroutine(shoot());
+            if (Input.GetMouseButton(0) && Time.time > nextFire && !Input.GetMouseButton(1))
+            {
+                AudioSource.PlayClipAtPoint(shootSound, transform.position);
+                nextFire = Time.time + fireRate;
+                StartCoroutine(shoot());
+            }
         }
     }
 
