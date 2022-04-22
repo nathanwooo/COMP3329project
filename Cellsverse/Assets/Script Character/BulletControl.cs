@@ -42,7 +42,6 @@ public class BulletControl : MonoBehaviour, IPunInstantiateMagicCallback{
     [PunRPC]
     void enemyDamaged(float bulletDamage, int viewID)
     {
-        Debug.Log(HBControl.currentHP);
         var player = PhotonView.Find(viewID).gameObject;
         player.GetComponent<healthBarControl>().currentHP -= bulletDamage;
     }
