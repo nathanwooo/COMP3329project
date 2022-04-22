@@ -40,13 +40,15 @@ public class lungLogic : MonoBehaviour
     {
         ownGameScore = 0;
         enemyGameScore = 1;
-        PV1.RPC("enemyWin", RpcTarget.Others);
         if (PhotonNetwork.IsMasterClient)
         {
             PhotonNetwork.LoadLevel("heart");
             
+        } else
+        {
+            PV1.RPC("enemyWin", RpcTarget.Others);
         }
-        
+
     }
     [PunRPC]
     static void enemyWin()
