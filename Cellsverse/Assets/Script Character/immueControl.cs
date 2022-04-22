@@ -16,7 +16,7 @@ public class immueControl : MonoBehaviour
     private bool keyInput;
     [SerializeField] private Camera cam, cam2;
     PhotonView photonView;
-    public static float speed;
+    public float speed;
     void Start()
     {
         speed = 2;

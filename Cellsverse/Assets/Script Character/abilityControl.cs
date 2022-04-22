@@ -16,10 +16,12 @@ public class abilityControl : MonoBehaviour
     public Camera cam;
     PhotonView PV;
     healthBarControl HBControl;
+    immueControl IMControl;
     void Start()
     {
         PV = GetComponent<PhotonView>();
         HBControl = GetComponent<healthBarControl>();
+        IMControl = GetComponent<immueControl>();
         // hp = GameObject.Find("Canvas/Elite/Bars/Healthbar");
         // mp = GameObject.Find("Canvas/Elite/Bars/Manabar");
         // Debug.Log(mp.GetComponent<Image>().fillAmount);
@@ -80,9 +82,9 @@ public class abilityControl : MonoBehaviour
         {
             PV.RPC("enemyAccelerate", RpcTarget.OthersBuffered);
             AudioSource.PlayClipAtPoint(speedSound, this.transform.position);
-            immueControl.speed = 5f;
+            IMControl.speed = 5f;
             yield return new WaitForSeconds(3f);
-            immueControl.speed = 2f;
+            IMControl.speed = 2f;
             speedUp = false;
         }
     }
@@ -91,11 +93,12 @@ public class abilityControl : MonoBehaviour
     IEnumerator enemyAccelerate()
     {
         AudioSource.PlayClipAtPoint(speedSound, this.transform.position);
-        immueControl.speed = 5f;
+        IMControl.speed = 5f;
         yield return new WaitForSeconds(3f);
-        immueControl.speed = 2f;
+        IMControl.speed = 2f;
         speedUp = false;
     }
+
     IEnumerator Defense(){
         if(PV.IsMine)
         {
