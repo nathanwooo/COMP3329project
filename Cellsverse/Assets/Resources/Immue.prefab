@@ -139,6 +139,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8844762597337050075}
   - component: {fileID: 8844762597337050076}
+  - component: {fileID: 5799803363815115722}
   m_Layer: 0
   m_Name: firepoint
   m_TagString: Untagged
@@ -211,6 +212,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!50 &5799803363815115722
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8844762597337050074}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &8844762597369112029
 GameObject:
   m_ObjectHideFlags: 0
@@ -7080,14 +7102,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4d3daba51852fe45a311a8f3a1ba028, type: 3}
---- !u!1 &7253660624437795694 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8143736344088469592, guid: e4d3daba51852fe45a311a8f3a1ba028, type: 3}
-  m_PrefabInstance: {fileID: 1562310256926571318}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4136585941794259941 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3226382842666367187, guid: e4d3daba51852fe45a311a8f3a1ba028, type: 3}
+  m_PrefabInstance: {fileID: 1562310256926571318}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7253660624437795694 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8143736344088469592, guid: e4d3daba51852fe45a311a8f3a1ba028, type: 3}
   m_PrefabInstance: {fileID: 1562310256926571318}
   m_PrefabAsset: {fileID: 0}
 --- !u!224 &7646455194542327766 stripped
