@@ -9,7 +9,7 @@ public class gunControl : MonoBehaviourPunCallbacks {
     public GameObject firePoint;
     private float bulletForce = 0.001f, fireRate = 0.3f, nextFire = 0f;
     private Vector2 mousePosition;
-    private Camera cam;
+    [SerializeField] private Camera cam;
     [SerializeField] public GameObject bulletPrefab;
     [SerializeField] private SpriteRenderer gunUp, gunDown, gunLeft, gunRight;
     private Transform tf;

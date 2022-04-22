@@ -1781,6 +1781,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 8844762598350968471}
   cam2: {fileID: 8844762598072265265}
+  speed: 0
 --- !u!114 &8844762597717880437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1794,6 +1795,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 8844762597337050074}
+  cam: {fileID: 8844762598350968471}
   bulletPrefab: {fileID: 2982506535618864606, guid: 3c54244333824a8449c8210c214e6be5, type: 3}
   gunUp: {fileID: 8844762598172841509}
   gunDown: {fileID: 8844762598682296205}

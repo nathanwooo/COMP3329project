@@ -12,7 +12,6 @@ public class healthBarControl : MonoBehaviour
     public int lv;
     private float mpRegenRate = 1f, nextMpRegen = 0f;
     PhotonView PV;
-
     private bool willTP = true;
     // Start is called before the first frame update
     void Start()
