@@ -10,9 +10,10 @@ public class swordControl : MonoBehaviour{
     PhotonView PV;
     healthBarControl HBControl;
 
-    void start(){
+    void Start(){
         HBControl = GetComponent<healthBarControl>();
         PV = GetComponent<PhotonView>();
+
     }
     void Update(){
         if (Input.GetMouseButton(1) && Time.time > nextSlash)
@@ -26,7 +27,7 @@ public class swordControl : MonoBehaviour{
         if(!PV.IsMine){
             Debug.Log("Cry to death");
             float swordDamage = HBControl.damage * 1.5f;
-            int viewID = collision.gameObject.GetComponent<PhotonView>().ViewID;
+            int viewID = collision.gameObject.GetComponentInParent<PhotonView>().ViewID;
             PV.RPC("enemyDamaged", RpcTarget.Others, swordDamage, viewID);
         }
     }
@@ -35,7 +36,7 @@ public class swordControl : MonoBehaviour{
     void enemyDamaged(float swordDamage, int viewID)
     {
         var player = PhotonView.Find(viewID).gameObject;
-        player.GetComponent<healthBarControl>().currentHP -= HBControl.damage;
+        player.GetComponent<healthBarControl>().currentHP -= swordDamage;
     }
 
     
