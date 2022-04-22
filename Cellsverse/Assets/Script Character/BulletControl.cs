@@ -29,7 +29,8 @@ public class BulletControl : MonoBehaviour, IPunInstantiateMagicCallback{
             else
             {
                 Debug.Log("Out");
-                PV.RPC("enemyDamaged", RpcTarget.Others, bulletDamage);
+                int viewID = collision.gameObject.GetComponent<PhotonView>().ViewID;
+                PV.RPC("enemyDamaged", RpcTarget.Others, bulletDamage, viewID);
                 PhotonNetwork.Destroy(gameObject);
                 
             }
@@ -39,9 +40,11 @@ public class BulletControl : MonoBehaviour, IPunInstantiateMagicCallback{
     }
 
     [PunRPC]
-    void enemyDamaged(float bulletDamage)
+    void enemyDamaged(float bulletDamage, int viewID)
     {
-        HBControl.currentHP -= bulletDamage;
+        Debug.Log(HBControl.currentHP);
+        var player = PhotonView.Find(viewID).gameObject;
+        player.GetComponent<healthBarControl>().currentHP -= bulletDamage;
     }
 
 
