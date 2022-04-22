@@ -38,9 +38,11 @@ public class PlayerItem : MonoBehaviourPunCallbacks
     }
     public void OnClickLeftArrow()
     {
+        Debug.Log("LEFT");
         if ((int)playerProperties["playerAvatar"] ==0)
         {
             playerProperties["playerAvatar"] = avatars.Length - 1;
+            
 
         }
         else
@@ -52,6 +54,7 @@ public class PlayerItem : MonoBehaviourPunCallbacks
 
     public void OnClickRightArrow()
     {
+        Debug.Log("RIGHT");
         if ((int)playerProperties["playerAvatar"] == avatars.Length - 1)
         {
             playerProperties["playerAvatar"] = 0;
