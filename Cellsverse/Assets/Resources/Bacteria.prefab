@@ -4054,8 +4054,8 @@ GameObject:
   - component: {fileID: 1770129703927383404}
   - component: {fileID: 1770129703927383407}
   - component: {fileID: 1770129703927383406}
-  - component: {fileID: 1770129703927383401}
   - component: {fileID: 1770129703927383405}
+  - component: {fileID: 8526066156312330956}
   - component: {fileID: 8157448095849589877}
   - component: {fileID: 4692785939624207478}
   - component: {fileID: 6026152176843079795}
@@ -4154,35 +4154,6 @@ MonoBehaviour:
   rifleLeft: {fileID: 1770129704345956392}
   rifleRight: {fileID: 1770129703463483626}
   shootSound: {fileID: 8300000, guid: 40edeba867bb1d944a77a47b0aba6d0b, type: 3}
---- !u!114 &1770129703927383401
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1770129703927383403}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d19f44899716c941b2e5cd419f4230b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mp: {fileID: 1770129703880315924}
-  hp: {fileID: 1770129704036919903}
-  cdSpeedUp: {fileID: 1770129704471656132}
-  cdFlash: {fileID: 1770129702769889458}
-  cdHeal: {fileID: 1770129702628277320}
-  cdDefense: {fileID: 1770129704684012651}
-  cdAttack: {fileID: 1770129703117371742}
-  flashSound: {fileID: 8300000, guid: 64587e165d3117e4b90b11d6f81fff9d, type: 3}
-  healSound: {fileID: 8300000, guid: 1b0b345fe24e1b445802289a2f17623b, type: 3}
-  defenseSound: {fileID: 8300000, guid: ae850f5f4b81c5547b9a457f3c091e3b, type: 3}
-  speedSound: {fileID: 8300000, guid: 6853daab1ba4de54d9068bae5bb75bf0, type: 3}
-  attackSound: {fileID: 8300000, guid: 0bdef95582bda9e4db4dd8f98b0e3e76, type: 3}
-  flashEffect: {fileID: 1743887017407926556, guid: ddfd7f32e8377fe4da7fd8920b54c717, type: 3}
-  healEffect: {fileID: 4660579852608732823, guid: b4d72b70a45e4f74ab9bc5303a64a9c5, type: 3}
-  defenseEffect: {fileID: 8166923231170993657, guid: 2814509813b1780498ba372eb40fb6ad, type: 3}
-  attackEffect: {fileID: 2357614570555297281, guid: cf9a4784e4c0f564f9e376e6ebf6f072, type: 3}
-  cam: {fileID: 1770129703777534415}
 --- !u!114 &1770129703927383405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4212,6 +4183,35 @@ MonoBehaviour:
   extraDamage: 1
   defense: 1
   lv: 0
+--- !u!114 &8526066156312330956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1770129703927383403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbda3e1eb9ca4fb4ba99b7acf5e84bcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mp: {fileID: 1770129703880315924}
+  hp: {fileID: 1770129704036919903}
+  cdSpeedUp: {fileID: 1770129704471656132}
+  cdFlash: {fileID: 1770129702769889458}
+  cdHeal: {fileID: 1770129702628277320}
+  cdDefense: {fileID: 1770129704684012651}
+  cdAttack: {fileID: 1770129703117371742}
+  flashSound: {fileID: 8300000, guid: 64587e165d3117e4b90b11d6f81fff9d, type: 3}
+  healSound: {fileID: 8300000, guid: 1b0b345fe24e1b445802289a2f17623b, type: 3}
+  defenseSound: {fileID: 8300000, guid: ae850f5f4b81c5547b9a457f3c091e3b, type: 3}
+  speedSound: {fileID: 8300000, guid: 6853daab1ba4de54d9068bae5bb75bf0, type: 3}
+  attackSound: {fileID: 8300000, guid: 0bdef95582bda9e4db4dd8f98b0e3e76, type: 3}
+  flashEffect: {fileID: 1743887017407926556, guid: ddfd7f32e8377fe4da7fd8920b54c717, type: 3}
+  healEffect: {fileID: 4660579852608732823, guid: b4d72b70a45e4f74ab9bc5303a64a9c5, type: 3}
+  defenseEffect: {fileID: 8166923231170993657, guid: 2814509813b1780498ba372eb40fb6ad, type: 3}
+  attackEffect: {fileID: 2357614570555297281, guid: cf9a4784e4c0f564f9e376e6ebf6f072, type: 3}
+  cam: {fileID: 1770129703777534415}
 --- !u!114 &8157448095849589877
 MonoBehaviour:
   m_ObjectHideFlags: 0
