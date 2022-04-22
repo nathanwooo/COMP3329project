@@ -6,16 +6,20 @@ using System;
 using Photon.Pun;
 public class healthBarControl : MonoBehaviour
 {
-    [SerializeField] private GameObject cv, et, nm, hpBar, mpBar, exp, immueScore, bacteriaScore;//canvas, elite, name
+    [SerializeField] private GameObject cv, et, nm, hpBar, mpBar, exp, ownGameScore, enemyGameScore;//canvas, elite, name
     [SerializeField] private GameObject lvCount;
     public float maxHP, maxMP, currentHP, currentMP, damage, extraDamage = 1, defense = 1f;
     public int lv;
     private float mpRegenRate = 1f, nextMpRegen = 0f;
     PhotonView PV;
+
     private bool willTP = true;
     // Start is called before the first frame update
     void Start()
     {
+        ownGameScore.GetComponent<Text>().text = lungLogic.ownGameScore.ToString();
+        enemyGameScore.GetComponent<Text>().text = lungLogic.enemyGameScore.ToString();
+
         PV = GetComponent<PhotonView>();
         maxHP = maxMP = currentHP = currentMP = 100;
         lv = 1;
