@@ -110,7 +110,7 @@ public class abilityControl : MonoBehaviour
             AudioSource.PlayClipAtPoint(defenseSound, this.transform.position);
             GameObject armor = Instantiate(defenseEffect, this.transform.position + new Vector3(0,0.5f,0), this.transform.rotation);
             Destroy(armor, 0.2f);
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(5f);
             HBControl.defense = 1f;
         }
     }
@@ -122,7 +122,7 @@ public class abilityControl : MonoBehaviour
         AudioSource.PlayClipAtPoint(defenseSound, this.transform.position);
         GameObject armor = Instantiate(defenseEffect, this.transform.position + new Vector3(0,0.5f,0), this.transform.rotation);
         Destroy(armor, 0.2f);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(5f);
         HBControl.defense = 1f;
     }
     IEnumerator Attack()
