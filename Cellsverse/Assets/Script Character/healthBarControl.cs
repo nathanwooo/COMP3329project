@@ -86,7 +86,7 @@ public class healthBarControl : MonoBehaviour
             if (collision.gameObject.name == "nutrient(Clone)")
             {
                 int viewID = collision.gameObject.GetComponent<PhotonView>().ViewID;
-                PV.RPC("DestoryStuff", RpcTarget.All, viewID);
+                PV.RPC("DestoryStuff", RpcTarget.AllBuffered, viewID);
                 exp.GetComponent<Image>().fillAmount += 0.1f;
             }
 
@@ -98,7 +98,7 @@ public class healthBarControl : MonoBehaviour
                     Debug.Log(collision.gameObject.GetComponent<BulletControl>().bulletDamage);
                     currentHP -= collision.gameObject.GetComponent<BulletControl>().bulletDamage;
                     int viewID = collision.gameObject.GetComponent<PhotonView>().ViewID;
-                    PV.RPC("DestoryStuff", RpcTarget.All, viewID);
+                    PV.RPC("DestoryStuff", RpcTarget.AllBuffered, viewID);
                 }
             }
         }
@@ -109,6 +109,7 @@ public class healthBarControl : MonoBehaviour
         var bullet = PhotonView.Find(viewID).gameObject;
         if (bullet.GetComponent<PhotonView>().IsMine)
         {
+            Debug.Log("Gay");
             PhotonNetwork.Destroy(bullet);
         }
         
