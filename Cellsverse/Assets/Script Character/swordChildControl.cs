@@ -9,9 +9,10 @@ public class swordChildControl : MonoBehaviour
         SWControl = this.transform.parent.parent.gameObject.GetComponent<swordControl>();
     }
     void OnTriggerEnter2D(Collider2D collision){
+        Debug.Log(collision.gameObject.name);
         if (collision.gameObject.name == "PlayerBoundary")
         {
-           SWControl.OnTriggerEnter36D(collision); 
+           SWControl.OnTriggerEnter36D(collision);
         }
     }
 }

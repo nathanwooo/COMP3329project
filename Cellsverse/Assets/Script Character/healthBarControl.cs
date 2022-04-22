@@ -36,16 +36,21 @@ public class healthBarControl : MonoBehaviour
         lvCount.GetComponent<Text>().text = "1";
     }
 
-    // Update is called once per frame
     void Update(){
-        // Debug.Log("currentMP: " + currentMP);
-        // Debug.Log(damage);
+        if (PV.IsMine){
+            refresh();
+        }
+    }
+
+    void refresh(){
         updateStats();
         updateBar();
+
         if (Input.GetKey(KeyCode.I) && lvCount.GetComponent<Text>().text != "6")
         {
             exp.GetComponent<Image>().fillAmount += 0.01f;
         }
+
         if (exp.GetComponent<Image>().fillAmount == 1f)
         {
             int newLv = int.Parse(lvCount.GetComponent<Text>().text) + 1;
@@ -57,10 +62,12 @@ public class healthBarControl : MonoBehaviour
             currentMP = Mathf.Max(currentMP,maxMP/2);
             updateBar();
         }
-        if (Time.time > nextMpRegen && currentMP <= maxMP){
+
+        if (Time.time > nextMpRegen && currentMP < maxMP){
             currentMP++;
             nextMpRegen = Time.time + mpRegenRate;
         }
+
         if (currentHP <= 0 && willTP)
         {
             lungLogic.hpToZero();
@@ -68,18 +75,21 @@ public class healthBarControl : MonoBehaviour
         }
     }
     
+
     void updateBar(){
         hpBar.GetComponent<Image>().fillAmount = currentHP/maxHP;
         mpBar.GetComponent<Image>().fillAmount = currentMP/maxMP;
+        Debug.Log("called");
+        Debug.Log(mpBar.GetComponent<Image>().fillAmount);
     }
+
+
 
     void updateStats(){
         lv = int.Parse(lvCount.GetComponent<Text>().text);
         damage = maxHP/100 * 8f * extraDamage;
         maxHP = lv*100;
     }
-
-
 
     void OnCollisionStay2D(Collision2D collision)
     {

@@ -45,18 +45,17 @@ public class abilityControl : MonoBehaviour
         {
             if(Input.GetKey(KeyCode.Q) && HBControl.currentMP > 0.1f && cdSpeedUp.GetComponent<Text>().text == "")
             {
-                HBControl.currentMP -= 0.1f;
+                HBControl.currentMP -= 10f;
                 speedUp = true;
                 StartCoroutine(Accelerate());
                 StartCoroutine(coolDownSpeed());
 
             }
-            mp.GetComponent<Image>().fillAmount = currentMp;
         }
 
         if (Input.GetKeyDown(KeyCode.E) && HBControl.currentMP > 0.01f && cdFlash.GetComponent<Text>().text == ""){
             flash();
-            HBControl.currentMP -= 5f;
+            HBControl.currentMP -= 10f;
             StartCoroutine(coolDownFlash());
         }
 

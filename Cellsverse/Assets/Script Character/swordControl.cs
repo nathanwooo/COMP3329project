@@ -24,12 +24,14 @@ public class swordControl : MonoBehaviour{
     }
 
     public void OnTriggerEnter36D(Collider2D collision){
-        if(!PV.IsMine){
-            Debug.Log("Cry to death");
-            float swordDamage = HBControl.damage * 1.5f;
-            int viewID = collision.gameObject.GetComponentInParent<PhotonView>().ViewID;
-            PV.RPC("enemyDamaged", RpcTarget.Others, swordDamage, viewID);
-        }
+        Debug.Log("Yes");
+   
+        float swordDamage = HBControl.damage * 1.5f;
+        Debug.Log("damage:" + swordDamage);
+        int viewID = collision.gameObject.GetComponentInParent<PhotonView>().ViewID;
+        Debug.Log("ID:"+ viewID);
+        PV.RPC("enemyDamaged", RpcTarget.Others, swordDamage, viewID);
+
     }
 
     [PunRPC]
