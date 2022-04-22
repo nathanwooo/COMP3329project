@@ -5,6 +5,7 @@ using System;
 //using UnityEditor.Animations;
 using Photon.Pun;
 
+
 public class bacteriaControl : MonoBehaviour
 {
     private Dictionary<string, GameObject> actionMap;
@@ -15,18 +16,18 @@ public class bacteriaControl : MonoBehaviour
     private bool keyInput;
     [SerializeField] private Camera cam, cam2;
     PhotonView photonView;
-    public static float speed;
+    public float speed;
     void Start()
     {
         speed = 2;
+        photonView = GetComponent<PhotonView>();
         actionMap = new Dictionary<string, GameObject>();
         actionLength = this.gameObject.transform.childCount - 3;
         actionInactiveList = new string[actionLength];
         keyInput = true;
-        cam = Camera.main;
-        for(int i = 0; i < actionLength; i++)
+        for (int i = 0; i < actionLength; i++)
         {
-            GameObject child = this.gameObject.transform.GetChild(i+3).gameObject;
+            GameObject child = this.gameObject.transform.GetChild(i + 3).gameObject;
             actionInactiveList[i] = child.name;
             actionMap.Add(child.name, child);
 
@@ -38,17 +39,17 @@ public class bacteriaControl : MonoBehaviour
         }
 
         actionActive = actionMap["idle"];
-        foreach(string action in actionInactiveList)
+        foreach (string action in actionInactiveList)
         {
             if (action != "idle")
             {
                 Sleep(action);
-                AddCollider(action);
+                // AddCollider(action);
             }
         }
-        WakeFast("idle");
-        AddCollider("idle");
-        EnableCollider("idle");
+        // WakeFast("idle");
+        // AddCollider("idle");
+        // EnableCollider("idle");
         if (!photonView.IsMine)
         {
             Debug.Log("XDDD");
@@ -57,8 +58,8 @@ public class bacteriaControl : MonoBehaviour
             cam2.enabled = false;
             Debug.Log("========================================");
         }
-    }
 
+    }
     void FixedUpdate()
     {
         // Only move the player object if it's the local user's player
@@ -67,62 +68,79 @@ public class bacteriaControl : MonoBehaviour
             Move();
         }
     }
-
     // Update is called once per frame
     void Move()
     {
-        if (!Input.anyKey){
+        
+        if (!Input.anyKey)
+        {
             Activate("idle");
         }
 
-        if(keyInput){
+        if (keyInput)
+        {
 
-            if (Input.GetKey(KeyCode.A)){
+            if (Input.GetKey(KeyCode.A))
+            {
                 Activate("run_left");
             }
 
-            if(Input.GetKey(KeyCode.D)){
+            if (Input.GetKey(KeyCode.D))
+            {
                 Activate("run_right");
             }
 
-            if (Input.GetKey(KeyCode.W)){
+            if (Input.GetKey(KeyCode.W))
+            {
                 Activate("run_up");
             }
 
-            if(Input.GetKey(KeyCode.S)){
+            if (Input.GetKey(KeyCode.S))
+            {
                 Activate("run_down");
             }
 
-            if(Input.GetMouseButton(0)){
+            if (Input.GetMouseButton(0))
+            {
 
                 Vector3 mousePosition = Input.mousePosition;
 
                 mousePosition = cam.ScreenToWorldPoint(mousePosition);
                 //Debug.Log(mousePosition);
                 //Debug.Log(this.gameObject.transform.position);
-                if (mousePosition.x - this.gameObject.transform.position.x > 0){//RHS
-                    if (Math.Abs(mousePosition.x - this.gameObject.transform.position.x) > Math.Abs(mousePosition.y - this.gameObject.transform.position.y)){
+                if (mousePosition.x - this.gameObject.transform.position.x > 0)
+                {//RHS
+                    if (Math.Abs(mousePosition.x - this.gameObject.transform.position.x) > Math.Abs(mousePosition.y - this.gameObject.transform.position.y))
+                    {
                         ActivateAttack("rifle_right");
                     }
-                    else{
-                        if(mousePosition.y - this.gameObject.transform.position.y > 0){
+                    else
+                    {
+                        if (mousePosition.y - this.gameObject.transform.position.y > 0)
+                        {
                             ActivateAttack("rifle_up");
                         }
-                        if(mousePosition.y - this.gameObject.transform.position.y < 0){
+                        if (mousePosition.y - this.gameObject.transform.position.y < 0)
+                        {
                             ActivateAttack("rifle_down");
                         }
                     }
                 }
 
-                if (mousePosition.x - this.gameObject.transform.position.x < 0){//LHS
-                    if (Math.Abs(mousePosition.x - this.gameObject.transform.position.x) > Math.Abs(mousePosition.y - this.gameObject.transform.position.y)){
+                if (mousePosition.x - this.gameObject.transform.position.x < 0)
+                {//LHS
+                    if (Math.Abs(mousePosition.x - this.gameObject.transform.position.x) > Math.Abs(mousePosition.y - this.gameObject.transform.position.y))
+                    {
                         ActivateAttack("rifle_left");
                     }
-                    else{
-                        if(mousePosition.y - this.gameObject.transform.position.y > 0){
+                    else
+                    {
+                        if (mousePosition.y - this.gameObject.transform.position.y > 0)
+                        {
                             ActivateAttack("rifle_up");
                         }
-                        if(mousePosition.y - this.gameObject.transform.position.y < 0){
+                        if (mousePosition.y - this.gameObject.transform.position.y < 0)
+                        {
                             ActivateAttack("rifle_down");
                         }
                     }
@@ -130,7 +148,8 @@ public class bacteriaControl : MonoBehaviour
 
             }
 
-            if(Input.GetMouseButton(1)){
+            if (Input.GetMouseButton(1))
+            {
 
                 Vector3 mousePosition = Input.mousePosition;
                 mousePosition.z = 10;
@@ -138,30 +157,40 @@ public class bacteriaControl : MonoBehaviour
 
                 //Debug.Log(mousePosition);
                 //Debug.Log(this.gameObject.transform.position);
-                if (mousePosition.x - this.gameObject.transform.position.x > 0){//RHS
-                    if (Math.Abs(mousePosition.x - this.gameObject.transform.position.x) > Math.Abs(mousePosition.y - this.gameObject.transform.position.y)){
-                        ActivateAttack("hammer_right");
+                if (mousePosition.x - this.gameObject.transform.position.x > 0)
+                {//RHS
+                    if (Math.Abs(mousePosition.x - this.gameObject.transform.position.x) > Math.Abs(mousePosition.y - this.gameObject.transform.position.y))
+                    {
+                        ActivateSwordAttack("hammer_right");
                     }
-                    else{
-                        if(mousePosition.y - this.gameObject.transform.position.y > 0){
-                            ActivateAttack("hammer_up");
+                    else
+                    {
+                        if (mousePosition.y - this.gameObject.transform.position.y > 0)
+                        {
+                            ActivateSwordAttack("hammer_up");
                         }
-                        if(mousePosition.y - this.gameObject.transform.position.y < 0){
-                            ActivateAttack("hammer_down");
+                        if (mousePosition.y - this.gameObject.transform.position.y < 0)
+                        {
+                            ActivateSwordAttack("hammer_down");
                         }
                     }
                 }
 
-                if (mousePosition.x - this.gameObject.transform.position.x < 0){//LHS
-                    if (Math.Abs(mousePosition.x - this.gameObject.transform.position.x) > Math.Abs(mousePosition.y - this.gameObject.transform.position.y)){
-                        ActivateAttack("hammer_left");
+                if (mousePosition.x - this.gameObject.transform.position.x < 0)
+                {//LHS
+                    if (Math.Abs(mousePosition.x - this.gameObject.transform.position.x) > Math.Abs(mousePosition.y - this.gameObject.transform.position.y))
+                    {
+                        ActivateSwordAttack("hammer_left");
                     }
-                    else{
-                        if(mousePosition.y - this.gameObject.transform.position.y > 0){
-                            ActivateAttack("hammer_up");
+                    else
+                    {
+                        if (mousePosition.y - this.gameObject.transform.position.y > 0)
+                        {
+                            ActivateSwordAttack("hammer_up");
                         }
-                        if(mousePosition.y - this.gameObject.transform.position.y < 0){
-                            ActivateAttack("hammer_down");
+                        if (mousePosition.y - this.gameObject.transform.position.y < 0)
+                        {
+                            ActivateSwordAttack("hammer_down");
                         }
                     }
                 }
@@ -186,7 +215,7 @@ public class bacteriaControl : MonoBehaviour
             DisableCollider(actionActive.name);
             WakeFast(action);
             actionActive = actionMap[action];
-            EnableCollider(action);
+            // EnableCollider(action);
             photonView.RPC("enemyActivate", RpcTarget.OthersBuffered, action);
         }
     }
@@ -200,7 +229,7 @@ public class bacteriaControl : MonoBehaviour
             DisableCollider(actionActive.name);
             WakeFast(action);
             actionActive = actionMap[action];
-            EnableCollider(action);
+            // EnableCollider(action);
         }
     }
 
@@ -209,16 +238,42 @@ public class bacteriaControl : MonoBehaviour
         if (actionActive != actionMap[action])
         {
             Sleep(actionActive.name);
-            DisableCollider(actionActive.name);
+            // DisableCollider(actionActive.name);
             StartCoroutine(WakeSlow(action));
             actionActive = actionMap[action];
-            EnableCollider(action);
+            // EnableCollider(action);
             photonView.RPC("enemyActivateAttack", RpcTarget.OthersBuffered, action);
         }
     }
 
     [PunRPC]
     void enemyActivateAttack(string action)
+    {
+        if (!photonView.IsMine && actionActive != actionMap[action])
+        {
+            Sleep(actionActive.name);
+            // DisableCollider(actionActive.name);
+            StartCoroutine(WakeSlow(action));
+            actionActive = actionMap[action];
+            // EnableCollider(action);
+        }
+    }
+
+        void ActivateSwordAttack(string action)
+    {
+        if (actionActive != actionMap[action])
+        {
+            Sleep(actionActive.name);
+            DisableCollider(actionActive.name);
+            StartCoroutine(WakeSlow(action));
+            actionActive = actionMap[action];
+            EnableCollider(action);
+            photonView.RPC("enemyActivateSwordAttack", RpcTarget.OthersBuffered, action);
+        }
+    }
+
+    [PunRPC]
+    void enemyActivateSwordAttack(string action)
     {
         if (!photonView.IsMine && actionActive != actionMap[action])
         {
@@ -230,7 +285,6 @@ public class bacteriaControl : MonoBehaviour
         }
     }
 
-
     void Sleep(string action)
     {
         var tf = actionMap[action].transform;
@@ -240,9 +294,9 @@ public class bacteriaControl : MonoBehaviour
             tf.GetComponent<SpriteRenderer>().enabled = false;
         }
 
-        for(int i = 0; i < tf.childCount; i++)
+        for (int i = 0; i < tf.childCount; i++)
         {
-           tf.GetChild(i).GetComponent<SpriteRenderer>().enabled = false;
+            tf.GetChild(i).GetComponent<SpriteRenderer>().enabled = false;
         }
     }
 
@@ -255,9 +309,9 @@ public class bacteriaControl : MonoBehaviour
             tf.GetComponent<SpriteRenderer>().enabled = true;
         }
 
-        for(int i = 0; i < tf.childCount; i++)
+        for (int i = 0; i < tf.childCount; i++)
         {
-           tf.GetChild(i).GetComponent<SpriteRenderer>().enabled = true;
+            tf.GetChild(i).GetComponent<SpriteRenderer>().enabled = true;
         }
     }
 
@@ -277,7 +331,7 @@ public class bacteriaControl : MonoBehaviour
         }
 
 
-        for(int i = 0; i < tf.childCount; i++)
+        for (int i = 0; i < tf.childCount; i++)
         {
             if (tf.GetChild(i).name != "shadow")
             {
@@ -301,8 +355,8 @@ public class bacteriaControl : MonoBehaviour
         {
             tf.GetComponent<SpriteRenderer>().flipX = true;
         }
-        
-        for(int i = 0; i < tf.childCount; i++)
+
+        for (int i = 0; i < tf.childCount; i++)
         {
             tf.GetChild(i).GetComponent<SpriteRenderer>().flipX = true;
             var childPos = tf.GetChild(i).transform.localPosition;
@@ -312,25 +366,30 @@ public class bacteriaControl : MonoBehaviour
 
     void Center(string action)
     {
-        var tf = actionMap[action].transform;
-        tf.localPosition = new Vector3(0f, 0f, 0f);
+        if (actionMap[action].gameObject.name != "PlayerBoundary")
+        {
+            var tf = actionMap[action].transform;
+            tf.localPosition = new Vector3(0f, 0f, 0f);
+        }
     }
 
     void AddCollider(string action)
     {
-        BoxCollider2D bc = actionMap[action].AddComponent<BoxCollider2D>();
-        bc.enabled = false;
-        bc.offset = new Vector2(0, 0.5f);
-        bc.size = new Vector2(1, 1.5f);
-        var tf = actionMap[action].transform;
-
+        if (actionMap[action].gameObject.name != "PlayerBoundary" && actionMap[action].gameObject.name != "firepoint")
+        {
+            BoxCollider2D bc = actionMap[action].AddComponent<BoxCollider2D>();
+            bc.enabled = false;
+            bc.offset = new Vector2(0, 0.5f);
+            bc.size = new Vector2(1, 1.5f);
+            var tf = actionMap[action].transform;
+        }
     }
 
     void EnableCollider(string action)
     {
         var tf = actionMap[action].transform;
-        BoxCollider2D bc = tf.GetComponent<BoxCollider2D>();
-        bc.enabled = true;
+        // BoxCollider2D bc = tf.GetComponent<BoxCollider2D>();
+        // bc.enabled = true;
         if (action == "hammer_up"){
             tf.Find("weapon_hammer_up").GetComponent<Collider2D>().enabled = true;
         }
@@ -349,8 +408,8 @@ public class bacteriaControl : MonoBehaviour
     void DisableCollider(string action)
     {
         var tf = actionMap[action].transform;
-        BoxCollider2D bc = tf.GetComponent<BoxCollider2D>();
-        bc.enabled = false;
+        // BoxCollider2D bc = tf.GetComponent<BoxCollider2D>();
+        // bc.enabled = false;
         if (action == "hammer_up"){
             tf.Find("weapon_hammer_up").GetComponent<Collider2D>().enabled = false;
         }
@@ -364,4 +423,5 @@ public class bacteriaControl : MonoBehaviour
             tf.Find("weapon_hammer_right").GetComponent<Collider2D>().enabled = false;
         }
     }
+
 }

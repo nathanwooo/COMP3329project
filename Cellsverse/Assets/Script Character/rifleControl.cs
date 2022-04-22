@@ -5,37 +5,42 @@ using UnityEngine;
 using Photon.Pun;
 
 
-public class rifleControl : MonoBehaviour{
-    public GameObject firePoint;
-    private float bulletForce = 10f, fireRate = 0.3f, nextFire = 0f;
+public class rifleControl : MonoBehaviourPunCallbacks {
+    [SerializeField] private GameObject firePoint;
+    private float bulletForce = 0.001f, fireRate = 0.3f, nextFire = 0f;
     private Vector2 mousePosition;
-    private Camera cam;
+    [SerializeField] private Camera cam;
     [SerializeField] public GameObject bulletPrefab;
     [SerializeField] private SpriteRenderer rifleUp, rifleDown, rifleLeft, rifleRight;
     private Transform tf;
     public AudioClip shootSound;
+    healthBarControl HBControl;
+    PhotonView PV;
     void Start(){
-        firePoint = GameObject.Find("Bacteria(Clone)/firepoint");
+        PV = GetComponent<PhotonView>();
+        HBControl = GetComponent<healthBarControl>();
+        // firePoint = this.transform.GetChild(4).gameObject;
         Debug.Log("firepoint", firePoint);
-        Rigidbody2D rb = firePoint.AddComponent<Rigidbody2D>();
-        rb.gravityScale = 0f; 
         cam = Camera.main;
-        // rifleUp = GameObject.Find("Bacteria/rifle_up/rifle_up").GetComponent<SpriteRenderer>();
-        // rifleDown = GameObject.Find("Bacteria/rifle_down/rifle_down").GetComponent<SpriteRenderer>();
-        // rifleLeft = GameObject.Find("Bacteria/rifle_left/rifle_side").GetComponent<SpriteRenderer>();
-        // rifleRight = GameObject.Find("Bacteria/rifle_right/rifle_side").GetComponent<SpriteRenderer>();
+        //gunUp = gameObject.GetComponent<SpriteRenderer>();
+        //gunDown = gameObject.GetComponent<SpriteRenderer>();
+        //gunLeft = gameObject.GetComponent<SpriteRenderer>();
+        //gunRight = gameObject.GetComponent<SpriteRenderer>();
         tf = firePoint.transform; 
     }
 
     void Update(){
-        if (Input.GetMouseButton(0) && Time.time > nextFire)
+        if (PV.IsMine)
         {
-            AudioSource.PlayClipAtPoint(shootSound, transform.position);
-            nextFire = Time.time + fireRate;
-            StartCoroutine(shoot());
+            if (Input.GetMouseButton(0) && Time.time > nextFire && !Input.GetMouseButton(1))
+            {
+                AudioSource.PlayClipAtPoint(shootSound, transform.position);
+                nextFire = Time.time + fireRate;
+                StartCoroutine(shoot());
+            }
         }
     }
-    
+
     IEnumerator shoot(){
         Rigidbody2D rb = firePoint.GetComponent<Rigidbody2D>();
         if (rifleUp.enabled)
@@ -60,8 +65,15 @@ public class rifleControl : MonoBehaviour{
         rb.rotation = aimAngle;
         // Debug.Log(aimAngle);
         yield return new WaitForSeconds(0.3f);
-        GameObject bullet = PhotonNetwork.Instantiate(bulletPrefab.name, tf.position, tf.rotation);
+        object[] arr = new object[1];
+
+        arr[0] = HBControl.damage;
+        GameObject bullet = PhotonNetwork.Instantiate(bulletPrefab.name, tf.position, tf.rotation,0, arr);
+        
+        //set the bullet damage according to our level
         Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
         bulletRb.AddForce(tf.right * bulletForce, ForceMode2D.Impulse);
     }
+
+
 }
