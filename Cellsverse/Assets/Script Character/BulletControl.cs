@@ -43,7 +43,6 @@ public class BulletControl : MonoBehaviour, IPunInstantiateMagicCallback{
 
     public void OnPhotonInstantiate(PhotonMessageInfo info)
     {
-        Debug.Log("Yes");
         object[] instantiationData = info.photonView.InstantiationData;
         bulletDamage = (float)instantiationData[0];
     }

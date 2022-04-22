@@ -94,16 +94,18 @@ public class healthBarControl : MonoBehaviour
                 Debug.Log("Out");
                 if (!collision.gameObject.GetComponent<PhotonView>().IsMine){
                     Debug.Log("In");
-                    Debug.Log(collision.gameObject);
                     Debug.Log(collision.gameObject.GetComponent<BulletControl>().bulletDamage);
-                    
                     currentHP -= collision.gameObject.GetComponent<BulletControl>().bulletDamage;
+                    int viewID = collision.gameObject.GetComponent<PhotonView>().ViewID;
+                    PV.RPC("DestoryEnemyBullet", RpcTarget.MasterClient, viewID);
                 }
             }
-            
         }
-        
+    }
 
+    [PunRPC]
+    void DestoryEnemyBullet(int viewID){
+        PhotonNetwork.Destroy(PhotonView.Find(viewID).gameObject);
     }
 
 }

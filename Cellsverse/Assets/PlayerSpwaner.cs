@@ -5,9 +5,9 @@ using Photon.Pun;
 
 public class PlayerSpwaner : MonoBehaviour
 {
-    public GameObject[] playerPrefabs;
+    // public GameObject[] playerPrefabs;
     public Transform[] spwanPoints;
-    //public GameObject playerToSpwan; //comment this later when change sprite
+    public GameObject playerToSpwan; //comment this later when change sprite
 
 
     private void Start()
@@ -26,7 +26,7 @@ public class PlayerSpwaner : MonoBehaviour
             index = 1;
         }
         Transform spawnPoint = spwanPoints[index];   //random spwan place
-        GameObject playerToSpwan = playerPrefabs[(int)PhotonNetwork.LocalPlayer.CustomProperties["playerAvatar"]];
+        // GameObject playerToSpwan = playerPrefabs[(int)PhotonNetwork.LocalPlayer.CustomProperties["playerAvatar"]];
         PhotonNetwork.Instantiate(playerToSpwan.name, spawnPoint.position, Quaternion.identity);
 
     }
