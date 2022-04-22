@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
-using Photon.Pun;
 public class healthBarControl : MonoBehaviour
 {
     [SerializeField] private GameObject cv, et, nm, hpBar, mpBar, exp, immueScore, bacteriaScore;//canvas, elite, name
@@ -11,11 +10,9 @@ public class healthBarControl : MonoBehaviour
     public float maxHP, maxMP, currentHP, currentMP, damage, extraDamage = 1, defense = 1f;
     public int lv;
     private float mpRegenRate = 1f, nextMpRegen = 0f;
-    PhotonView PV;
     // Start is called before the first frame update
     void Start()
     {
-        PV = GetComponent<PhotonView>();
         maxHP = maxMP = currentHP = currentMP = 100;
         lv = 1;
         damage = maxHP/100 * 8f * extraDamage;
@@ -60,18 +57,9 @@ public class healthBarControl : MonoBehaviour
             currentMP++;
             nextMpRegen = Time.time + mpRegenRate;
         }
-        if (currentHP <= 0)
-        {
-            lungLogic.enemyGameScore += 1;
-            PV.RPC("enemyWin", RpcTarget.Others);
-        }
-    }
-    [PunRPC]
-    void enemyWin()
-    {
-        lungLogic.ownGameScore += 1;
         
     }
+
     void updateBar(){
         hpBar.GetComponent<Image>().fillAmount = currentHP/maxHP;
         mpBar.GetComponent<Image>().fillAmount = currentMP/maxMP;
