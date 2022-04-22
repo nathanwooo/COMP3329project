@@ -39,16 +39,17 @@ public class PlayerItem : MonoBehaviourPunCallbacks
     public void OnClickLeftArrow()
     {
         Debug.Log("LEFT");
-        Debug.Log((int)playerProperties["playerAvatar"]);
         if ((int)playerProperties["playerAvatar"] == 0)
         {
             playerProperties["playerAvatar"] = avatars.Length - 1;
-            
+            Debug.Log((int)playerProperties["playerAvatar"]);
+
 
         }
         else
         {
             playerProperties["playerAvatar"] = (int)playerProperties["playerAvatar"] - 1;
+            Debug.Log((int)playerProperties["playerAvatar"]);
         }
         PhotonNetwork.SetPlayerCustomProperties(playerProperties);
     }
@@ -56,15 +57,16 @@ public class PlayerItem : MonoBehaviourPunCallbacks
     public void OnClickRightArrow()
     {
         Debug.Log("RIGHT");
-        Debug.Log((int)playerProperties["playerAvatar"]);
         if ((int)playerProperties["playerAvatar"] == avatars.Length - 1)
         {
             playerProperties["playerAvatar"] = 0;
+            Debug.Log((int)playerProperties["playerAvatar"]);
 
         }
         else
         {
             playerProperties["playerAvatar"] = (int)playerProperties["playerAvatar"] + 1;
+            Debug.Log((int)playerProperties["playerAvatar"]);
         }
         PhotonNetwork.SetPlayerCustomProperties(playerProperties);
     }
