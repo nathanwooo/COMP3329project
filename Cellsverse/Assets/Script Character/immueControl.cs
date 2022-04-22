@@ -398,7 +398,4 @@ public class immueControl : MonoBehaviour
         }
     }
 
-    void CollisionDetection(){
-        
-    }
 }
