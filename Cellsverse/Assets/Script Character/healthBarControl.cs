@@ -78,7 +78,10 @@ public class healthBarControl : MonoBehaviour
         damage = maxHP/100 * 8f * extraDamage;
         maxHP = lv*100;
     }
-    void OnCollisionEnter2D(Collision2D collision)
+
+
+
+    void OnCollisionStay2D(Collision2D collision)
     {
         if (PV.IsMine){
 
@@ -90,17 +93,17 @@ public class healthBarControl : MonoBehaviour
                 exp.GetComponent<Image>().fillAmount += 0.1f;
             }
 
-            // Debug.Log(collision.gameObject.GetComponent<PhotonView>().IsMine);
-            if (collision.gameObject.name == "bullets_side(Clone)" || collision.gameObject.name == "bullets_rifle(Clone)"){
-                Debug.Log("Out");
-                if (!collision.gameObject.GetComponent<PhotonView>().IsMine){
-                    Debug.Log("In");
-                    Debug.Log(collision.gameObject.GetComponent<BulletControl>().bulletDamage);
-                    currentHP -= collision.gameObject.GetComponent<BulletControl>().bulletDamage;
-                    int viewID = collision.gameObject.GetComponent<PhotonView>().ViewID;
-                    PV.RPC("DestoryStuff", RpcTarget.AllBuffered, viewID);
-                }
-            }
+            // // Debug.Log(collision.gameObject.GetComponent<PhotonView>().IsMine);
+            // if (collision.gameObject.name == "bullets_side(Clone)" || collision.gameObject.name == "bullets_rifle(Clone)"){
+            //     Debug.Log("Out");
+            //     if (!collision.gameObject.GetComponent<PhotonView>().IsMine){
+            //         Debug.Log("In");
+            //         Debug.Log(collision.gameObject.GetComponent<BulletControl>().bulletDamage);
+            //         currentHP -= collision.gameObject.GetComponent<BulletControl>().bulletDamage;
+            //         int viewID = collision.gameObject.GetComponent<PhotonView>().ViewID;
+            //         PV.RPC("DestoryStuff", RpcTarget.AllBuffered, viewID);
+            //     }
+            // }
         }
     }
 
@@ -109,7 +112,7 @@ public class healthBarControl : MonoBehaviour
         var bullet = PhotonView.Find(viewID).gameObject;
         if (bullet.GetComponent<PhotonView>().IsMine)
         {
-            Debug.Log("Gay");
+            Debug.Log("Cry Ar");
             PhotonNetwork.Destroy(bullet);
         }
         

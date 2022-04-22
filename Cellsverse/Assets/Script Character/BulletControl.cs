@@ -19,27 +19,50 @@ public class BulletControl : MonoBehaviour, IPunInstantiateMagicCallback{
         if (PV.IsMine)
         {
             PV.RPC("enemyBulletCollision", RpcTarget.OthersBuffered);
-            // if (name == "Immue(Clone)")
-            // {//when more characters need change
-            //     HBControl.currentHP = HBControl.currentHP - damage;
-            // }
+
             GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
             AudioSource.PlayClipAtPoint(explosionSound, transform.position);
             Destroy(effect, 0.3f);
             if (collision.gameObject.name != "Immue(Clone)" && collision.gameObject.name != "Bacteria(Clone)"){
                 PhotonNetwork.Destroy(gameObject);
             }
+            else
+            {
+                Debug.Log("Out");
+                PV.RPC("enemyDamaged", RpcTarget.Others, bulletDamage);
+                PhotonNetwork.Destroy(gameObject);
+                
+            }
+
         }
 
     }
 
     [PunRPC]
-    void enemyBulletCollision()
+    void enemyDamaged(float bulletDamage)
+    {
+        HBControl.currentHP -= bulletDamage;
+    }
+
+
+    [PunRPC]
+    void enemyBulletCollision() //explosion effect
     {
         GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
         AudioSource.PlayClipAtPoint(explosionSound, transform.position);
         Destroy(effect, 0.3f);
     }
+
+    // [PunRPC]
+    // void DestoryStuff(int viewID){
+    //     var bullet = PhotonView.Find(viewID).gameObject;
+    //     if (bullet.GetComponent<PhotonView>().IsMine)
+    //     {
+    //         Debug.Log("Cry Ar");
+    //         PhotonNetwork.Destroy(bullet);
+    //     }
+        
+    // }
 
     public void OnPhotonInstantiate(PhotonMessageInfo info)
     {
