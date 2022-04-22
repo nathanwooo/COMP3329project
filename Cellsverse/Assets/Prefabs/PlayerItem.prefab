@@ -120,7 +120,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2470026943048856420}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2183422528656474853}
+        m_TargetAssemblyTypeName: PlayerItem, Assembly-CSharp
+        m_MethodName: OnClickLeftArrow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3849267854019736645
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,7 +145,7 @@ GameObject:
   - component: {fileID: 121467932432992540}
   - component: {fileID: 2147930200149050190}
   m_Layer: 0
-  m_Name: PlayCharacter
+  m_Name: Play Avatar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -208,7 +220,7 @@ GameObject:
   - component: {fileID: 643835988305853765}
   - component: {fileID: 7986074215144833317}
   m_Layer: 0
-  m_Name: Text
+  m_Name: Player Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -525,6 +537,10 @@ MonoBehaviour:
   playerName: {fileID: 7986074215144833317}
   leftArrowButton: {fileID: 2016914682682469366}
   rightArrowButton: {fileID: 8878343029844856417}
+  playerAvatar: {fileID: 2147930200149050190}
+  avatars:
+  - {fileID: -3128037068336569924, guid: 4474d2218d1233d4d9d99a809b49554b, type: 3}
+  - {fileID: -3128037068336569924, guid: 91613e754d5e44ca89b5f001e2fabca2, type: 3}
 --- !u!1 &8878343029844856417
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,7 +661,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3037105080335205660}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2183422528656474853}
+        m_TargetAssemblyTypeName: PlayerItem, Assembly-CSharp
+        m_MethodName: OnClickRightArrow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &9101558277781171894
 GameObject:
   m_ObjectHideFlags: 0

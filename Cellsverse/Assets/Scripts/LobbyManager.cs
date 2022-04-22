@@ -35,8 +35,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         {
             PhotonNetwork.CreateRoom(roomInputField.text, new RoomOptions()
             {
-                MaxPlayers = 2
-            });
+                MaxPlayers = 2,
+                BroadcastPropsChangeToAll = true
+            }); ;
         }
     }
 
