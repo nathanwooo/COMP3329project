@@ -26,9 +26,8 @@ public class BulletControl : MonoBehaviour{
             GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
             AudioSource.PlayClipAtPoint(explosionSound, transform.position);
             Destroy(effect, 0.3f);
-            if (collision.gameObject.name != "Immue(Clone)" && collision.gameObject.name != "Bacteria(Clone)"){
-                PhotonNetwork.Destroy(gameObject);
-            }
+            // if (collision.gameObject.name != "Immue(Clone)" && collision.gameObject.name != "Bacteria(Clone)"){
+            PhotonNetwork.Destroy(gameObject);
         }
 
     }

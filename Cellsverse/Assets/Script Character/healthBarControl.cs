@@ -80,18 +80,24 @@ public class healthBarControl : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(collision.gameObject.name);
-        if (collision.gameObject.name == "nutrient(Clone)")
-        {
-            PhotonNetwork.Destroy(collision.gameObject);
-            exp.GetComponent<Image>().fillAmount += 0.1f;
-        }
-        // Debug.Log(collision.gameObject.GetComponent<PhotonView>().IsMine);
-        if (collision.gameObject.name == "bullet_side(Clone)" || collision.gameObject.name == "bullet_rifle(Clone)"){
-            if (!collision.gameObject.GetComponent<PhotonView>().IsMine){
-                Debug.Log("FK");
-                currentHP -= collision.gameObject.GetComponent<BulletControl>().bulletDamage;
+        if (PV.IsMine){
+
+            Debug.Log(collision.gameObject.name);
+            if (collision.gameObject.name == "nutrient(Clone)")
+            {
+                PhotonNetwork.Destroy(collision.gameObject);
+                exp.GetComponent<Image>().fillAmount += 0.1f;
             }
+
+            // Debug.Log(collision.gameObject.GetComponent<PhotonView>().IsMine);
+            if (collision.gameObject.name == "bullets_side(Clone)" || collision.gameObject.name == "bullets_rifle(Clone)"){
+                Debug.Log("Out");
+                if (!collision.gameObject.GetComponent<PhotonView>().IsMine){
+                    Debug.Log("In");
+                    currentHP -= collision.gameObject.GetComponent<BulletControl>().bulletDamage;
+                }
+            }
+            
         }
     }
 
