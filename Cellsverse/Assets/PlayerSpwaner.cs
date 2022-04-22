@@ -26,7 +26,7 @@ public class PlayerSpwaner : MonoBehaviour
             index = 1;
         }
         Transform spawnPoint = spwanPoints[index];   //random spwan place
-        GameObject playerToSpwan = playerPrefabs[(int)PhotonNetwork.LocalPlayer.CustomProperties["PlayerAvatar"]];
+        GameObject playerToSpwan = playerPrefabs[(int)PhotonNetwork.LocalPlayer.CustomProperties["playerAvatar"]];
         PhotonNetwork.Instantiate(playerToSpwan.name, spawnPoint.position, Quaternion.identity);
 
     }
