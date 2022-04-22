@@ -31,17 +31,17 @@ public class HeartLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        remainingTime -= Time.deltaTime;
-        if (remainingTime < 0 && willTp)
-        {
-            if (PhotonNetwork.IsMasterClient)
-            {
-                PhotonNetwork.LoadLevel("liver");
-                Debug.Log(++lungLogic.ownGameScore);
-                Debug.Log(lungLogic.enemyGameScore);
-                willTp = false;
-            }
-        }
+        // remainingTime -= Time.deltaTime;
+        // if (remainingTime < 0 && willTp)
+        // {
+        //     if (PhotonNetwork.IsMasterClient)
+        //     {
+        //         PhotonNetwork.LoadLevel("liver");
+        //         Debug.Log(++lungLogic.ownGameScore);
+        //         Debug.Log(lungLogic.enemyGameScore);
+        //         willTp = false;
+        //     }
+        // }
     }
     [PunRPC]
     void createTileMap(int viewID)

@@ -117,6 +117,12 @@ public class healthBarControl : MonoBehaviour
             //         PV.RPC("DestoryStuff", RpcTarget.AllBuffered, viewID);
             //     }
             // }
+            if (collision.gameObject.name == "Attacker(Clone)")
+            {
+                int viewID = collision.gameObject.GetComponent<PhotonView>().ViewID;
+                PV.RPC("DestoryStuff", RpcTarget.AllBuffered, viewID);
+                currentHP -= 5f;
+            }
         }
     }
 
