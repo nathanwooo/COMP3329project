@@ -1816,7 +1816,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 098e71962036d0f4d9c1c20bc3916c8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firePoint: {fileID: 8844762597337050074}
   cam: {fileID: 8844762598350968471}
   bulletPrefab: {fileID: 2982506535618864606, guid: 3c54244333824a8449c8210c214e6be5, type: 3}
   gunUp: {fileID: 8844762598172841509}
