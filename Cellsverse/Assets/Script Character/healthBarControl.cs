@@ -43,6 +43,7 @@ public class healthBarControl : MonoBehaviour
     }
 
     void refresh(){
+        Debug.Log(extraDamage);
         updateStats();
         updateBar();
 
@@ -79,8 +80,6 @@ public class healthBarControl : MonoBehaviour
     void updateBar(){
         hpBar.GetComponent<Image>().fillAmount = currentHP/maxHP;
         mpBar.GetComponent<Image>().fillAmount = currentMP/maxMP;
-        Debug.Log("called");
-        Debug.Log(mpBar.GetComponent<Image>().fillAmount);
     }
 
 
@@ -95,7 +94,7 @@ public class healthBarControl : MonoBehaviour
     {
         if (PV.IsMine){
 
-            Debug.Log(collision.gameObject.name);
+            // Debug.Log(collision.gameObject.name);
             if (collision.gameObject.name == "nutrient(Clone)")
             {
                 int viewID = collision.gameObject.GetComponent<PhotonView>().ViewID;
@@ -122,7 +121,6 @@ public class healthBarControl : MonoBehaviour
         var bullet = PhotonView.Find(viewID).gameObject;
         if (bullet.GetComponent<PhotonView>().IsMine)
         {
-            Debug.Log("Cry Ar");
             PhotonNetwork.Destroy(bullet);
         }
         

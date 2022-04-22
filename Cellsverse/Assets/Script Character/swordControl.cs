@@ -38,7 +38,7 @@ public class swordControl : MonoBehaviour{
     void enemyDamaged(float swordDamage, int viewID)
     {
         var player = PhotonView.Find(viewID).gameObject;
-        player.GetComponent<healthBarControl>().currentHP -= swordDamage;
+        player.GetComponent<healthBarControl>().currentHP -= swordDamage* HBControl.defense;
     }
 
     

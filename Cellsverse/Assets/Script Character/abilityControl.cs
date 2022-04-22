@@ -43,7 +43,7 @@ public class abilityControl : MonoBehaviour
     {
         if (!speedUp)
         {
-            if(Input.GetKey(KeyCode.Q) && HBControl.currentMP > 0.1f && cdSpeedUp.GetComponent<Text>().text == "")
+            if(Input.GetKey(KeyCode.Q) && HBControl.currentMP >= 10f && cdSpeedUp.GetComponent<Text>().text == "")
             {
                 HBControl.currentMP -= 10f;
                 speedUp = true;
@@ -53,24 +53,27 @@ public class abilityControl : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && HBControl.currentMP > 0.01f && cdFlash.GetComponent<Text>().text == ""){
+        if (Input.GetKeyDown(KeyCode.E) && HBControl.currentMP >= 10f && cdFlash.GetComponent<Text>().text == ""){
             flash();
             HBControl.currentMP -= 10f;
             StartCoroutine(coolDownFlash());
         }
 
-        if (Input.GetKeyDown(KeyCode.H) && HBControl.currentMP > 0.01f && cdHeal.GetComponent<Text>().text == ""){
+        if (Input.GetKeyDown(KeyCode.H) && HBControl.currentMP >= 30f && cdHeal.GetComponent<Text>().text == ""){
             heal();
+            HBControl.currentMP -= 30f;
             StartCoroutine(coolDownHeal());
         }
 
-        if (Input.GetKeyDown(KeyCode.R) && HBControl.currentMP > 0.01f && cdDefense.GetComponent<Text>().text == ""){
+        if (Input.GetKeyDown(KeyCode.R) && HBControl.currentMP >= 20f && cdDefense.GetComponent<Text>().text == ""){
             StartCoroutine(Defense());
+            HBControl.currentMP -= 20f;
             StartCoroutine(coolDownDefense());
         }
 
-        if (Input.GetKeyDown(KeyCode.T) && HBControl.currentMP > 0.01f && cdAttack.GetComponent<Text>().text == ""){
+        if (Input.GetKeyDown(KeyCode.T) && HBControl.currentMP >= 10f && cdAttack.GetComponent<Text>().text == ""){
             StartCoroutine(Attack());
+            HBControl.currentMP -= 10f;
             StartCoroutine(coolDownAttack());
         }
     }

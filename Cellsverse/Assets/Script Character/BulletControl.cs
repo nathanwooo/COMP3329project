@@ -43,7 +43,7 @@ public class BulletControl : MonoBehaviour, IPunInstantiateMagicCallback{
     void enemyDamaged(float bulletDamage, int viewID)
     {
         var player = PhotonView.Find(viewID).gameObject;
-        player.GetComponent<healthBarControl>().currentHP -= bulletDamage;
+        player.GetComponent<healthBarControl>().currentHP -= bulletDamage * player.GetComponent<healthBarControl>().defense;
     }
 
 
