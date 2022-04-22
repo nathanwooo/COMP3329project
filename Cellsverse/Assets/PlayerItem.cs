@@ -85,6 +85,7 @@ public class PlayerItem : MonoBehaviourPunCallbacks
         {
             playerAvatar.sprite = avatars[(int)player.CustomProperties["playerAvatar"]];
             playerProperties["playerAvatar"] = (int)player.CustomProperties["playerAvatar"];
+            Debug.Log((int)PhotonNetwork.LocalPlayer.CustomProperties["playerAvatar"]);
         }
         else
         {
