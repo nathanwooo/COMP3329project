@@ -89,6 +89,7 @@ public class healthBarControl : MonoBehaviour
         // Debug.Log(collision.gameObject.GetComponent<PhotonView>().IsMine);
         if (collision.gameObject.name == "bullet_side(Clone)" || collision.gameObject.name == "bullet_rifle(Clone)"){
             if (!collision.gameObject.GetComponent<PhotonView>().IsMine){
+                Debug.Log("FK");
                 currentHP -= collision.gameObject.GetComponent<BulletControl>().bulletDamage;
             }
         }

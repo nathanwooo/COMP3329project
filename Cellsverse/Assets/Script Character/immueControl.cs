@@ -349,7 +349,7 @@ public class immueControl : MonoBehaviour
 
     void AddCollider(string action)
     {
-        if (actionMap[action].gameObject.name != "PlayerBoundary")
+        if (actionMap[action].gameObject.name != "PlayerBoundary" && actionMap[action].gameObject.name != "firepoint")
         {
             BoxCollider2D bc = actionMap[action].AddComponent<BoxCollider2D>();
             bc.enabled = false;
