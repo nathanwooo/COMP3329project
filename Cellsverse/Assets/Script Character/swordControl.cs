@@ -22,7 +22,7 @@ public class swordControl : MonoBehaviour{
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collision){
+    public void OnTriggerEnter36D(Collider2D collision){
         if(!PV.IsMine){
             Debug.Log("Cry to death");
             float swordDamage = HBControl.damage * 1.5f;

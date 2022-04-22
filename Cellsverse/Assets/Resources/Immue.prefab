@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3735698050266337755}
   - component: {fileID: 3722708401098985355}
   - component: {fileID: 6960957047142025943}
+  - component: {fileID: 6759591839404413706}
   m_Layer: 0
   m_Name: weapon_sword_right
   m_TagString: Untagged
@@ -129,6 +130,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.4461539, y: 3.323077}
   m_EdgeRadius: 0
+--- !u!114 &6759591839404413706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5427655218550933239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2be06358a5d2244eaf70a886bd898df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8844762597337050074
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,7 +272,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8844762597369112029}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.066, y: 0, z: 0}
+  m_LocalPosition: {x: -4.424, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8844762599075552870}
@@ -1188,6 +1201,7 @@ GameObject:
   - component: {fileID: 8844762597589732330}
   - component: {fileID: 8844762597589732329}
   - component: {fileID: 8844762597589732331}
+  - component: {fileID: 7835544916186893099}
   m_Layer: 0
   m_Name: weapon_sword_down
   m_TagString: Untagged
@@ -1305,6 +1319,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.34087157, y: 1.0250511}
   m_EdgeRadius: 0
+--- !u!114 &7835544916186893099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8844762597589732327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2be06358a5d2244eaf70a886bd898df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8844762597609768166
 GameObject:
   m_ObjectHideFlags: 0
@@ -1502,6 +1528,7 @@ GameObject:
   - component: {fileID: 8844762597668088159}
   - component: {fileID: 8844762597668088158}
   - component: {fileID: 8844762597668088224}
+  - component: {fileID: 5984194376995645406}
   m_Layer: 0
   m_Name: weapon_sword_up
   m_TagString: Untagged
@@ -1619,6 +1646,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.50896573, y: 0.7163226}
   m_EdgeRadius: 0
+--- !u!114 &5984194376995645406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8844762597668088156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2be06358a5d2244eaf70a886bd898df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8844762597715556027
 GameObject:
   m_ObjectHideFlags: 0
@@ -6421,6 +6460,7 @@ GameObject:
   - component: {fileID: 8844762599316794041}
   - component: {fileID: 8844762599316794040}
   - component: {fileID: 8844762599316794042}
+  - component: {fileID: 6964133578091462002}
   m_Layer: 0
   m_Name: weapon_sword_side
   m_TagString: Untagged
@@ -6538,6 +6578,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.7564558, y: 0.3596182}
   m_EdgeRadius: 0
+--- !u!114 &6964133578091462002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8844762599316794038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2be06358a5d2244eaf70a886bd898df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8844762599325798568
 GameObject:
   m_ObjectHideFlags: 0
