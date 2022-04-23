@@ -51,6 +51,7 @@ public class DesroyBlock : MonoBehaviour
     //     }
     // }
     public void DestroyBlock(ContactPoint2D[] contacts){
+        Debug.Log("Test 5");
         Vector3[] desPoints = new Vector3[contacts.Length];
         Vector3 hitPosition = Vector3.zero;
         var i = 0;
@@ -60,7 +61,9 @@ public class DesroyBlock : MonoBehaviour
             hitPosition.y = hit.point.y - 0.01f * hit.normal.y;
             desPoints[i++] = hitPosition;
         }
-        PV.RPC("DestroyMap", RpcTarget.All, desPoints);  
+        Debug.Log("Test 6");
+        PV.RPC("DestroyMap", RpcTarget.All, desPoints);
+        Debug.Log("Test 7");  
     }
 
     [PunRPC]

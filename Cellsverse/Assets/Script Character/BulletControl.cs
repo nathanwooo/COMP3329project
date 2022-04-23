@@ -9,17 +9,10 @@ public class BulletControl : MonoBehaviour, IPunInstantiateMagicCallback{
     public AudioClip explosionSound;
     healthBarControl HBControl;
     PhotonView PV;
-    public GameObject destructable;
     DesroyBlock DB;
     void Start(){
         PV = GetComponent<PhotonView>();
         HBControl = GetComponent<healthBarControl>();
-        try{
-            destructable = GameObject.Find("HeartLogic").GetComponent<HeartLogic>().map;
-        }
-        catch{
-            Debug.Log("No suck object");
-        }
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -32,9 +25,14 @@ public class BulletControl : MonoBehaviour, IPunInstantiateMagicCallback{
             Destroy(effect, 0.3f);
             if (collision.gameObject.name == "destructable(Clone)")
             {
+                Debug.Log("Test 1");
+                var destructable = collision.gameObject;
                 DB = destructable.GetComponent<DesroyBlock>();
+                Debug.Log("Test 2");
                 DB.DestroyBlock(collision.contacts);
+                Debug.Log("Test 3");
                 PhotonNetwork.Destroy(gameObject);
+                Debug.Log("Test 4");
             }
             else if (collision.gameObject.name != "Immue(Clone)" && collision.gameObject.name != "Bacteria(Clone)"){
                 PhotonNetwork.Destroy(gameObject);
