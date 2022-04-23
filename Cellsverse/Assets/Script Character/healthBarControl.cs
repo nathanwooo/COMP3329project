@@ -40,9 +40,9 @@ public class healthBarControl : MonoBehaviour
         // exp =  GameObject.Find("immue(Clone)/Canvas/Expbar/exp");
         // immueScore = GameObject.Find("immue(Clone)/Canvas/scoreboard/immueTotalScore");
         // bacteriaScore = GameObject.Find("immue(Clone)/Canvas/scoreboard/bacteriaTotalScore");
-        nm.GetComponent<Text>().text = "Immune";
+        //nm.GetComponent<Text>().text = "Immune";
         exp.GetComponent<Image>().fillAmount = 0f;
-        nm.GetComponent<Text>().text = this.gameObject.name;
+        nm.GetComponent<Text>().text = PhotonNetwork.NickName;
         updateBar();
         lvCount.GetComponent<Text>().text = "1";
     }
