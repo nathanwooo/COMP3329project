@@ -51,6 +51,7 @@ public class healthBarControl : MonoBehaviour
         if (PV.IsMine){
             refresh();
         }
+
     }
 
     void refresh(){
@@ -104,6 +105,11 @@ public class healthBarControl : MonoBehaviour
                 willTP = false;
             }
             
+        }
+        if (lungLogic.currentLocation == "liver")
+        {
+            ownGameScore.GetComponent<Text>().text = Occupy.ownScore.ToString();
+            enemyGameScore.GetComponent<Text>().text = Occupy.enemyScore.ToString();
         }
     }
     

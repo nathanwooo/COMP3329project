@@ -11,8 +11,8 @@ public class Occupy : MonoBehaviour
     private List<string> occupyingPlayers = new List<string>();
     private float passedTime;
     private bool countTime = false;
-    private int ownScore = 0;
-    private int enemyScore = 0;
+    public static int ownScore = 0;
+    public static int enemyScore = 0;
     private PhotonView PV;
     private string ownName;
 
