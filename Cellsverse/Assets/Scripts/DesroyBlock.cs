@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using System.Linq;
 using Photon.Pun;
 public class DesroyBlock : MonoBehaviour
 {
@@ -9,6 +10,11 @@ public class DesroyBlock : MonoBehaviour
     private float offsetY;
     private Tilemap DestructableTilemap;
     private PhotonView PV;
+
+    private string[] targetObject = {"bullets_side(Clone)","bullets_rifle(Clone)",
+                                     "weapon_sword_up", "weapon_sword_down", "weapon_sword_left", "weapon_sword_right",
+                                     "weapon_hammer_up", "weapon_hammer_down", "weapon_hammer_left", "weapon_hammer_right"
+                                    };
     // Start is called before the first frame update
     void Awake()
     {
@@ -27,8 +33,7 @@ public class DesroyBlock : MonoBehaviour
         if (PhotonNetwork.IsMasterClient)
         {
             string name = collision.gameObject.name;
-
-            if (name == "bullets_side(Clone)")//change to bullet later
+            if (targetObject.Contains(name))//change to bullet later
             {
                 var contacts = collision.contacts;
                 Vector3[] desPoints = new Vector3[contacts.Length];
@@ -41,7 +46,7 @@ public class DesroyBlock : MonoBehaviour
                     hitPosition.y = hit.point.y - 0.01f * hit.normal.y;
                     desPoints[i++] = hitPosition;
                 }
-                PV.RPC("DestroyMap", RpcTarget.All, desPoints);
+                PV.RPC("DestroyMap", RpcTarget.All, desPoints);   
             }
         }
     }
