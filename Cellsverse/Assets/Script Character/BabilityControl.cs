@@ -11,7 +11,7 @@ public class BabilityControl : MonoBehaviour
     private float currentMp, currentHp;
     private bool speedUp, healthUp;
     public AudioClip flashSound, healSound, defenseSound, speedSound, attackSound;
-    public GameObject flashEffect, healEffect, defenseEffect, attackEffect;
+    public GameObject flashEffect, healEffect, defenseEffect, attackEffect, speedEffect;
     private Vector3 mousePosition;
     public Camera cam;
     PhotonView PV;
@@ -84,6 +84,8 @@ public class BabilityControl : MonoBehaviour
         {
             PV.RPC("enemyAccelerate", RpcTarget.OthersBuffered);
             AudioSource.PlayClipAtPoint(speedSound, this.transform.position);
+            GameObject attack = Instantiate(speedEffect, this.transform.position + new Vector3(0,2f,0), this.transform.rotation);
+            Destroy(attack, 0.2f);
             HBControl.speed += 5f;
             yield return new WaitForSeconds(3f);
             HBControl.speed -= 5f;
@@ -95,11 +97,14 @@ public class BabilityControl : MonoBehaviour
     IEnumerator enemyAccelerate()
     {
         AudioSource.PlayClipAtPoint(speedSound, this.transform.position);
-        HBControl.speed += 5f;
+        GameObject attack = Instantiate(speedEffect, this.transform.position + new Vector3(0,2f,0), this.transform.rotation);
+        Destroy(attack, 0.2f);
+        // HBControl.speed = 20f;
         yield return new WaitForSeconds(3f);
-        HBControl.speed -= 5f;
-        speedUp = false;
+        // HBControl.speed = 2f;
+        // speedUp = false;
     }
+
 
     IEnumerator Defense(){
         if(PV.IsMine && HBControl.defense -HBControl.lv * 0.1f > 0.2f)

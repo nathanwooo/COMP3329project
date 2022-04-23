@@ -4214,6 +4214,7 @@ MonoBehaviour:
   healEffect: {fileID: 4660579852608732823, guid: b4d72b70a45e4f74ab9bc5303a64a9c5, type: 3}
   defenseEffect: {fileID: 8166923231170993657, guid: 2814509813b1780498ba372eb40fb6ad, type: 3}
   attackEffect: {fileID: 2357614570555297281, guid: cf9a4784e4c0f564f9e376e6ebf6f072, type: 3}
+  speedEffect: {fileID: 6653830504678971418, guid: 5b82c9ae06fc5c042bf8141f6bcef671, type: 3}
   cam: {fileID: 1770129703777534415}
 --- !u!114 &8157448095849589877
 MonoBehaviour:

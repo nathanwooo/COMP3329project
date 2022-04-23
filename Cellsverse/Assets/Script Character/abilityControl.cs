@@ -11,7 +11,7 @@ public class abilityControl : MonoBehaviour
     private float currentMp, currentHp;
     private bool speedUp, healthUp;
     public AudioClip flashSound, healSound, defenseSound, speedSound, attackSound;
-    public GameObject flashEffect, healEffect, defenseEffect, attackEffect;
+    public GameObject flashEffect, healEffect, defenseEffect, attackEffect, speedEffect;
     private Vector3 mousePosition;
     public Camera cam;
     PhotonView PV;
@@ -82,6 +82,8 @@ public class abilityControl : MonoBehaviour
         {
             PV.RPC("enemyAccelerate", RpcTarget.OthersBuffered);
             AudioSource.PlayClipAtPoint(speedSound, this.transform.position);
+            GameObject attack = Instantiate(speedEffect, this.transform.position + new Vector3(0,2f,0), this.transform.rotation);
+            Destroy(attack, 0.2f);
             HBControl.speed += 5f;
             yield return new WaitForSeconds(3f);
             HBControl.speed -= 5f;
@@ -93,6 +95,8 @@ public class abilityControl : MonoBehaviour
     IEnumerator enemyAccelerate()
     {
         AudioSource.PlayClipAtPoint(speedSound, this.transform.position);
+        GameObject attack = Instantiate(speedEffect, this.transform.position + new Vector3(0,2f,0), this.transform.rotation);
+        Destroy(attack, 0.2f);
         // HBControl.speed = 20f;
         yield return new WaitForSeconds(3f);
         // HBControl.speed = 2f;
