@@ -30,27 +30,16 @@ public class gunControl : MonoBehaviourPunCallbacks {
     }
 
     void Update(){
-        if (PV.IsMine){
-            Shooting();
-        }
-    }
-    void Shooting(){
-        if (Input.GetMouseButton(0) && Time.time > nextFire && !Input.GetMouseButton(1))
+        if (PV.IsMine)
         {
-            PV.RPC("enemyShooting",RpcTarget.Others);
-            AudioSource.PlayClipAtPoint(shootSound, transform.position);
-            nextFire = Time.time + fireRate;
-            StartCoroutine(shoot());
+            if (Input.GetMouseButton(0) && Time.time > nextFire && !Input.GetMouseButton(1))
+            {
+                AudioSource.PlayClipAtPoint(shootSound, transform.position);
+                nextFire = Time.time + fireRate;
+                StartCoroutine(shoot());
+            }
         }
     }
-
-    [PunRPC]
-    void enemyShooting(){
-        AudioSource.PlayClipAtPoint(shootSound, transform.position);
-        nextFire = Time.time + fireRate;
-        StartCoroutine(shoot());
-    }
-
 
     IEnumerator shoot(){
         Rigidbody2D rb = firePoint.GetComponent<Rigidbody2D>();

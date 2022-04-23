@@ -11,9 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Lobby.unity
     guid: bfa98ac817cc4314ead534392fd39e23
-  - enabled: 0
-    path: Assets/Scenes/Lung Rule.unity
-    guid: 16e7dcd938fa1134d8b69f35558bd212
   - enabled: 1
     path: Assets/Scenes/Lung Rule.unity
     guid: 16e7dcd938fa1134d8b69f35558bd212
