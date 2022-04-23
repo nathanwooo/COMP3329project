@@ -44,15 +44,16 @@ public class lungLogic : MonoBehaviour
 
     }
     [PunRPC]
-    static void enemyWin()
+    void enemyWin()
     {
+        Debug.Log("enemyWin");
         ownGameScore += 1;
         PV1.RPC("startTp", RpcTarget.MasterClient);
         
 
     }
     [PunRPC]
-    static void startTp()
+    void startTp()
     {
         if (PhotonNetwork.IsMasterClient)
         {
