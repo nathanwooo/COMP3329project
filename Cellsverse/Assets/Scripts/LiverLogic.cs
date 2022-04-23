@@ -50,7 +50,7 @@ public class LiverLogic : MonoBehaviour
             }
             else
             {
-                PhotonNetwork.LoadLevel("lung");
+                PhotonNetwork.LoadLevel("End Game");
             }
         }
     }

@@ -65,7 +65,7 @@ public class lungLogic : MonoBehaviour
             }
             else
             {
-                PhotonNetwork.LoadLevel("heart");
+                PhotonNetwork.LoadLevel("Heart Rule");
             }
         }
     }
