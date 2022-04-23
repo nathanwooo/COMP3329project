@@ -15,7 +15,7 @@ public class Occupy : MonoBehaviour
     public static int enemyScore = 0;
     private PhotonView PV;
     private string ownName;
-
+    private bool willTP = true;
     void Start()
     {
         PV = GetComponent<PhotonView>();
@@ -38,6 +38,11 @@ public class Occupy : MonoBehaviour
                 Debug.Log(enemyScore);
 
             }
+        }
+        if (ownScore >= 60 && willTP)
+        {
+            LiverLogic.hpToZero();
+            willTP = false;
         }
     }
 

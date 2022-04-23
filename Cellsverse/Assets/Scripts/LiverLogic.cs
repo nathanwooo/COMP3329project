@@ -44,14 +44,7 @@ public class LiverLogic : MonoBehaviour
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            if (lungLogic.enemyGameScore == 2 || lungLogic.ownGameScore == 2)
-            {
-                PhotonNetwork.LoadLevel("End Game");
-            }
-            else
-            {
-                PhotonNetwork.LoadLevel("End Game");
-            }
+            PhotonNetwork.LoadLevel("End Game");
         }
     }
 }
