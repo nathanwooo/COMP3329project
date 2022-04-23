@@ -16,7 +16,7 @@ public class Attacker : MonoBehaviour
     {
         var collidedObject = collision.gameObject;
         // Debug.Log("Hited"+ collidedObject.name);
-        if (collidedObject.name == "bullets_rifle(Clone)")
+        if (collidedObject.name == "bullets_rifle(Clone)" || collidedObject.name == "bullets_side(Clone)")
         {
             if (--life <= 0)
             {
