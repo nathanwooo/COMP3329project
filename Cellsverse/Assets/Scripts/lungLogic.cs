@@ -31,6 +31,7 @@ public class lungLogic : MonoBehaviour
     void Update()
     {
         
+        
     }
     public static void hpToZero()
     {

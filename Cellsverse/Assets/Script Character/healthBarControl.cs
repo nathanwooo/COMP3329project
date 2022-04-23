@@ -11,7 +11,9 @@ public class healthBarControl : MonoBehaviour
     public float maxHP, maxMP, currentHP, currentMP, damage, extraDamage = 1, defense = 1f, speed = 2f, permaDamage = 0;
     public int lv;
     private float mpRegenRate = 1f, nextMpRegen = 0f;
-   
+    private Vector3 circleSize ;
+    private Vector3 circlePosition;
+
     PhotonView PV;
     public float xp_show;
 
@@ -21,7 +23,7 @@ public class healthBarControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        circlePosition = new Vector3(2.2f, -3.4f, transform.position.z);
         xp_show = exp.GetComponent<Image>().fillAmount;
 
         ownGameScore.GetComponent<Text>().text = lungLogic.ownGameScore.ToString();
@@ -55,7 +57,17 @@ public class healthBarControl : MonoBehaviour
     }
 
     void refresh(){
+        if (lungLogic.currentLocation == "lung")
+        {
+            circleSize = GameObject.Find("dmgcircle(Clone)").GetComponent<dmgcircle>().circleSize;
 
+            //Debug.Log(circleSize);
+            //Debug.Log(circlePosition);
+            if (Vector3.Distance(transform.position, circlePosition) > circleSize.x * .5f)
+            {
+                currentHP -= Time.deltaTime * 10;
+            }
+        }
         //Debug.Log(extraDamage);
 
         xp_show = exp.GetComponent<Image>().fillAmount;
@@ -200,5 +212,6 @@ public class healthBarControl : MonoBehaviour
         }
         
     }
+    
 
 }
