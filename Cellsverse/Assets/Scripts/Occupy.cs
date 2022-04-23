@@ -39,7 +39,7 @@ public class Occupy : MonoBehaviour
 
             }
         }
-        if (ownScore >= 60 && willTP)
+        if (enemyScore >= 60 && willTP)
         {
             LiverLogic.hpToZero();
             willTP = false;
