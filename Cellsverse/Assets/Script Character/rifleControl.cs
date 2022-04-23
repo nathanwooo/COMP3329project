@@ -47,8 +47,8 @@ public class rifleControl : MonoBehaviourPunCallbacks {
     [PunRPC]
     void enemyShooting(){
         AudioSource.PlayClipAtPoint(shootSound, transform.position);
-        nextFire = Time.time + fireRate;
-        StartCoroutine(shoot());
+        // nextFire = Time.time + fireRate;
+        // StartCoroutine(shoot());
     }
 
     IEnumerator shoot(){

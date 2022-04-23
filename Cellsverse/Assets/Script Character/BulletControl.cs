@@ -17,8 +17,9 @@ public class BulletControl : MonoBehaviour, IPunInstantiateMagicCallback{
     {
         if (PV.IsMine)
         {
+            Debug.Log(PV.IsMine);
             PV.RPC("enemyBulletCollision", RpcTarget.OthersBuffered);
-
+            Debug.Log(collision.gameObject.name);
             GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
             AudioSource.PlayClipAtPoint(explosionSound, transform.position);
             Destroy(effect, 0.3f);
