@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Liver.unity
     guid: 9547c728263739b4bb7daa6f58de2e33
+  - enabled: 1
+    path: Assets/Scenes/End Game.unity
+    guid: db2afac0d651ba1479648cce4394895d
   m_configObjects: {}
