@@ -16,12 +16,25 @@ public class swordControl : MonoBehaviour{
 
     }
     void Update(){
+        if(PV.IsMine){
+            Sword();
+        }
+    }
+    void Sword(){
         if (Input.GetMouseButton(1) && Time.time > nextSlash)
         {
+            PV.RPC("enemySword",RpcTarget.Others);
             AudioSource.PlayClipAtPoint(swordSound, transform.position);
             nextSlash = Time.time + slashRate;
         }
     }
+
+    [PunRPC]
+    void enemySword(){
+        AudioSource.PlayClipAtPoint(swordSound, transform.position);
+        nextSlash = Time.time + slashRate;
+    }
+
 
     public void OnTriggerEnter36D(Collider2D collision){
         Debug.Log("Yes");
@@ -41,5 +54,4 @@ public class swordControl : MonoBehaviour{
         player.GetComponent<healthBarControl>().currentHP -= swordDamage* player.GetComponent<healthBarControl>().defense;
     }
 
-    
 }
