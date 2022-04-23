@@ -7,6 +7,7 @@ using Photon.Realtime;
 public class LungRule : MonoBehaviour
 {
     private float shrinkTimer = 5;
+    private bool willTP = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,11 +18,12 @@ public class LungRule : MonoBehaviour
     void Update()
     {
         shrinkTimer -= Time.deltaTime;
-        if (shrinkTimer < 0)
+        if (shrinkTimer < 0 && willTP)
         {
             if (PhotonNetwork.IsMasterClient)
             {
                 PhotonNetwork.LoadLevel("cellverse");
+                willTP = false;
             }
         }
     }
