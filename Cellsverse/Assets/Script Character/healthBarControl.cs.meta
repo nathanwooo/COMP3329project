@@ -3,18 +3,7 @@ guid: e325506dd1584b7409e314e5ffb6a365
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - cv: {instanceID: 0}
-  - et: {instanceID: 0}
-  - nm: {instanceID: 0}
-  - hpBar: {instanceID: 0}
-  - mpBar: {instanceID: 0}
-  - exp: {instanceID: 0}
-  - ownGameScore: {instanceID: 0}
-  - enemyGameScore: {instanceID: 0}
-  - lvCount: {instanceID: 0}
-  - collisionSound: {fileID: 8300000, guid: 2ec051bac5886ab4c971e63f2b9c7dc5, type: 3}
-  - powerUpSound: {fileID: 8300000, guid: 1c2295509f1d7a043876f7e51e87b679, type: 3}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

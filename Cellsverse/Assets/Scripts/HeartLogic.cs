@@ -88,7 +88,7 @@ public class HeartLogic : MonoBehaviour
             }
             else
             {
-                PhotonNetwork.LoadLevel("Liver Rule");
+                PhotonNetwork.LoadLevel("liver");
             }
         }
     }
