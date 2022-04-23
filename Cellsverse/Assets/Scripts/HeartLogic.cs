@@ -8,7 +8,7 @@ public class HeartLogic : MonoBehaviour
     public GameObject destryableMap;
     public GameObject grid;
     private int count = 0;
-    private PhotonView PV;
+    private static PhotonView PV;
     public float remainingTime = 5;
     private bool willTp = true;
     // Start is called before the first frame update
@@ -53,5 +53,42 @@ public class HeartLogic : MonoBehaviour
         // GameObject.Find("Immue(Clone)/firepoint");
         PhotonView.Find(viewID).transform.SetParent(grid.transform);
         
+    }
+    public static void hpToZero()
+    {
+
+        lungLogic.enemyGameScore += 1;
+        lungLogic.currentLocation = "liver";
+        PV.RPC("enemyWin", RpcTarget.Others);
+
+
+
+
+
+    }
+    [PunRPC]
+    void enemyWin()
+    {
+        Debug.Log("enemyWin");
+        lungLogic.ownGameScore += 1;
+        lungLogic.currentLocation = "liver";
+        PV.RPC("startTp", RpcTarget.MasterClient);
+
+
+    }
+    [PunRPC]
+    void startTp()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            if (lungLogic.enemyGameScore == 2 || lungLogic.ownGameScore == 2)
+            {
+                PhotonNetwork.LoadLevel("End Game");
+            }
+            else
+            {
+                PhotonNetwork.LoadLevel("liver");
+            }
+        }
     }
 }

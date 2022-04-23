@@ -16,7 +16,8 @@ public class healthBarControl : MonoBehaviour
     public float xp_show;
 
     private bool willTP = true;
-    tpController tpControl = new tpController();
+    private static string currentLocation;
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -86,9 +87,22 @@ public class healthBarControl : MonoBehaviour
 
         if (currentHP <= 0 && willTP)
         {
-           
-                tpControl.hpToZero();
+            if (lungLogic.currentLocation == "lung")
+            {
+                lungLogic.hpToZero();
                 willTP = false;
+            }
+            else if (lungLogic.currentLocation == "heart")
+            {
+                HeartLogic.hpToZero();
+                willTP = false;
+
+            }
+            else if (lungLogic.currentLocation == "liver")
+            {
+                LiverLogic.hpToZero();
+                willTP = false;
+            }
             
         }
     }
