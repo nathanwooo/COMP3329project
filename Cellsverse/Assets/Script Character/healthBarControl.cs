@@ -13,11 +13,14 @@ public class healthBarControl : MonoBehaviour
     private float mpRegenRate = 1f, nextMpRegen = 0f;
    
     PhotonView PV;
+    public float xp_show;
 
     private bool willTP = true;
     // Start is called before the first frame update
     void Start()
     {
+        xp_show = exp.GetComponent<Image>().fillAmount;
+
         ownGameScore.GetComponent<Text>().text = lungLogic.ownGameScore.ToString();
         enemyGameScore.GetComponent<Text>().text = lungLogic.enemyGameScore.ToString();
 
@@ -48,7 +51,11 @@ public class healthBarControl : MonoBehaviour
     }
 
     void refresh(){
+<<<<<<< Updated upstream
         //Debug.Log(extraDamage);
+=======
+        xp_show = exp.GetComponent<Image>().fillAmount;
+>>>>>>> Stashed changes
         updateStats();
         updateBar();
 

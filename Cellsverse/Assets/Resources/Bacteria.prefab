@@ -4185,6 +4185,7 @@ MonoBehaviour:
   speed: 2
   permaDamage: 0
   lv: 0
+  xp_show: 0
 --- !u!114 &8526066156312330956
 MonoBehaviour:
   m_ObjectHideFlags: 0

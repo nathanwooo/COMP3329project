@@ -1842,7 +1842,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 8844762598350968471}
   cam2: {fileID: 8844762598072265265}
-  speed: 0
+  Immunespeed: 0
 --- !u!114 &8844762597717880437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1891,7 +1891,10 @@ MonoBehaviour:
   damage: 0
   extraDamage: 1
   defense: 1
+  speed: 2
+  permaDamage: 0
   lv: 0
+  xp_show: 0
 --- !u!114 &8844762597717880435
 MonoBehaviour:
   m_ObjectHideFlags: 0
