@@ -15,7 +15,7 @@ public class Attacker : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         var collidedObject = collision.gameObject;
-        Debug.Log("Hited"+ collidedObject.name);
+        // Debug.Log("Hited"+ collidedObject.name);
         if (collidedObject.name == "bullets_rifle(Clone)")
         {
             if (--life <= 0)
