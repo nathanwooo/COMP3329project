@@ -31,7 +31,6 @@ public class lungLogic : MonoBehaviour
     void Update()
     {
         
-        
     }
     public static void hpToZero()
     {
@@ -66,7 +65,7 @@ public class lungLogic : MonoBehaviour
             }
             else
             {
-                PhotonNetwork.LoadLevel("Heart Rule");
+                PhotonNetwork.LoadLevel("heart");
             }
         }
     }
