@@ -60,7 +60,7 @@ public class DesroyBlock : MonoBehaviour
             hitPosition.y = hit.point.y - 0.01f * hit.normal.y;
             desPoints[i++] = hitPosition;
         }
-        PV.RPC("DestroyMap", RpcTarget.All, desPoints);   
+        PV.RPC("DestroyMap", RpcTarget.All, desPoints);  
     }
 
     [PunRPC]

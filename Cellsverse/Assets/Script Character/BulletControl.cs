@@ -30,17 +30,18 @@ public class BulletControl : MonoBehaviour, IPunInstantiateMagicCallback{
             GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
             AudioSource.PlayClipAtPoint(explosionSound, transform.position);
             Destroy(effect, 0.3f);
-            if (collision.gameObject.name != "Immue(Clone)" && collision.gameObject.name != "Bacteria(Clone)"){
-                PhotonNetwork.Destroy(gameObject);
-            }
-            else if (collision.gameObject.name == "destructable(Clone)")
+            if (collision.gameObject.name == "destructable(Clone)")
             {
                 DB = destructable.GetComponent<DesroyBlock>();
                 DB.DestroyBlock(collision.contacts);
+                PhotonNetwork.Destroy(gameObject);
             }
+            else if (collision.gameObject.name != "Immue(Clone)" && collision.gameObject.name != "Bacteria(Clone)"){
+                PhotonNetwork.Destroy(gameObject);
+            }
+
             else
             {
-                Debug.Log("Out");
                 int viewID = collision.gameObject.GetComponent<PhotonView>().ViewID;
                 PV.RPC("enemyDamaged", RpcTarget.Others, bulletDamage, viewID);
                 PhotonNetwork.Destroy(gameObject);
