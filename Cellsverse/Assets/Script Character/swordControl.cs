@@ -54,4 +54,8 @@ public class swordControl : MonoBehaviour{
         player.GetComponent<healthBarControl>().currentHP -= swordDamage* player.GetComponent<healthBarControl>().defense;
     }
 
+
+
+
+    
 }
