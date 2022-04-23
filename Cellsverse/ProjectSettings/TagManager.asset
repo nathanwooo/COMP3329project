@@ -48,9 +48,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: nutrients
-    uniqueID: 90505937
-    locked: 0
   - name: obstacles
     uniqueID: 3940589901
     locked: 0
