@@ -4175,6 +4175,8 @@ MonoBehaviour:
   ownGameScore: {fileID: 3366135935505804172}
   enemyGameScore: {fileID: 8319518345114153735}
   lvCount: {fileID: 1770129702640445118}
+  collisionSound: {fileID: 8300000, guid: 2ec051bac5886ab4c971e63f2b9c7dc5, type: 3}
+  powerUpSound: {fileID: 8300000, guid: 1c2295509f1d7a043876f7e51e87b679, type: 3}
   maxHP: 0
   maxMP: 0
   currentHP: 0
