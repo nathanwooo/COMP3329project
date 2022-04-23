@@ -56,19 +56,23 @@ public class regionDetector : MonoBehaviour
 
     void nextTarget()
     {
+        
+        var nextIndex = Random.Range(1, enemies.Count);
+        var i = 1;
         foreach (Collider2D e in enemies)
         {
-            Debug.Log(e);
-            target_enemy = e;
-            return;
+            if (i++ == nextIndex)
+            {
+                target_enemy = e;
+                return;
+            }
         }
     }
     void OnTriggerEnter2D(Collider2D obj)
     {
         string name = obj.gameObject.name;
-
         // if collided with bullet
-        Debug.Log("Enter " + name);
+        // Debug.Log("Enter " + name);
         if (name == playerBoundingName)
         {
             addEnemy(obj);
@@ -99,24 +103,24 @@ public class regionDetector : MonoBehaviour
         }
         if (attacker != null)
         {
+            var sourcePosition = attacker.transform.position;
             if (target_enemy != null)
             {
                 destination = target_enemy.transform.position;
-                float distance = Vector3.Distance(attacker.transform.position, destination);
+                var distance = Vector3.Distance(sourcePosition, destination);
                 if (distance > 0)
                 {
-                    attacker.transform.position = Vector3.Lerp(attacker.transform.position, destination, Time.deltaTime * speed / distance);
+                    attacker.transform.position = Vector3.Lerp(sourcePosition, destination, Time.deltaTime * speed / distance);
                 }
             }
             else
             {
-                float distance = Vector3.Distance(attacker.transform.position, initialPosition);
+                var distance = Vector3.Distance(sourcePosition, initialPosition);
                 if (distance > 0)
                 {
-                    attacker.transform.position = Vector3.Lerp(attacker.transform.position, initialPosition, Time.deltaTime * speed / distance);
+                    attacker.transform.position = Vector3.Lerp(sourcePosition, initialPosition, Time.deltaTime * speed / distance);
                 }
             }
-
         }
         else
         {
@@ -127,7 +131,6 @@ public class regionDetector : MonoBehaviour
                 attackerCounter = attackerInterval;
             }
         }
-
     }
 
     void OnTriggerExit2D(Collider2D obj)
@@ -135,7 +138,7 @@ public class regionDetector : MonoBehaviour
         string name = obj.gameObject.name;
 
         // if collided with bullet
-        Debug.Log("Ohhhhh " + name);
+        // Debug.Log("Ohhhhh " + name);
         // if (obj.tag == "Player")
         // {
         if (name == playerBoundingName)
@@ -145,9 +148,7 @@ public class regionDetector : MonoBehaviour
             {
                 target_enemy = null;
                 nextTarget();
-
             }
         }
-
     }
 }
