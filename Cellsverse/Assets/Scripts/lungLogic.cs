@@ -35,26 +35,9 @@ public class lungLogic : MonoBehaviour
     {
         
         enemyGameScore += 1;
-        if (enemyGameScore == 2)
-        {
-            PV1.RPC("enemyWin", RpcTarget.Others);
-            if (PhotonNetwork.IsMasterClient)
-            {
-                PhotonNetwork.LoadLevel("End Game");
-
-            }
-        }
-        else
-        {
-            PV1.RPC("enemyWin", RpcTarget.Others);
-            if (PhotonNetwork.IsMasterClient)
-            {
-                
-                PhotonNetwork.LoadLevel(tpArea[currentTpIndex++]);
-
-
-            }
-        }
+        
+        PV1.RPC("enemyWin", RpcTarget.Others);            
+        
         
             
         
@@ -64,16 +47,23 @@ public class lungLogic : MonoBehaviour
     static void enemyWin()
     {
         ownGameScore += 1;
+        PV1.RPC("startTp", RpcTarget.MasterClient);
         
-        if (ownGameScore ==2 && PhotonNetwork.IsMasterClient)
-        {
-            PhotonNetwork.LoadLevel("End Game");
 
-        }
-        else if(PhotonNetwork.IsMasterClient)
+    }
+    [PunRPC]
+    static void startTp()
+    {
+        if (PhotonNetwork.IsMasterClient)
         {
-            PhotonNetwork.LoadLevel(tpArea[currentTpIndex++]);
+            if (enemyGameScore == 2 || ownGameScore == 2)
+            {
+                PhotonNetwork.LoadLevel("End Game");
+            }
+            else
+            {
+                PhotonNetwork.LoadLevel(tpArea[currentTpIndex++]);
+            }
         }
-
     }
 }
