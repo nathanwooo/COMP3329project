@@ -57,8 +57,8 @@ public class regionDetector : MonoBehaviour
     void nextTarget()
     {
         
-        var nextIndex = Random.Range(1, enemies.Count);
-        var i = 1;
+        var nextIndex = Random.Range(0, enemies.Count);
+        var i = 0;
         foreach (Collider2D e in enemies)
         {
             if (i++ == nextIndex)
@@ -110,7 +110,7 @@ public class regionDetector : MonoBehaviour
                 var distance = Vector3.Distance(sourcePosition, destination);
                 if (distance > 0)
                 {
-                    attacker.transform.position = Vector3.Lerp(sourcePosition, destination, Time.deltaTime * speed / distance);
+                    attacker.transform.position = Vector3.Lerp(sourcePosition, destination, (0.1f + Time.deltaTime * speed) / distance);
                 }
             }
             else
@@ -118,7 +118,7 @@ public class regionDetector : MonoBehaviour
                 var distance = Vector3.Distance(sourcePosition, initialPosition);
                 if (distance > 0)
                 {
-                    attacker.transform.position = Vector3.Lerp(sourcePosition, initialPosition, Time.deltaTime * speed / distance);
+                    attacker.transform.position = Vector3.Lerp(sourcePosition, initialPosition, (0.1f + Time.deltaTime * speed) / distance);
                 }
             }
         }
