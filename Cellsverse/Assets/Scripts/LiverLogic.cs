@@ -9,6 +9,7 @@ public class LiverLogic : MonoBehaviour
     void Start()
     {
         PV = GetComponent<PhotonView>();
+        
     }
 
     // Update is called once per frame
