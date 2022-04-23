@@ -23,9 +23,16 @@ public class hammerControl : MonoBehaviour{
     void Hammer(){
         if (Input.GetMouseButton(1) && Time.time > nextSlash)
         {
+            PV.RPC("enemyHammer",RpcTarget.Others);
             AudioSource.PlayClipAtPoint(hammerSound, transform.position);
             nextSlash = Time.time + slashRate;
         }
+    }
+
+    [PunRPC]
+    void enemyHammer(){
+        AudioSource.PlayClipAtPoint(hammerSound, transform.position);
+        nextSlash = Time.time + slashRate;
     }
 
     public void OnTriggerEnter36D(Collider2D collision){
