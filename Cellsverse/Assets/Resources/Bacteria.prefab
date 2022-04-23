@@ -4033,6 +4033,8 @@ MonoBehaviour:
   speed: 2
   permaDamage: 0
   lv: 0
+  collisionSound: {fileID: 8300000, guid: 2ec051bac5886ab4c971e63f2b9c7dc5, type: 3}
+  powerUpSound: {fileID: 8300000, guid: c7d5d555ce3a9b44ca240443deefb558, type: 3}
   xp_show: 0
 --- !u!114 &8526066156312330956
 MonoBehaviour:
