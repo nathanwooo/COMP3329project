@@ -16,6 +16,11 @@ public class swordControl : MonoBehaviour{
 
     }
     void Update(){
+        if(PV.IsMine){
+            Sword();
+        }
+    }
+    void Sword(){
         if (Input.GetMouseButton(1) && Time.time > nextSlash)
         {
             AudioSource.PlayClipAtPoint(swordSound, transform.position);

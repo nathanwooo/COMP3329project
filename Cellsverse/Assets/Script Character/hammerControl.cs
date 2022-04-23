@@ -16,6 +16,11 @@ public class hammerControl : MonoBehaviour{
 
     }
     void Update(){
+        if(PV.IsMine){
+            Hammer();
+        }
+    }
+    void Hammer(){
         if (Input.GetMouseButton(1) && Time.time > nextSlash)
         {
             AudioSource.PlayClipAtPoint(hammerSound, transform.position);
