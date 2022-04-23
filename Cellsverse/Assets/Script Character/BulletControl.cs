@@ -9,7 +9,6 @@ public class BulletControl : MonoBehaviour, IPunInstantiateMagicCallback{
     public AudioClip explosionSound;
     healthBarControl HBControl;
     PhotonView PV;
-    DesroyBlock DB;
     void Start(){
         PV = GetComponent<PhotonView>();
         HBControl = GetComponent<healthBarControl>();
@@ -27,7 +26,7 @@ public class BulletControl : MonoBehaviour, IPunInstantiateMagicCallback{
             {
                 Debug.Log("Test 1");
                 var destructable = collision.gameObject;
-                DB = destructable.GetComponent<DesroyBlock>();
+                var DB = destructable.GetComponent<DesroyBlock>();
                 Debug.Log("Test 2");
                 DB.DestroyBlock(collision.contacts);
                 Debug.Log("Test 3");
