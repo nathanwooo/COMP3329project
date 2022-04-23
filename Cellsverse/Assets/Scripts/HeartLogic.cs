@@ -11,6 +11,7 @@ public class HeartLogic : MonoBehaviour
     private static PhotonView PV;
     public float remainingTime = 5;
     private bool willTp = true;
+    public GameObject map;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +23,7 @@ public class HeartLogic : MonoBehaviour
         {
             Debug.Log("Creatttttttttttttttttttttttttttttttttttttttttttttttttttttttt");
             Debug.Log("Creatttttttttttttttttttttttttttttttttttttttttttttttttttttttt");
-            var map = PhotonNetwork.Instantiate(destryableMap.name, new Vector3(0, 0, 0), Quaternion.identity);
+            map = PhotonNetwork.Instantiate(destryableMap.name, new Vector3(0, 0, 0), Quaternion.identity);
             PV.RPC("createTileMap", RpcTarget.All, map.GetComponent<PhotonView>().ViewID);
             Debug.Log("213122222222223");
             Debug.Log(count++);

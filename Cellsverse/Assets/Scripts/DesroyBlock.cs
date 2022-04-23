@@ -28,28 +28,41 @@ public class DesroyBlock : MonoBehaviour
     {
         
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            string name = collision.gameObject.name;
-            if (targetObject.Contains(name))//change to bullet later
-            {
-                var contacts = collision.contacts;
-                Vector3[] desPoints = new Vector3[contacts.Length];
-                Vector3 hitPosition = Vector3.zero;
-                var i = 0;
-                foreach (ContactPoint2D hit in contacts)
-                {
+    // private void OnCollisionEnter2D(Collision2D collision)
+    // {
+    //     if (PhotonNetwork.IsMasterClient)
+    //     {
+    //         string name = collision.gameObject.name;
+    //         if (targetObject.Contains(name))//change to bullet later
+    //         {
+    //             var contacts = collision.contacts;
+    //             Vector3[] desPoints = new Vector3[contacts.Length];
+    //             Vector3 hitPosition = Vector3.zero;
+    //             var i = 0;
+    //             foreach (ContactPoint2D hit in contacts)
+    //             {
 
-                    hitPosition.x = hit.point.x - 0.01f * hit.normal.x;
-                    hitPosition.y = hit.point.y - 0.01f * hit.normal.y;
-                    desPoints[i++] = hitPosition;
-                }
-                PV.RPC("DestroyMap", RpcTarget.All, desPoints);   
-            }
+    //                 hitPosition.x = hit.point.x - 0.01f * hit.normal.x;
+    //                 hitPosition.y = hit.point.y - 0.01f * hit.normal.y;
+    //                 desPoints[i++] = hitPosition;
+    //             }
+    //             PV.RPC("DestroyMap", RpcTarget.All, desPoints);   
+    //         }
+    //     }
+    // }
+    public void DestroyBlock(ContactPoint2D[] contacts){
+        Vector3[] desPoints = new Vector3[contacts.Length];
+        Vector3 hitPosition = Vector3.zero;
+        var i = 0;
+        foreach (ContactPoint2D hit in contacts)
+        {
+            hitPosition.x = hit.point.x - 0.01f * hit.normal.x;
+            hitPosition.y = hit.point.y - 0.01f * hit.normal.y;
+            desPoints[i++] = hitPosition;
         }
+        PV.RPC("DestroyMap", RpcTarget.All, desPoints);   
     }
+
     [PunRPC]
     void DestroyMap(Vector3[] desPoints)
     {
