@@ -7,6 +7,6 @@ public class CameraFollow : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.position = target_object.position+ offset;
+        transform.position = target_object.position+ offset;sdfsf
     }
 }
