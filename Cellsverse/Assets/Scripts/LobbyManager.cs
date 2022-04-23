@@ -144,6 +144,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public void OnClickPlayButton()
     {
-        PhotonNetwork.LoadLevel("cellverse");
+        PhotonNetwork.LoadLevel("Lung Rule");
     }
 }
