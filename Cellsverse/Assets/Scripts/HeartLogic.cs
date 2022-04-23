@@ -14,7 +14,7 @@ public class HeartLogic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("XDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD" + tpController.testvar);
+    
         PV = GetComponent<PhotonView>();
         Debug.Log("[[[[[[[[[[[[[[[[[[[[");
         Debug.Log(PV.IsMine);

@@ -16,9 +16,11 @@ public class healthBarControl : MonoBehaviour
     public float xp_show;
 
     private bool willTP = true;
+    tpController tpControl = new tpController();
     // Start is called before the first frame update
     void Start()
     {
+        
         xp_show = exp.GetComponent<Image>().fillAmount;
 
         ownGameScore.GetComponent<Text>().text = lungLogic.ownGameScore.ToString();
@@ -85,7 +87,7 @@ public class healthBarControl : MonoBehaviour
         if (currentHP <= 0 && willTP)
         {
            
-                lungLogic.hpToZero();
+                tpControl.hpToZero();
                 willTP = false;
             
         }
