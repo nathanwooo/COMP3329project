@@ -6,25 +6,23 @@ using Photon.Realtime;
 
 public class RulePanelManager : MonoBehaviour
 {
+    private float shrinkTimer = 5;
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(ExampleCoroutine());
-        if (PhotonNetwork.IsMasterClient)
-        {
-            PhotonNetwork.LoadLevel("cellverse");
-        }
-    }
 
-    IEnumerator ExampleCoroutine()
-    {
-        //yield on a new YieldInstruction that waits for 5 seconds.
-        yield return new WaitForSeconds(5);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        shrinkTimer -= Time.deltaTime;
+        if (shrinkTimer < 0)
+        {
+            if (PhotonNetwork.IsMasterClient)
+            {
+                PhotonNetwork.LoadLevel("cellverse");
+            }
+        }
     }
 }
