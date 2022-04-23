@@ -51,11 +51,11 @@ public class healthBarControl : MonoBehaviour
     }
 
     void refresh(){
-<<<<<<< Updated upstream
+
         //Debug.Log(extraDamage);
-=======
+
         xp_show = exp.GetComponent<Image>().fillAmount;
->>>>>>> Stashed changes
+
         updateStats();
         updateBar();
 

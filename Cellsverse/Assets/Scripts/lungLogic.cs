@@ -19,6 +19,7 @@ public class lungLogic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        new tpController();
         PV1 = GetComponent<PhotonView>();
         if(PhotonNetwork.IsMasterClient){
             PhotonNetwork.Instantiate(targetCircle.name, new Vector2(2.2f, -3.4f), Quaternion.identity);
