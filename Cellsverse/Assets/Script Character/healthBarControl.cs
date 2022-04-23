@@ -48,7 +48,7 @@ public class healthBarControl : MonoBehaviour
     }
 
     void refresh(){
-        Debug.Log(extraDamage);
+        //Debug.Log(extraDamage);
         updateStats();
         updateBar();
 

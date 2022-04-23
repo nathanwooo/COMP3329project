@@ -8,8 +8,8 @@ public class lungLogic : MonoBehaviour
 {
     public float time = 5;
     private bool willTp = true;
-    public static int ownGameScore = 6;
-    public static int enemyGameScore = 9;
+    public static int ownGameScore = 0;
+    public static int enemyGameScore = 0;
     public GameObject dmgCircle;
     public GameObject targetCircle;
     static PhotonView PV1;
@@ -29,15 +29,7 @@ public class lungLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        time -= Time.deltaTime;
-        if (time < 0 && willTp)
-        {
-            if (PhotonNetwork.IsMasterClient)
-            {
-                PhotonNetwork.LoadLevel("heart");
-                willTp = false;
-            }
-        }
+        
     }
     public static void hpToZero()
     {
