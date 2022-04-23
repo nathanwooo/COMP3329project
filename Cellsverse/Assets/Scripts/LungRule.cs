@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class RulePanelManager : MonoBehaviour
+public class LungRule : MonoBehaviour
 {
     private float shrinkTimer = 5;
     // Start is called before the first frame update
