@@ -13,6 +13,9 @@ public class lungLogic : MonoBehaviour
     public GameObject dmgCircle;
     public GameObject targetCircle;
     static PhotonView PV1;
+    private static string[] tpArea= new string[2] {"heart","liver"};
+    private static int currentTpIndex = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,27 +41,46 @@ public class lungLogic : MonoBehaviour
     }
     public static void hpToZero()
     {
-        ownGameScore = 0;
-        enemyGameScore = 1;
-        if (PhotonNetwork.IsMasterClient)
-        {
-            PhotonNetwork.LoadLevel("heart");
-            
-        } else
+        
+        enemyGameScore += 1;
+        if (enemyGameScore == 2)
         {
             PV1.RPC("enemyWin", RpcTarget.Others);
+            if (PhotonNetwork.IsMasterClient)
+            {
+                PhotonNetwork.LoadLevel("End Game");
+
+            }
         }
+        else
+        {
+            PV1.RPC("enemyWin", RpcTarget.Others);
+            if (PhotonNetwork.IsMasterClient)
+            {
+                
+                PhotonNetwork.LoadLevel(tpArea[currentTpIndex++]);
+
+
+            }
+        }
+        
+            
+        
 
     }
     [PunRPC]
     static void enemyWin()
     {
-        ownGameScore = 1;
-        enemyGameScore = 0;
-        if (PhotonNetwork.IsMasterClient)
+        ownGameScore += 1;
+        
+        if (ownGameScore ==2 && PhotonNetwork.IsMasterClient)
         {
-            PhotonNetwork.LoadLevel("heart");
+            PhotonNetwork.LoadLevel("End Game");
 
+        }
+        else if(PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.LoadLevel(tpArea[currentTpIndex++]);
         }
 
     }

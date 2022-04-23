@@ -11,6 +11,7 @@ public class healthBarControl : MonoBehaviour
     public float maxHP, maxMP, currentHP, currentMP, damage, extraDamage = 1, defense = 1f, speed = 2f, permaDamage = 0;
     public int lv;
     private float mpRegenRate = 1f, nextMpRegen = 0f;
+   
     PhotonView PV;
 
     private bool willTP = true;
@@ -76,8 +77,10 @@ public class healthBarControl : MonoBehaviour
 
         if (currentHP <= 0 && willTP)
         {
-            lungLogic.hpToZero();
-            willTP = false;
+           
+                lungLogic.hpToZero();
+                willTP = false;
+            
         }
     }
     
