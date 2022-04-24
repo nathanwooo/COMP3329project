@@ -9,7 +9,7 @@ public class Attacker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        life = 3;
+        life = 2;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
