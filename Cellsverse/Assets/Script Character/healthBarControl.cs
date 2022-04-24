@@ -175,7 +175,7 @@ public class healthBarControl : MonoBehaviour
                 AudioSource.PlayClipAtPoint(collisionSound, transform.position);
                 int viewID = collision.gameObject.GetComponent<PhotonView>().ViewID;
                 PV.RPC("DestoryStuff", RpcTarget.AllBuffered, viewID);
-                currentHP -= 5f;
+                currentHP -= 10f;
             }
             else if (collision.gameObject.name == "icons_0(Clone)")
             {

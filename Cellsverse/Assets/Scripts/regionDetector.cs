@@ -106,6 +106,7 @@ public class regionDetector : MonoBehaviour
         if (attacker != null)
         {
             var sourcePosition = attacker.transform.position;
+            nextTarget();
             if (target_enemy != null)
             {
                 destination = target_enemy.transform.position;
@@ -113,7 +114,7 @@ public class regionDetector : MonoBehaviour
                 var distance = Vector3.Distance(sourcePosition, destination);
                 if (distance > 0)
                 {
-                    attacker.transform.position = Vector3.Lerp(sourcePosition, destination, (Mathf.Min(0.04f + Time.deltaTime * speed, 1)) / distance);
+                    attacker.transform.position = Vector3.Lerp(sourcePosition, destination, (Mathf.Min(0.02f + Time.deltaTime * speed, 1)) / distance);
                 }
             }
             else
