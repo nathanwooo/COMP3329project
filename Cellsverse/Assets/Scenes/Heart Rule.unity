@@ -608,7 +608,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: HEART Battle
+  m_Text: HEART BATTLE
 --- !u!222 &1615654358
 CanvasRenderer:
   m_ObjectHideFlags: 0

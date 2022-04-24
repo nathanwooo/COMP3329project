@@ -559,7 +559,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: LIVER Battle
+  m_Text: LIVER BATTLE
 --- !u!222 &1812278084
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -643,15 +643,18 @@ MonoBehaviour:
     MAP FEATURE
 
 
-    1. Capture the city in the middle
+    1. Capture the city in the middle to gain marks
 
 
-    2. The
-    first player that get to 60 marks will win
+    2.
+    Player will gain mark if only 1 player inside the city
 
 
-    3. The marks will be shown in
-    the scoreboard'
+    2. The first player
+    that get to 60 marks will win
+
+
+    3. The marks will be shown in the scoreboard'
 --- !u!222 &2106103551
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -264,7 +264,7 @@ MonoBehaviour:
     MAP FEATURE
 
 
-    1. The poison gas circle will shrink after 120
+    1. The poison gas circle will shrink after 90
     seconds
 
 
@@ -604,7 +604,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ' LUNG Battle'
+  m_Text: ' LUNG BATTLE'
 --- !u!222 &1404521307
 CanvasRenderer:
   m_ObjectHideFlags: 0
