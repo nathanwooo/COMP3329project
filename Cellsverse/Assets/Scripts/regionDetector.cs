@@ -40,6 +40,7 @@ public class regionDetector : MonoBehaviour
         if (PhotonNetwork.IsMasterClient)
         {
             attacker = PhotonNetwork.Instantiate(attacker_object.name, initialPosition, Quaternion.identity);
+            nextTarget();
         }
 
     }
@@ -106,7 +107,6 @@ public class regionDetector : MonoBehaviour
         if (attacker != null)
         {
             var sourcePosition = attacker.transform.position;
-            nextTarget();
             if (target_enemy != null)
             {
                 destination = target_enemy.transform.position;
