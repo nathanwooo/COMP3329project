@@ -6,7 +6,7 @@
 3. Run the Cellsverse.exe inside the folder workable game
 4. Enjoy the game
 ### Build from Source Code
-1. Download the whole game file from Github or use the cellsverse.exe to play the game
+1. Download the whole game file from Github
 2. Add the project folder to Unity Hub
 3. Open Unity and build the game
 4. Run the executable file after building and you can play the game!
