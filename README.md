@@ -1,7 +1,7 @@
 # Cellverse
 ## Installation instructions
 ### Running the Prebuilt File (Windows)
-1. Download the workable.game.zip from the Realease.
+1. Download the workable.game.zip from the Realeases
 2. Unzip the file
 3. Run the Cellsverse.exe inside the folder workable game
 4. Enjoy the game
