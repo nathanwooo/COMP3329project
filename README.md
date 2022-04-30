@@ -1,5 +1,11 @@
 # Cellverse
 ## Installation instructions
+### Running the Prebuilt File (Windows)
+1. Download the workable.game.zip from the Realease.
+2. Unzip the file
+3. Run the Cellsverse.exe inside the folder workable game
+4. Enjoy the game
+### Build from Source Code
 1. Download the whole game file from Github or use the cellsverse.exe to play the game
 2. Add the project folder to Unity Hub
 3. Open Unity and build the game
