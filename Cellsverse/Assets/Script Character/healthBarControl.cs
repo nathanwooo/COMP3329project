@@ -10,6 +10,8 @@ public class healthBarControl : MonoBehaviour
     [SerializeField] private GameObject lvCount;
     public float maxHP, maxMP, currentHP, currentMP, damage, extraDamage = 1, defense = 1f, speed = 2f, permaDamage = 0;
     public int lv;
+    public AudioClip collisionSound, powerUpSound;
+
     private float mpRegenRate = 1f, nextMpRegen = 0f;
    
     PhotonView PV;
@@ -152,24 +154,28 @@ public class healthBarControl : MonoBehaviour
             // }
             else if (collision.gameObject.name == "Attacker(Clone)")
             {
+                AudioSource.PlayClipAtPoint(collisionSound, transform.position);
                 int viewID = collision.gameObject.GetComponent<PhotonView>().ViewID;
                 PV.RPC("DestoryStuff", RpcTarget.AllBuffered, viewID);
-                currentHP -= 5f;
+                currentHP -= 10f;
             }
             else if (collision.gameObject.name == "icons_0(Clone)")
             {
+                AudioSource.PlayClipAtPoint(powerUpSound, transform.position);
                 int viewID = collision.gameObject.GetComponent<PhotonView>().ViewID;
                 PV.RPC("DestoryStuff", RpcTarget.AllBuffered, viewID);
                 permaDamage += 2;
             }
             else if (collision.gameObject.name == "icons_1(Clone)")
             {
+                AudioSource.PlayClipAtPoint(powerUpSound, transform.position);
                 int viewID = collision.gameObject.GetComponent<PhotonView>().ViewID;
                 PV.RPC("DestoryStuff", RpcTarget.AllBuffered, viewID);
                 speed += 2f;
             }
             else if (collision.gameObject.name == "icons_3(Clone)")
             {
+                AudioSource.PlayClipAtPoint(powerUpSound, transform.position);
                 int viewID = collision.gameObject.GetComponent<PhotonView>().ViewID;
                 PV.RPC("DestoryStuff", RpcTarget.AllBuffered, viewID);
                 if (defense > 0.2f){
@@ -178,6 +184,7 @@ public class healthBarControl : MonoBehaviour
             }
             else if (collision.gameObject.name == "icons_8(Clone)")
             {
+                AudioSource.PlayClipAtPoint(powerUpSound, transform.position);
                 int viewID = collision.gameObject.GetComponent<PhotonView>().ViewID;
                 PV.RPC("DestoryStuff", RpcTarget.AllBuffered, viewID);
                 maxHP += 25f * lv;

@@ -214,6 +214,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be24f1a5ed9923c428c55b9c84275529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  circleSize: {x: 0, y: 0, z: 0}
+  circlePosition: {x: 0, y: 0, z: 0}
   targetCircleTransform: {fileID: 5968718597630804577, guid: 48bb512aadd432845a16e30a2fbd6d28, type: 3}
 --- !u!114 &-4860269628474384708
 MonoBehaviour:

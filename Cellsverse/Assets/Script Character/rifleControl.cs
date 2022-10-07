@@ -7,7 +7,7 @@ using Photon.Pun;
 
 public class rifleControl : MonoBehaviourPunCallbacks {
     [SerializeField] private GameObject firePoint;
-    private float bulletForce = 0.001f, fireRate = 0.1f, nextFire = 0f;
+    private float bulletForce = 0.002f, fireRate = 0.5f, nextFire = 0f;
     private Vector2 mousePosition;
     [SerializeField] private Camera cam;
     [SerializeField] public GameObject bulletPrefab;
@@ -47,8 +47,6 @@ public class rifleControl : MonoBehaviourPunCallbacks {
     [PunRPC]
     void enemyShooting(){
         AudioSource.PlayClipAtPoint(shootSound, transform.position);
-        nextFire = Time.time + fireRate;
-        StartCoroutine(shoot());
     }
 
     IEnumerator shoot(){

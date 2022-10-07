@@ -14,12 +14,12 @@ public class dmgcircle : MonoBehaviour
     private Vector3 targetCircleSize;
     private Transform charac;
     private float circleShrinkSpeed;
-    private float shrinkTimer = 120;
+    private float shrinkTimer = 90;
     private Vector3 targetCirclePosition;
     [SerializeField] private Transform targetCircleTransform;
     private void Awake()
     {
-        circleShrinkSpeed = 10f;
+        circleShrinkSpeed = 5f;
         circleTransform = transform.Find("circle");
         topTransform = transform.Find("circle_top");
         bottomTransform = transform.Find("circle_bot");
