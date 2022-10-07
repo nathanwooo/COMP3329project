@@ -9,9 +9,8 @@ public class dmgcircle : MonoBehaviour
     private Transform bottomTransform;
     private Transform leftTransform;
     private Transform rightTransform;
-    public Vector3 circleSize;
-    public Vector3 circlePosition;
-
+    private Vector3 circleSize;
+    private Vector3 circlePosition;
     private Vector3 targetCircleSize;
     private Transform charac;
     private float circleShrinkSpeed;
@@ -62,7 +61,7 @@ public class dmgcircle : MonoBehaviour
         rightTransform.localScale = new Vector3(11000, 15000);
         rightTransform.localPosition = new Vector3(size.x * .5f + 54.8f, -4.4f);//40
     }
-    public bool IsOutsideCircle(Vector3 position)
+    private bool IsOutsideCircle(Vector3 position)
     {
         return Vector3.Distance(position, circlePosition) > circleSize.x * .5f;
     }

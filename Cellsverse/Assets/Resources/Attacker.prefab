@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 7388672284904482980}
   - component: {fileID: 7111735549347732902}
   - component: {fileID: 104840996802302219}
-  - component: {fileID: 3308509657061918633}
   m_Layer: 0
   m_Name: Attacker
   m_TagString: Untagged
@@ -98,8 +97,8 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 0.001
+  m_UseAutoMass: 1
+  m_Mass: 0.27714843
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
@@ -163,15 +162,3 @@ MonoBehaviour:
   m_SynchronizeRotation: 0
   m_SynchronizeScale: 0
   m_UseLocal: 1
---- !u!114 &3308509657061918633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4764905916092924122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deb3189a13f72a54380f2ba5aab6f154, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

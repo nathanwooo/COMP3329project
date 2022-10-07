@@ -13,9 +13,7 @@ public class healthBarControl : MonoBehaviour
     public AudioClip collisionSound, powerUpSound;
 
     private float mpRegenRate = 1f, nextMpRegen = 0f;
-    private Vector3 circleSize ;
-    private Vector3 circlePosition;
-
+   
     PhotonView PV;
     public float xp_show;
 
@@ -25,7 +23,7 @@ public class healthBarControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        circlePosition = new Vector3(2.2f, -3.4f, transform.position.z);
+        
         xp_show = exp.GetComponent<Image>().fillAmount;
 
         ownGameScore.GetComponent<Text>().text = lungLogic.ownGameScore.ToString();
@@ -44,9 +42,9 @@ public class healthBarControl : MonoBehaviour
         // exp =  GameObject.Find("immue(Clone)/Canvas/Expbar/exp");
         // immueScore = GameObject.Find("immue(Clone)/Canvas/scoreboard/immueTotalScore");
         // bacteriaScore = GameObject.Find("immue(Clone)/Canvas/scoreboard/bacteriaTotalScore");
-        //nm.GetComponent<Text>().text = "Immune";
+        nm.GetComponent<Text>().text = "Immune";
         exp.GetComponent<Image>().fillAmount = 0f;
-        nm.GetComponent<Text>().text = PhotonNetwork.NickName;
+        nm.GetComponent<Text>().text = this.gameObject.name;
         updateBar();
         lvCount.GetComponent<Text>().text = "1";
     }
@@ -55,21 +53,10 @@ public class healthBarControl : MonoBehaviour
         if (PV.IsMine){
             refresh();
         }
-
     }
 
     void refresh(){
-        if (lungLogic.currentLocation == "lung")
-        {
-            circleSize = GameObject.Find("dmgcircle(Clone)").GetComponent<dmgcircle>().circleSize;
 
-            //Debug.Log(circleSize);
-            //Debug.Log(circlePosition);
-            if (Vector3.Distance(transform.position, circlePosition) > circleSize.x * .5f)
-            {
-                currentHP -= Time.deltaTime * 10;
-            }
-        }
         //Debug.Log(extraDamage);
 
         xp_show = exp.GetComponent<Image>().fillAmount;
@@ -119,11 +106,6 @@ public class healthBarControl : MonoBehaviour
                 willTP = false;
             }
             
-        }
-        if (lungLogic.currentLocation == "liver")
-        {
-            ownGameScore.GetComponent<Text>().text = Occupy.ownScore.ToString();
-            enemyGameScore.GetComponent<Text>().text = Occupy.enemyScore.ToString();
         }
     }
     
@@ -219,6 +201,5 @@ public class healthBarControl : MonoBehaviour
         }
         
     }
-    
 
 }

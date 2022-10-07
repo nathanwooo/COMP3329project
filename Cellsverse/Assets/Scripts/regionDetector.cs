@@ -11,9 +11,7 @@ public class regionDetector : MonoBehaviour
     public float startTime;
     public float interval;
     public Transform powerUpTransform;
-    public float attackerInterval = 1;
 
-    private float attackerCounter;
     private float remainingTime;
     private GameObject attacker;
     private Vector3 destination;
@@ -27,7 +25,7 @@ public class regionDetector : MonoBehaviour
     {
         // initialPosition = attacker.transform.position;
 
-        // Randomly pick a point within the spawn object
+        //ï¿½Randomlyï¿½pickï¿½aï¿½pointï¿½withinï¿½theï¿½spawnï¿½object
         remainingTime = startTime;
         initialPosition = transform.position;
         enemies = new HashSet<Collider2D>();
@@ -42,7 +40,7 @@ public class regionDetector : MonoBehaviour
             attacker = PhotonNetwork.Instantiate(attacker_object.name, initialPosition, Quaternion.identity);
             nextTarget();
         }
-
+        
     }
 
     void addEnemy(Collider2D obj)
@@ -93,7 +91,7 @@ public class regionDetector : MonoBehaviour
         else
         {
             var nextIndex = Random.Range(0, powerUp.Length);
-
+            
             if (PhotonNetwork.IsMasterClient)
             {
                 if (booster != null)
@@ -126,15 +124,10 @@ public class regionDetector : MonoBehaviour
                     attacker.transform.position = Vector3.Lerp(sourcePosition, initialPosition, (Mathf.Min(0.06f + Time.deltaTime * speed, 1)) / distance);
                 }
             }
-        }
-        else
+            
+        } else
         {
-            attackerCounter -= Time.deltaTime;
-            if (attackerCounter <= 0)
-            {
-                spawnAttacker();
-                attackerCounter = attackerInterval;
-            }
+            spawnAttacker();
         }
     }
 
